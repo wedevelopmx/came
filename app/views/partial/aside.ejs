@@ -1,0 +1,90 @@
+<!-- aside -->
+<div id="aside" class="app-aside modal fade nav-expand">
+  <div class="left navside black dk" layout="column">
+    <div class="navbar no-radius">
+      <!-- brand -->
+      <a class="navbar-brand">
+        <img src="images/logo.png" alt="." class="">
+        <span class="hidden-folded inline">Came</span>
+      </a>
+      <!-- / brand -->
+    </div>
+    <div flex-no-shrink>
+      <div class="nav-fold">
+        <a href="#/app/page/profile" ui-sref="app.page.profile" ng-show="user" >
+            <span class="pull-left">
+              <img ng-src="{{user.avatar || '' }}" alt="..." class="w-40 r">
+            </span>
+            <span class="clear hidden-folded p-x">
+              <span class="block _500" ng-bind="user.displayName || 'User'"></span>
+              <small class="block text-muted">Administrator</small>
+            </span>
+        </a>
+      </div>
+    </div>
+    <div flex class="hide-scroll">
+      <nav class="scroll nav-stacked nav-active-{{app.setting.theme.primary}}">
+
+          <ul class="nav" ui-nav>
+            <li class="nav-header hidden-folded">
+              <small class="text-muted">Opciones</small>
+            </li>
+
+            <li>
+              <a href="#/visitor">
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe7fb;</i>
+                </span>
+                <span class="nav-text">Visitantes</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#/admin" ui-sref="app.widget">
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe051;</i>
+                </span>
+                <span class="nav-text">Administracion</span>
+              </a>
+            </li>
+
+            <li>
+              <a>
+                <span class="nav-icon">
+                  <i class="material-icons">&#xe24b;</i>
+                </span>
+                <span class="nav-text">Estadisticas</span>
+              </a>
+              <ul class="nav-sub">
+                  <li>
+                    <a href="#/performance/visitor"><span class="nav-text">Visitantes</span></a>
+                  </li>
+                  <li>
+                    <a href="#/performance/resource"><span class="nav-text">Recursos</span></a>
+                  </li>
+                  <li>
+                    <a href="#/export"><span class="nav-text">REDODEM</span></a>
+                  </li>
+                </ul>
+              </li>
+          </ul>
+      </nav>
+    </div>
+    <div flex-no-shrink>
+      <nav ui-nav>
+        <ul class="nav">
+          <li><div class="b-b b m-t-sm"></div></li>
+          <li class="no-bg">
+            <a href="/auth/logout">
+              <span class="nav-icon">
+               <i class="material-icons">&#xe8ac;</i>
+              </span>
+              <span class="nav-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- / aside -->

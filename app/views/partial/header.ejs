@@ -1,0 +1,66 @@
+<div class="app-header navbar-md white box-shadow">
+  <div class="navbar">
+      <!-- Open side - Naviation on mobile -->
+      <a data-toggle="modal" data-target="#aside" class="navbar-item pull-left hidden-lg-up">
+        <i class="material-icons">&#xe5d2;</i>
+      </a>
+      <!-- / -->
+      <!-- Page title - Bind to $state's title -->
+      <div class="navbar-item pull-left h5" id="pageTitle">CAME</div>
+
+      <!-- nabar right -->
+      <ul class="nav navbar-nav pull-right">
+        <li class="nav-item" ng-hide="user">
+          <a href="/auth/google" class="nav-link" ui-sref="app.dashboard" ui-sref-active="active">
+            <span class="nav-text">Login</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown" ng-show="user">
+          <a class="nav-link" ui-fullscreen href="#">
+            <i class="material-icons">&#xe145;</i>
+          </a>
+        </li>
+        <li class="nav-item dropdown" ng-show="user">
+          <a href class="nav-link dropdown-toggle clear" data-toggle="dropdown">
+            <span class="avatar w-32">
+              <img ng-src="{{user.avatar}}" alt="...">
+              <i class="busy b-white right"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu pull-right dropdown-menu-scale">
+            <a class="dropdown-item" href="#profile">
+              <span>Profile</span>
+            </a>
+            <a class="dropdown-item" ng-href="#settings">
+              <span>Settings</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#help">
+              Need help?
+            </a>
+            <a class="dropdown-item" ng-click="logout()">Sign out</a>
+          </div>
+        </li>
+      </ul>
+      <!-- / navbar right -->
+
+      <!-- navbar collapse -->
+      <div class="collapse navbar-toggleable-sm" id="collapse">
+        <!-- search form -->
+        <form class="navbar-form form-inline pull-right pull-none-sm navbar-item v-m" role="search">
+          <div class="form-group l-h m-a-0">
+            <div class="input-group input-group-sm">
+              <input type="text" class="form-control p-x b-a rounded" placeholder="Search visitor...">
+              <span class="input-group-btn">
+                <button type="submit" class="btn white b-a rounded no-shadow">
+                  <i class="material-icons">search</i>
+                </button>
+              </span>
+            </div>
+          </div>
+        </form>
+        <!-- / search form -->
+      </div>
+      <!-- / navbar collapse -->
+  </div>
+</div>
