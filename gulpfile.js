@@ -68,7 +68,7 @@ gulp.task('vendor-resources', function() {
 });
 
 //Webpack
-gulp.task('build', ['vendor-resources'], function() {
+gulp.task('build', ['sass', 'vendor-resources'], function() {
   return run('webpack').exec()
     .pipe(gulp.dest('output'));
 });
