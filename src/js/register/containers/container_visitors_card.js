@@ -1,13 +1,27 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { selectVisitor } from '../actions/index';
+import { fetchVisitors, selectVisitor } from '../actions';
 
 class VisitorList extends Component {
+  componentDidMount() {
+    console.log('fetch post');
+    this.props.fetchVisitors();
+  }
+
   renderVisitors() {
     let _self = this;
-    return this.props.visitors.map(function(visitor) {
+
+    console.log(this.props.visitors)
+
+    if(this.props.visitors == null)
+      return (<div>Loading...</div>);
+
+
+    return _.map(this.props.visitors, visitor => {
+    // this.props.visitors.map(function(visitor) {
       return (
         <li key={visitor.id} className="list-item" onClick={() => _self.props.selectVisitor(visitor) }>
           <a href="#/visitor/" className="list-left">
@@ -29,6 +43,7 @@ class VisitorList extends Component {
   }
 
   render() {
+    console.log('reder')
     return (
       <div className="box">
         <div className="item dark">
@@ -63,11 +78,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  // When selectVisitor is called, then send return value at dispatch
-  return bindActionCreators({
-    selectVisitor: selectVisitor
-  }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(VisitorList);
+export default connect(mapStateToProps, { fetchVisitors, selectVisitor })(VisitorList);

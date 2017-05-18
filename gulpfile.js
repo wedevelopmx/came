@@ -62,7 +62,8 @@ gulp.task('vendor-resources', function() {
 
           gulp.src([
             './node_modules/bootstrap/dist/js/**',
-            './node_modules/jquery/dist/**'
+            './node_modules/jquery/dist/**',
+            './node_modules/bootstrap-datepicker/dist/css/**'
           ], { base: './node_modules'})
           .pipe(gulp.dest('./dist/vendor'));
 });

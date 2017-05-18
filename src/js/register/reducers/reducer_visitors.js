@@ -1,15 +1,14 @@
-export default function() {
-  return [{
-    id: 1,
-    avatar: './images/profile.png',
-    name: 'Cristian Colorado',
-    state: 'San Luis Potosi',
-    country: 'Mexico'
-  }, {
-    id: 2,
-    avatar: './images/profile.png',
-    name: 'Andres Delgadillo',
-    state: 'Caracas',
-    country: 'Venezuela'
-  }];
+import _ from 'lodash';
+import { FETCH_VISITORS, CREATE_VISITOR } from '../actions';
+
+export default function(state = {}, action) {
+
+  switch (action.type) {
+    case FETCH_VISITORS:
+      return _.mapKeys(action.payload, 'id');
+    case CREATE_VISITOR:
+      return { ...state, [action.payload.id]: action.payload };
+    default:
+      return state;
+  }
 }

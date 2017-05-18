@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {selectVisitor} from '../actions/index';
+import { connect } from 'react-redux';
+import { fetchVisitors, selectVisitor } from '../actions/index';
 
 class VisitorProfileCard extends Component {
   render() {
+    console.log('visitor prof card')
     if(this.props.visitor == null) {
         return (<div></div>);
     }
@@ -72,8 +72,4 @@ export default connect((state) => {
   return {
     visitor: state.activeVisitor
   };
-}, (dispatch) => {
-  return bindActionCreators({
-    selectVisitor: selectVisitor
-  }, dispatch);
-})(VisitorProfileCard);
+}, { selectVisitor})(VisitorProfileCard);

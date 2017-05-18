@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+import { createVisitor } from '../actions';
 import DatepickerInput from './datepicker_input';
 
 class RegisterForm extends Component {
   renderField(field) {
-    console.log(field);
     const { meta: { touched, error } } = field;
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
@@ -26,27 +27,19 @@ class RegisterForm extends Component {
   }
 
   renderDatepickerField(field) {
-    console.log(field);
     const { meta: { touched, error } } = field;
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
     return (
       <div className={className}>
         <label>{field.label}</label>
-        <DatepickerInput {...field.input} />
+        <DatepickerInput fieldInput={field.input} />
         <div className="text-help">
           {touched ? error : ''}
         </div>
       </div>
     );
   }
-
-  // <input
-  //   className="form-control"
-  //   type="text"
-  //   placeholder="yyyy-MM-dd" data-date-format="yyyy-MM-dd" data-min-date="01/01/1917" data-max-date="today" data-autoclose="1" bs-datepicker
-  //   {...field.input}
-  // />
 
   renderOptions(options) {
     return options.map(function(option) {
@@ -55,7 +48,6 @@ class RegisterForm extends Component {
   }
 
   renderSelectField(field) {
-    console.log(field);
     const { meta: { touched, error } } = field;
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
@@ -74,12 +66,21 @@ class RegisterForm extends Component {
     );
   }
 
+  onSubmit(values) {
+    this.props.createVisitor(values, () => {
+      console.log('VISITOR CREATED');
+      //this.props.history.push('/');
+      window.location='/#/';
+    });
+  }
+
   render() {
+    const { handleSubmit } = this.props;
     const genderList = [{ value: 'male', display: 'Masculino'}, {value: 'female', display: 'Femenino'}];
     const statusList = [{ value: 'migrante', display: 'Migrante' }, { value: 'visitante', display: 'Visitante' }];
 
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
             <Field label="Nombre" name="name" component={this.renderField} />
@@ -87,24 +88,32 @@ class RegisterForm extends Component {
           <div className="col-sm-12 col-md-6">
             <Field label="Alias" name="alias" component={this.renderField} />
           </div>
+        </div>
+        <div className="row m-b">
           <div className="col-sm-12 col-md-6">
             <Field label="Apellido Paterno" name="lastName" component={this.renderField} />
           </div>
           <div className="col-sm-12 col-md-6">
             <Field label="Apellido materno" name="secondSurename" component={this.renderField} />
           </div>
+        </div>
+        <div className="row m-b">
           <div className="col-sm-12 col-md-6">
             <Field label="Pais" name="country" component={this.renderField} />
           </div>
           <div className="col-sm-12 col-md-6">
             <Field label="Estado" name="state" component={this.renderField} />
           </div>
+        </div>
+        <div className="row m-b">
           <div className="col-sm-12 col-md-6">
             <Field label="Municipio" name="municipality" component={this.renderField} />
           </div>
           <div className="col-sm-12 col-md-6">
             <Field label="F. Nacimiento" name="birthdate" component={this.renderDatepickerField} />
           </div>
+        </div>
+        <div className="row m-b">
           <div className="col-sm-12 col-md-6">
             <Field label="Sexo" name="gender" options={ genderList } component={this.renderSelectField.bind(this)} />
           </div>
@@ -116,7 +125,7 @@ class RegisterForm extends Component {
         <div className="form-group row">
           <div className="col-sm-12">
             <div className="pull-right">
-              <button type="button" className="btn btn-fw white m-r">Cancel</button>
+              <Link to="/" className="btn btn-fw white m-r">Cancel</Link>
               <button type="submit"  className="btn btn-fw info">Submit</button>
             </div>
           </div>
@@ -130,8 +139,38 @@ function validate(values) {
   // console.log(values) -> { title: 'asdf', categories: 'asdf', content: 'asdf' }
   const errors = {};
 
-
-
+  // Validate the inputs from 'values'
+  if (!values.name) {
+    errors.name = 'Campo nombre es necesario.';
+  }
+  if (!values.alias) {
+    errors.alias = 'Campo alias es necesario.';
+  }
+  if (!values.lastName) {
+    errors.lastName = 'Campo apellido paterno es necesario.';
+  }
+  if (!values.secondSurename) {
+    errors.secondSurename = 'Campo apellido materno es necesario.';
+  }
+  if (!values.country) {
+    errors.country = 'Campo pais es necesario.';
+  }
+  if (!values.state) {
+    errors.state = 'Campo estado es necesario.';
+  }
+  if (!values.municipality) {
+    errors.municipality = 'Campo municipio es necesario.';
+  }
+  // console.log(values.birthdate)
+  // if (!values.birthdate) {
+  //   errors.birthdate = 'Campo f.nacimiento es necesario.';
+  // }
+  if (!values.gender) {
+    errors.gender = 'Campo sexo es necesario.';
+  }
+  if (!values.status) {
+    errors.status = 'Campo status es necesario.';
+  }
   // If errors has *any* properties, redux form assumes form is invalid
   return errors;
 }
@@ -140,5 +179,5 @@ export default reduxForm({
   validate,
   form: 'RegisterForm'
 })(
-  connect(null, null)(RegisterForm)
+  connect(null, { createVisitor })(RegisterForm)
 );

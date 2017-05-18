@@ -8,6 +8,7 @@ class DatepickerInput extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <input
         ref="datepicker"
@@ -19,6 +20,7 @@ class DatepickerInput extends Component {
         data-max-date="today"
         data-autoclose="1"
         bs-datepicker
+        { ...this.props.fieldInput }
       />
     );
   }
