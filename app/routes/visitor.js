@@ -4,6 +4,7 @@ var models = require('../models');
 
 router.get('/', function(req, res, next) {
   models.Visitor.findAll().then(function(visitors) {
+    console.log(visitors);
     res.json(visitors);
   });
 });

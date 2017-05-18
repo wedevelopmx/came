@@ -7,7 +7,6 @@ import { fetchVisitors, selectVisitor } from '../actions';
 
 class VisitorList extends Component {
   componentDidMount() {
-    console.log('fetch post');
     this.props.fetchVisitors();
   }
 
@@ -21,17 +20,16 @@ class VisitorList extends Component {
 
 
     return _.map(this.props.visitors, visitor => {
-    // this.props.visitors.map(function(visitor) {
       return (
         <li key={visitor.id} className="list-item" onClick={() => _self.props.selectVisitor(visitor) }>
           <a href="#/visitor/" className="list-left">
             <span className="w-64 avatar">
-              <img src={visitor.avatar} alt="..."/> <i className="on b-white left"></i>
+              <img src={'/images/profile.png'} alt="..."/> <i className="on b-white left"></i>
             </span>
           </a>
           <div className="list-body profile">
             <div>
-              <a className="name" href="">{visitor.name}</a>
+              <span className="name" href="">{visitor.firstName} {visitor.lastName} {visitor.secondSurename}</span>
             </div>
             <small className="location text-muted text-ellipsis">
               <i className="fa fa-map-marker m-r-xs"></i>{visitor.state}, {visitor.country}
@@ -43,7 +41,6 @@ class VisitorList extends Component {
   }
 
   render() {
-    console.log('reder')
     return (
       <div className="box">
         <div className="item dark">

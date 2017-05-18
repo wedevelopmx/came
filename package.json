@@ -11,6 +11,7 @@
   "author": "Cristian Colorado <cristian@wedevelop.mx>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
@@ -38,6 +39,7 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.0.4",
     "redux-form": "^6.7.0",
+    "redux-promise": "^0.5.3",
     "sequelize": "^3.30.4",
     "serve-favicon": "^2.4.2",
     "sqlite3": "^3.1.8"

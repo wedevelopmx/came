@@ -21,6 +21,7 @@ mongoose.connect(config.MONGO_DB); // connect to our database
 // Routes
 var routes = require('./routes/index');
 var auth = require('./routes/auth')(passport);
+var visitor = require('./routes/visitor');
 
 // App
 var app = express();
@@ -49,6 +50,7 @@ app.use(passport.session()); // persistent login sessions
 
 app.use('/', routes);
 app.use('/auth', auth);
+app.use('/api/visitor', visitor);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

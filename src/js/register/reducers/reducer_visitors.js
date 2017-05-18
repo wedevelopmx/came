@@ -5,9 +5,10 @@ export default function(state = {}, action) {
 
   switch (action.type) {
     case FETCH_VISITORS:
-      return _.mapKeys(action.payload, 'id');
+      console.log(action.payload.data);
+      return _.mapKeys(action.payload.data, 'id');
     case CREATE_VISITOR:
-      return { ...state, [action.payload.id]: action.payload };
+      return { ...state, [action.payload.data.id]: action.payload.data };
     default:
       return state;
   }

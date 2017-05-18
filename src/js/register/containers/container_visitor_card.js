@@ -4,12 +4,12 @@ import { fetchVisitors, selectVisitor } from '../actions/index';
 
 class VisitorProfileCard extends Component {
   render() {
-    console.log('visitor prof card')
     if(this.props.visitor == null) {
         return (<div></div>);
     }
 
-    let _self = this;
+    const _self = this;
+    const {visitor} = this.props.visitor;
 
     return (
       <div className="box text-center">
@@ -35,8 +35,7 @@ class VisitorProfileCard extends Component {
                 </ul>
 				    </div>
 				    <div className="p-a-md">
-				    	<p><img src={ this.props.visitor.avatar } className="img-circle w-128"/></p>
-				    	<a href="" className="text-md block">{ this.props.visitor.name }</a>
+				    	<p><img src={ '/images/profile.png' } className="img-circle w-128"/></p>
 				    	<p><small>{ this.props.visitor.state }, { this.props.visitor.country }</small></p>
 				    	<a href="" className="btn btn-sm btn-outline rounded b-accent">Detalles</a>
 				    </div>
