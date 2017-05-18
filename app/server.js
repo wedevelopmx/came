@@ -13,7 +13,7 @@ var flash    = require('connect-flash');
 var config    = require('./config');
 
 // Setup passport
-require('./config/passport')(passport);
+require('./auth/passport')(passport);
 
 // Setup database
 mongoose.connect(config.MONGO_DB); // connect to our database
