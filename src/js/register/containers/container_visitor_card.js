@@ -9,7 +9,7 @@ class VisitorProfileCard extends Component {
     }
 
     const _self = this;
-    const {visitor} = this.props.visitor;
+    const {visitor} = this.props;
 
     return (
       <div className="box text-center">
