@@ -1,90 +1,74 @@
-<!-- aside -->
-<div id="aside" class="app-aside modal fade nav-expand">
-  <div class="left navside black dk" layout="column">
-    <div class="navbar no-radius">
-      <!-- brand -->
-      <a class="navbar-brand">
-        <img src="images/logo.png" alt="." class="">
-        <span class="hidden-folded inline">Came</span>
-      </a>
-      <!-- / brand -->
-    </div>
-    <div flex-no-shrink>
-      <div class="nav-fold">
-        <a href="#/app/page/profile" ui-sref="app.page.profile" ng-show="user" >
-            <span class="pull-left">
-              <img ng-src="{{user.avatar || '' }}" alt="..." class="w-40 r">
-            </span>
-            <span class="clear hidden-folded p-x">
-              <span class="block _500" ng-bind="user.displayName || 'User'"></span>
-              <small class="block text-muted">Administrator</small>
-            </span>
-        </a>
-      </div>
-    </div>
-    <div flex class="hide-scroll">
-      <nav class="scroll nav-stacked nav-active-{{app.setting.theme.primary}}">
-
-          <ul class="nav" ui-nav>
-            <li class="nav-header hidden-folded">
-              <small class="text-muted">Opciones</small>
-            </li>
-
-            <li>
-              <a href="#/visitor">
-                <span class="nav-icon">
-                  <i class="material-icons">&#xe7fb;</i>
-                </span>
-                <span class="nav-text">Visitantes</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="#/admin" ui-sref="app.widget">
-                <span class="nav-icon">
-                  <i class="material-icons">&#xe051;</i>
-                </span>
-                <span class="nav-text">Administracion</span>
-              </a>
-            </li>
-
-            <li>
-              <a>
-                <span class="nav-icon">
-                  <i class="material-icons">&#xe24b;</i>
-                </span>
-                <span class="nav-text">Estadisticas</span>
-              </a>
-              <ul class="nav-sub">
-                  <li>
-                    <a href="#/performance/visitor"><span class="nav-text">Visitantes</span></a>
-                  </li>
-                  <li>
-                    <a href="#/performance/resource"><span class="nav-text">Recursos</span></a>
-                  </li>
-                  <li>
-                    <a href="#/export"><span class="nav-text">REDODEM</span></a>
-                  </li>
-                </ul>
-              </li>
-          </ul>
-      </nav>
-    </div>
-    <div flex-no-shrink>
-      <nav ui-nav>
-        <ul class="nav">
-          <li><div class="b-b b m-t-sm"></div></li>
-          <li class="no-bg">
-            <a href="/auth/logout">
-              <span class="nav-icon">
-               <i class="material-icons">&#xe8ac;</i>
-              </span>
-              <span class="nav-text">Logout</span>
+<div id="aside" class="app-aside modal fade folded md show-text nav-dropdown ng-scope" ng-class="{'folded': app.setting.folded}">
+    <div class="left navside black dk" layout="column">
+        <div class="navbar no-radius">
+            <a class="navbar-brand ng-scope">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
+                    <path d="M 4 4 L 44 4 L 44 44 Z" fill="#a88add"></path>
+                    <path d="M 4 4 L 34 4 L 24 24 Z" fill="rgba(0,0,0,0.15)"></path>
+                    <path d="M 4 4 L 24 4 L 4  44 Z" fill="#0cc2aa"></path>
+                </svg><img src="../assets/images/logo.png" alt="." class="hide"> <span class="hidden-folded inline ng-binding">Flatkit</span>
             </a>
-          </li>
-        </ul>
-      </nav>
+        </div>
+        <div flex="" class="hide-scroll">
+            <nav class="scroll nav-active-primary">
+                <ul class="nav ng-scope" ui-nav="">
+                    <li class="nav-header hidden-folded"><small class="text-muted">Main</small>
+                    </li>
+                    <li ui-sref-active="active" class="active">
+                      <a ui-sref="app.dashboard" href="#/">
+                        <span class="nav-icon"><i class="material-icons">home</i></span>
+                        <span class="nav-text">Registro</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <span class="nav-caret"><i class="fa fa-caret-down"></i></span>
+                        <span class="nav-label"><b class="label rounded label-sm warn">5</b></span>
+                        <span class="nav-icon"><i class="material-icons">hotel</i></span>
+                        <span class="nav-text">Apps</span>
+                      </a>
+                      <ul class="nav-sub">
+                            <li ui-sref-active="active"><a ui-sref="app.inbox.list" href="#/app/inbox/inbox/"><span class="nav-text">Inbox</span></a>
+                            </li>
+                            <li ui-sref-active="active"><a ui-sref="app.contact" href="#/app/contact"><span class="nav-text">Contacts</span></a>
+                            </li>
+                      </ul>
+                    </li>
+                    <li class="nav-header hidden-folded"><small class="text-muted">Help</small>
+                    </li>
+                    <li class="hidden-folded" ui-sref-active="active">
+                      <a ui-sref="app.docs" href="#/app/docs"><span class="nav-text">Documents</span></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div flex-no-shrink>
+          <nav ui-nav>
+            <ul class="nav">
+              <li><div class="b-b b m-t-sm"></div></li>
+              <li class="no-bg">
+                <a href="/auth/logout">
+                  <span class="nav-icon">
+                   <i class="material-icons">&#xe8ac;</i>
+                  </span>
+                  <span class="nav-text">Logout</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div flex-no-shrink="">
+            <div class="nav-fold ng-scope">
+              <a>
+                <span class="pull-right m-v-sm hidden-folded">
+                  <b class="label warn">9</b></span>
+                  <span class="pull-left"><img src='./images/profile.png' alt="..." class="w-40 img-circle"></span>
+                  <span class="clear hidden-folded p-x">
+                    <span class="block _500">Jack Perez</span>
+                    <small class="block text-muted">London, UK</small>
+                  </span>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-<!-- / aside -->
