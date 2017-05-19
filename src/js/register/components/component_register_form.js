@@ -66,6 +66,22 @@ class RegisterForm extends Component {
     );
   }
 
+  renderHidden(field) {
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+    return (
+      <div className={className}>
+        <input
+          type="hidden"
+          {...field.input}
+        />
+        <div className="text-help">
+          {touched ? error : ''}
+        </div>
+      </div>
+    );
+  }
+
   onSubmit(values) {
     this.props.createVisitor(values, () => {
       console.log('VISITOR CREATED');
@@ -81,6 +97,7 @@ class RegisterForm extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <Field name="profilePic" component={this.renderHidden}/>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
             <Field label="Nombre" name="name" component={this.renderField} />
@@ -170,6 +187,9 @@ function validate(values) {
   }
   if (!values.status) {
     errors.status = 'Campo status es necesario.';
+  }
+  if(!values.profilePic) {
+    errors.profilePic = 'Necesita foto del visitante.';
   }
   // If errors has *any* properties, redux form assumes form is invalid
   return errors;

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setProfilePic } from '../actions';
 
 
 navigator.getUserMedia = ( navigator.getUserMedia ||
@@ -108,6 +110,7 @@ class WebCamera extends Component {
 
     const data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
+    this.props.setProfilePic(data);
     this.setState({ camera: 3 });
   }
 
@@ -121,6 +124,7 @@ class WebCamera extends Component {
     const show = { display: 'block' };
 
     switch (this.state.camera) {
+      // Show blue screen with camera button
       case 1:
         camera = (
           <div className="p-a-lg pos-rlt text-center">
@@ -132,6 +136,7 @@ class WebCamera extends Component {
         );
         break;
       case 2:
+        // Turn on camera
         camera = (
           <div className="p-a-lg pos-rlt text-center">
             <Camera handleStartClick={ this.handleStartClick } style={show}/>
@@ -140,6 +145,7 @@ class WebCamera extends Component {
         );
         break;
       case 3:
+        // Show picture taken
         camera = (
           <div className="p-a-lg pos-rlt text-center">
             <Camera handleStartClick={ this.handleStartClick } style={hidden}/>
@@ -160,4 +166,10 @@ class WebCamera extends Component {
   }
 }
 
-export default WebCamera;
+// (state) => {
+//   return {
+//     picture: state.form.RegisterForm.profilePic
+//   };
+// }
+
+export default connect(null, { setProfilePic })(WebCamera);

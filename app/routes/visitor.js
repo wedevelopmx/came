@@ -32,7 +32,6 @@ router.put('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-	console.log(req.body);
 	models.Visitor
       .findOrCreate({
         where: {

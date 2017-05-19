@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchVisitors, selectVisitor } from '../actions/index';
+import { fetchVisitors, selectVisitor } from '../actions';
 
 class VisitorProfileCard extends Component {
   render() {
@@ -35,8 +35,8 @@ class VisitorProfileCard extends Component {
                 </ul>
 				    </div>
 				    <div className="p-a-md">
-				    	<p><img src={ '/images/profile.png' } className="img-circle w-128"/></p>
-				    	<p><small>{ this.props.visitor.state }, { this.props.visitor.country }</small></p>
+				    	<p><img src={ visitor.profilePic } className="img-circle w-128"/></p>
+				    	<p><small>{ visitor.state }, { visitor.country }</small></p>
 				    	<a href="" className="btn btn-sm btn-outline rounded b-accent">Detalles</a>
 				    </div>
 				    <div className="row no-gutter b-t">

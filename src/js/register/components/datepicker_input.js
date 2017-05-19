@@ -8,7 +8,6 @@ class DatepickerInput extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <input
         ref="datepicker"

@@ -18,13 +18,12 @@ class VisitorList extends Component {
     if(this.props.visitors == null)
       return (<div>Loading...</div>);
 
-
     return _.map(this.props.visitors, visitor => {
       return (
         <li key={visitor.id} className="list-item" onClick={() => _self.props.selectVisitor(visitor) }>
           <a href="#/visitor/" className="list-left">
             <span className="w-64 avatar">
-              <img src={'/images/profile.png'} alt="..."/> <i className="on b-white left"></i>
+              <img src={visitor.profilePic} alt="..."/> <i className="on b-white left"></i>
             </span>
           </a>
           <div className="list-body profile">
