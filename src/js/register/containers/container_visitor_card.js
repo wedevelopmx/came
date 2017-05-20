@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchVisitors, selectVisitor } from '../actions';
 
 class VisitorProfileCard extends Component {
@@ -40,7 +41,7 @@ class VisitorProfileCard extends Component {
                 <span>{ visitor.firstName } { visitor.lastName }</span>
               </div>
 				    	<p><small>{ visitor.state }, { visitor.country }</small></p>
-				    	<a href="" className="btn btn-sm btn-outline rounded b-accent">Detalles</a>
+              <Link to={ '/visitor/' + visitor.id } className="btn btn-sm btn-outline rounded b-accent">Detalles</Link>
 				    </div>
 				    <div className="row no-gutter b-t">
 					  <div className="col-xs-4 b-r">

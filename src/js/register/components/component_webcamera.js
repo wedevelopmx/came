@@ -76,7 +76,6 @@ class WebCamera extends Component {
     });
 
     this.setState({ camera: 2 });
-
     this.clearPhoto();
   }
 
