@@ -6,5 +6,6 @@
     "dialect": "sqlite",
     "storage": "came.dev.sqlite"
   },
-  "MONGO_DB": "mongodb://gbot:4815162342@ds161960.mlab.com:61960/gbot"
+  "MONGO_DB": "mongodb://gbot:4815162342@ds161960.mlab.com:61960/gbot",
+  "STORAGE_PATH": "../../../storage"
 }

@@ -35,7 +35,10 @@ class VisitorProfileCard extends Component {
                 </ul>
 				    </div>
 				    <div className="p-a-md">
-				    	<p><img src={ visitor.profilePic } className="img-circle w-128"/></p>
+				    	<p className="frame fm-md"><img src={ '/api/visitor/' + visitor.id + '/avatar' } className="picture"/></p>
+              <div>
+                <span>{ visitor.firstName } { visitor.lastName }</span>
+              </div>
 				    	<p><small>{ visitor.state }, { visitor.country }</small></p>
 				    	<a href="" className="btn btn-sm btn-outline rounded b-accent">Detalles</a>
 				    </div>

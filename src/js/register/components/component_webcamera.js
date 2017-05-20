@@ -11,8 +11,8 @@ navigator.getUserMedia = ( navigator.getUserMedia ||
 
 const Camera = (props) => (
   <div style={props.style}>
-    <div className="camera">
-      <video id="video" className="video"></video>
+    <div className="frame fm-lg">
+      <video id="video" className="picture"></video>
     </div>
     <a className="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right red"
       onClick={ props.handleStartClick }>
@@ -23,8 +23,8 @@ const Camera = (props) => (
 
 const Photo = (props) => (
   <div style={props.style}>
-    <div className="camera">
-      <img id="photo" className="video" alt="Your photo"/>
+    <div className="frame fm-lg">
+      <img id="photo" className="picture" alt="Your photo"/>
     </div>
     <a id="saveButton" className="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right red"
       onClick={ props.handleResetClick }>

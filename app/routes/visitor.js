@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var path = require('path');
+var config = require('../config')
+var Storage = require('../modules/storage');
+
+var storage = new Storage(config);
 
 router.get('/', function(req, res, next) {
   models.Visitor.findAll().then(function(visitors) {
-    console.log(visitors);
     res.json(visitors);
   });
 });
@@ -41,11 +45,19 @@ router.post('/', function(req, res, next) {
         },
         defaults: req.body})
       .spread(function(visitor, created) {
-        console.log(visitor.get({
-          plain: true
-        }))
+        var avatar = `profile${visitor.id}.png`;
+        storage.storeb64(avatar, req.body.profilePic);
+
         res.json(visitor);
       });
 });
+
+router.get('/:id/avatar', function(req, res){
+  var avatar = `profile${req.params.id}.png`;
+  var file = path.join(__dirname, '../../storage'+ '/' + avatar);
+  console.log(file);
+  res.sendFile(file);
+});
+
 
 module.exports = router;

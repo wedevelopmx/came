@@ -10,3 +10,5 @@ dist/**
 
 #dev database
 *.sqlite
+
+storage/**

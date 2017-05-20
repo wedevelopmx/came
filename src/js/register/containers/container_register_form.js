@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { createVisitor } from '../actions';
-import DatepickerInput from './datepicker_input';
+import DatepickerInput from '../components/datepicker_input';
 
 class RegisterForm extends Component {
   renderField(field) {
@@ -100,7 +100,7 @@ class RegisterForm extends Component {
         <Field name="profilePic" component={this.renderHidden}/>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Nombre" name="name" component={this.renderField} />
+            <Field label="Nombre" name="firstName" component={this.renderField} />
           </div>
           <div className="col-sm-12 col-md-6">
             <Field label="Alias" name="alias" component={this.renderField} />
@@ -157,8 +157,8 @@ function validate(values) {
   const errors = {};
 
   // Validate the inputs from 'values'
-  if (!values.name) {
-    errors.name = 'Campo nombre es necesario.';
+  if (!values.firstName) {
+    errors.firstName = 'Campo nombre es necesario.';
   }
   if (!values.alias) {
     errors.alias = 'Campo alias es necesario.';

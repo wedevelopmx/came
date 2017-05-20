@@ -15,7 +15,8 @@ if(process.env.NODE_ENV === 'production') {
       },
       "logging": false
     },
-    MONGO_DB: process.env.MONGO_DB
+    MONGO_DB: process.env.MONGO_DB,
+    STORAGE_PATH: process.env.STORAGE_PATH
   };
 } else {
   module.exports = require('./development.json');
