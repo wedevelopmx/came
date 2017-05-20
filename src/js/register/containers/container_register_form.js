@@ -92,7 +92,7 @@ class RegisterForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    const genderList = [{ value: 'male', display: 'Masculino'}, {value: 'female', display: 'Femenino'}];
+    const genderList = [{ value: 'male', display: 'Masculino'}, {value: 'female', display: 'Femenino'}, {value: 'transgender', display: 'Transgenero'}];
     const statusList = [{ value: 'migrante', display: 'Migrante' }, { value: 'visitante', display: 'Visitante' }];
 
     return (
