@@ -65,6 +65,11 @@ class WebCamera extends Component {
 
       video.src = vendorURL.createObjectURL(stream);
       video.play();
+
+      this.setState({
+        vid: video,
+        localstream: stream
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -73,6 +78,15 @@ class WebCamera extends Component {
     this.setState({ camera: 2 });
 
     this.clearPhoto();
+  }
+
+  disableCamera() {
+    if(this.state.vid) {
+      this.state.vid.pause();
+      this.state.vid.src = "";
+    }
+    if(this.state.localstream)
+      this.state.localstream.stop();
   }
 
   clearPhoto() {
@@ -90,11 +104,13 @@ class WebCamera extends Component {
   handleStartClick(event) {
     event.preventDefault();
     this.takePicture();
+    this.disableCamera();
   }
 
   handleResetClick(event) {
     event.preventDefault();
     this.setState({ camera: 2 });
+    this.enableCamera();
   }
 
   takePicture() {
