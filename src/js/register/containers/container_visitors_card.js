@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { fetchVisitors, selectVisitor } from '../actions';
 
+import SearchBar from './container_search_bar';
+
 class VisitorList extends Component {
   componentDidMount() {
     this.props.fetchVisitors();
@@ -41,7 +43,19 @@ class VisitorList extends Component {
     return (
       <div className="box">
         <div className="item dark">
-          <a href=""><img src="./images/rails.jpg" className="w-full"/></a>
+          <form className="search-bar">
+            <div className="form-group l-h m-a-0">
+              <div className="input-group input-group-sm">
+                <input className="form-control p-x b-a rounded" placeholder="Buscar visitante..." type="text"/>
+                <span className="input-group-btn">
+                  <button type="submit" className="btn white b-a rounded no-shadow">
+                    <i className="material-icons">search</i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </form>
+          <a href=""><img src="./images/rails_xs.jpg" className="w-full"/></a>
           <div className="bottom gd-overlay p-a-xs">
             <a href="" className="text-md block p-x-sm">Visitantes</a>
           </div>
