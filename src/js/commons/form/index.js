@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DatepickerInput from './datepicker_input';
 
-export function hiddenField(field) {
+export function HiddenField(field) {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
   return (
@@ -17,7 +17,7 @@ export function hiddenField(field) {
   );
 }
 
-export function inputField(field) {
+export function InputField(field) {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
@@ -36,7 +36,7 @@ export function inputField(field) {
   );
 }
 
-export function datepickerField(field) {
+export function DatepickerField(field) {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
@@ -51,13 +51,13 @@ export function datepickerField(field) {
   );
 }
 
-export function optionsField(options) {
+function selectOptionsHelper(options) {
   return options.map(function(option) {
     return <option key={option.value} value={ option.value }>{ option.display }</option>
   });
 }
 
-export function selectField(field) {
+export function SelectField(field) {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
@@ -67,8 +67,59 @@ export function selectField(field) {
       <select
         className="form-control"
         {...field.input}>
-        { optionsField(field.options) }
+        { selectOptionsHelper(field.options) }
       </select>
+      <div className="text-help">
+        {touched ? error : ''}
+      </div>
+    </div>
+  );
+}
+
+function radioOptionsHelper(field) {
+  return field.options.map(function(option) {
+    return (
+      <label className="radio-inline ui-check">
+        <input
+          {...field.input}
+          value="option.value"
+          className="has-value"
+          type="radio"/>
+        <i className="dark-white"></i>
+        <span className="text-muted">{ option.name }</span>
+      </label>
+    );
+  });
+}
+
+export function RadioField(field) {
+  const { meta: { touched, error } } = field;
+  const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+
+  return (
+    <div className={className}>
+      <label className="block">{field.label}</label>
+
+      { radioOptionsHelper(field) }
+
+      <div className="text-help">
+        {touched ? error : ''}
+      </div>
+    </div>
+  );
+}
+
+export function TextareaField(field) {
+  const { meta: { touched, error } } = field;
+  const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+
+  return (
+    <div className={className}>
+      <label>{field.label}</label>
+      <textarea
+        {...field.input}
+        className="form-control"
+        rows="3"></textarea>
       <div className="text-help">
         {touched ? error : ''}
       </div>
