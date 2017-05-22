@@ -4,85 +4,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import { createVisitor } from '../actions';
-import DatepickerInput from '../components/datepicker_input';
+import { hiddenField, inputField, datepickerField, selectField } from '../components/form'
 
 class RegisterForm extends Component {
-  renderField(field) {
-    const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-
-    return (
-      <div className={className}>
-        <label>{field.label}</label>
-        <input
-          className="form-control"
-          type="text"
-          {...field.input}
-        />
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
-    );
-  }
-
-  renderDatepickerField(field) {
-    const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-
-    return (
-      <div className={className}>
-        <label>{field.label}</label>
-        <DatepickerInput fieldInput={field.input} />
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
-    );
-  }
-
-  renderOptions(options) {
-    return options.map(function(option) {
-      return <option key={option.value} value={ option.value }>{ option.display }</option>
-    });
-  }
-
-  renderSelectField(field) {
-    const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-
-    return (
-      <div className={className}>
-        <label>{field.label}</label>
-        <select
-          className="form-control"
-          {...field.input}>
-          { this.renderOptions(field.options) }
-        </select>
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
-    );
-  }
-
-  renderHidden(field) {
-    const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-    return (
-      <div className={className}>
-        <input
-          type="hidden"
-          {...field.input}
-        />
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
-    );
-  }
-
   onSubmit(values) {
+    console.log(values);
     this.props.createVisitor(values, () => {
       console.log('VISITOR CREATED');
       //this.props.history.push('/');
@@ -97,45 +23,45 @@ class RegisterForm extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <Field name="profilePic" component={this.renderHidden}/>
+        <Field name="profilePic" component={ hiddenField }/>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Nombre" name="firstName" component={this.renderField} />
+            <Field label="Nombre" name="firstName" component={ inputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="Alias" name="alias" component={this.renderField} />
+            <Field label="Alias" name="alias" component={ inputField } />
           </div>
         </div>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Apellido Paterno" name="lastName" component={this.renderField} />
+            <Field label="Apellido Paterno" name="lastName" component={ inputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="Apellido materno" name="secondSurename" component={this.renderField} />
-          </div>
-        </div>
-        <div className="row m-b">
-          <div className="col-sm-12 col-md-6">
-            <Field label="Pais" name="country" component={this.renderField} />
-          </div>
-          <div className="col-sm-12 col-md-6">
-            <Field label="Estado" name="state" component={this.renderField} />
+            <Field label="Apellido materno" name="secondSurename" component={ inputField } />
           </div>
         </div>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Municipio" name="municipality" component={this.renderField} />
+            <Field label="Pais" name="country" component={ inputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="F. Nacimiento" name="birthdate" component={this.renderDatepickerField} />
+            <Field label="Estado" name="state" component={ inputField } />
           </div>
         </div>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Sexo" name="gender" options={ genderList } component={this.renderSelectField.bind(this)} />
+            <Field label="Municipio" name="municipality" component={ inputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="Status" name="status" options={ statusList } component={this.renderSelectField.bind(this)} />
+            <Field label="F. Nacimiento" name="birthdate" component={ datepickerField } />
+          </div>
+        </div>
+        <div className="row m-b">
+          <div className="col-sm-12 col-md-6">
+            <Field label="Sexo" name="gender" options={ genderList } component={ selectField } />
+          </div>
+          <div className="col-sm-12 col-md-6">
+            <Field label="Status" name="status" options={ statusList } component={ selectField } />
           </div>
         </div>
 
