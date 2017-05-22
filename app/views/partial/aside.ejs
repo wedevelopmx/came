@@ -1,7 +1,7 @@
-<div id="aside" class="app-aside modal fade folded md show-text nav-dropdown ng-scope" ng-class="{'folded': app.setting.folded}">
+<div id="aside" class="app-aside modal fade folded md show-text nav-dropdown" ng-class="{'folded': app.setting.folded}">
     <div class="left navside black dk" layout="column">
         <div class="navbar no-radius">
-            <a class="navbar-brand ng-scope">
+            <a class="navbar-brand">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
                     <path d="M 4 4 L 44 4 L 44 44 Z" fill="#a88add"></path>
                     <path d="M 4 4 L 34 4 L 24 24 Z" fill="rgba(0,0,0,0.15)"></path>
@@ -11,13 +11,11 @@
         </div>
         <div flex="" class="hide-scroll">
             <nav class="scroll nav-active-primary">
-                <ul class="nav ng-scope" ui-nav="">
-                    <li class="nav-header hidden-folded"><small class="text-muted">Main</small>
-                    </li>
-                    <li ui-sref-active="active" class="active">
-                      <a ui-sref="app.dashboard" href="#/">
-                        <span class="nav-icon"><i class="material-icons">home</i></span>
-                        <span class="nav-text">Registro</span>
+                <ul class="nav">
+                    <li class="active">
+                      <a  href="#/">
+                        <span class="nav-icon"><i class="material-icons md-24">home</i></span>
+                        <span class="nav-text">Puerta</span>
                       </a>
                     </li>
                     <li>
@@ -28,16 +26,16 @@
                         <span class="nav-text">Apps</span>
                       </a>
                       <ul class="nav-sub">
-                            <li ui-sref-active="active"><a ui-sref="app.inbox.list" href="#/app/inbox/inbox/"><span class="nav-text">Inbox</span></a>
+                            <li><a href="#/app/inbox/inbox/"><span class="nav-text">Inbox</span></a>
                             </li>
-                            <li ui-sref-active="active"><a ui-sref="app.contact" href="#/app/contact"><span class="nav-text">Contacts</span></a>
+                            <li><a  href="#/app/contact"><span class="nav-text">Contacts</span></a>
                             </li>
                       </ul>
                     </li>
                     <li class="nav-header hidden-folded"><small class="text-muted">Help</small>
                     </li>
-                    <li class="hidden-folded" ui-sref-active="active">
-                      <a ui-sref="app.docs" href="#/app/docs"><span class="nav-text">Documents</span></a>
+                    <li class="hidden-folded">
+                      <a  href="#/app/docs"><span class="nav-text">Documents</span></a>
                     </li>
                 </ul>
             </nav>
@@ -58,7 +56,7 @@
           </nav>
         </div>
         <div flex-no-shrink="">
-            <div class="nav-fold ng-scope">
+            <div class="nav-fold">
               <a>
                 <span class="pull-right m-v-sm hidden-folded">
                   <b class="label warn">9</b></span>

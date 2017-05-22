@@ -13,8 +13,6 @@ class VisitorList extends Component {
   renderVisitors() {
     let _self = this;
 
-    console.log(this.props.visitors)
-
     if(this.props.visitors == null)
       return (<div>Loading...</div>);
 

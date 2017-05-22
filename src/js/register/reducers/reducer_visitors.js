@@ -5,7 +5,6 @@ export default function(state = {}, action) {
 
   switch (action.type) {
     case FETCH_VISITORS:
-      console.log(action.payload.data);
       return _.mapKeys(action.payload.data, 'id');
     case CREATE_VISITOR:
       return { ...state, [action.payload.data.id]: action.payload.data };
