@@ -39,11 +39,15 @@ class VisitorList extends Component {
     });
   }
 
+  submit() {
+    console.log('SearchBar Submit');
+  }
+
   render() {
     return (
       <div className="box">
         <div className="item dark">
-          <form className="search-bar">
+          <form className="search-bar" onSubmit={ this.submit() }>
             <div className="form-group l-h m-a-0">
               <div className="input-group input-group-sm">
                 <input className="form-control p-x b-a rounded" placeholder="Buscar visitante..." type="text"/>

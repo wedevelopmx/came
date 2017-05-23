@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchVisitors, selectVisitor } from '../actions';
 
-class VisitorProfileCard extends Component {
+class VisitorCardProfile extends Component {
   render() {
+    
     if(this.props.visitor == null) {
         return (<div></div>);
     }
@@ -31,6 +32,7 @@ class VisitorProfileCard extends Component {
         	<p><small>{ visitor.state }, { visitor.country }</small></p>
           <Link to={ '/visitor/' + visitor.id } className="btn btn-sm btn-outline rounded b-accent">Detalles</Link>
         </div>
+        { this.props.children }
 			</div>
     );
   }
@@ -40,4 +42,4 @@ export default connect((state) => {
   return {
     visitor: state.activeVisitor
   };
-}, { selectVisitor})(VisitorProfileCard);
+}, { selectVisitor})(VisitorCardProfile);

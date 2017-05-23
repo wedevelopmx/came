@@ -1,34 +1,41 @@
 import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import CommentForm from '../../comments/containers/comment_form';
+import CommentList from '../../comments/containers/comments_list';
 
 class CommentsInsight extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { newComment: false }
+  }
+
+  newComment() {
+    this.setState({
+      newComment: true
+    });
+  }
+
+  hideForm() {
+    this.setState({
+      newComment: false
+    });
+  }
+
   render() {
-    return (
-      <div className="box-body b-t">
-        <div className="streamline b-l m-l">
-  	        <div className="sl-item b-warning">
-  	          <div className="sl-icon">
-  	            <i className="material-icons">close</i>
-  	          </div>
-  	          <div className="sl-content">
-  	            <div className="sl-date text-muted">8:30</div>
-  	            <div>Conflicto en cafeteria con otro visitante.</div>
-  	          </div>
-  	        </div>
-  	        <div className="sl-item b-success">
-  	          <div className="sl-content">
-  	            <div className="sl-date text-muted">Sat, 5 Mar</div>
-  	            <div>Se ofrecio a hacer el aseo de zona comun</div>
-  	          </div>
-  	        </div>
-  	        <div className="sl-item b-info">
-  	          <div className="sl-content">
-  	            <div className="sl-date text-muted">Sun, 11 Feb</div>
-  	            <div>Pregunto sobre apoyo legal.</div>
-  	          </div>
-  	        </div>
-  	    </div>
-      </div>
-    );
+    if(this.state.newComment) {
+      return (
+        <CommentForm hideForm={ this.hideForm.bind(this) }/>
+      );
+    } else {
+      return (
+        <div>
+          <CommentList/>
+          <div className="box-footer">
+            <a onClick={ this.newComment.bind(this) } className="btn btn-sm btn-block info text-u-c">Nuevo</a>
+          </div>
+        </div>
+      );
+    }
   }
 }
 

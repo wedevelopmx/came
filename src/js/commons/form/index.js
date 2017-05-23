@@ -79,15 +79,17 @@ export function SelectField(field) {
 function radioOptionsHelper(field) {
   return field.options.map(function(option) {
     return (
-      <label className="radio-inline ui-check">
-        <input
-          {...field.input}
-          value="option.value"
-          className="has-value"
-          type="radio"/>
-        <i className="dark-white"></i>
-        <span className="text-muted">{ option.name }</span>
-      </label>
+      <p key={option.value}>
+        <label className="md-check">
+          <input
+            {...field.input}
+            value={option.value}
+            className="has-value"
+            type="radio"/>
+          <i className="blue"></i>
+          <span className="text-muted">{ option.display }</span>
+        </label>
+      </p>
     );
   });
 }

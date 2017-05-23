@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import { createVisitor } from '../actions';
-import { hiddenField, inputField, datepickerField, selectField } from '../components/form'
+import { HiddenField, InputField, DatepickerField, SelectField } from '../../commons/form'
 
 class RegisterForm extends Component {
   onSubmit(values) {
-    console.log(values);
     this.props.createVisitor(values, () => {
-      console.log('VISITOR CREATED');
       //this.props.history.push('/');
       window.location='/#/';
     });
@@ -23,45 +20,45 @@ class RegisterForm extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <Field name="profilePic" component={ hiddenField }/>
+        <Field name="profilePic" component={ HiddenField }/>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Nombre" name="firstName" component={ inputField } />
+            <Field label="Nombre" name="firstName" component={ InputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="Alias" name="alias" component={ inputField } />
+            <Field label="Alias" name="alias" component={ InputField } />
           </div>
         </div>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Apellido Paterno" name="lastName" component={ inputField } />
+            <Field label="Apellido Paterno" name="lastName" component={ InputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="Apellido materno" name="secondSurename" component={ inputField } />
-          </div>
-        </div>
-        <div className="row m-b">
-          <div className="col-sm-12 col-md-6">
-            <Field label="Pais" name="country" component={ inputField } />
-          </div>
-          <div className="col-sm-12 col-md-6">
-            <Field label="Estado" name="state" component={ inputField } />
+            <Field label="Apellido materno" name="secondSurename" component={ InputField } />
           </div>
         </div>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Municipio" name="municipality" component={ inputField } />
+            <Field label="Pais" name="country" component={ InputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="F. Nacimiento" name="birthdate" component={ datepickerField } />
+            <Field label="Estado" name="state" component={ InputField } />
           </div>
         </div>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Sexo" name="gender" options={ genderList } component={ selectField } />
+            <Field label="Municipio" name="municipality" component={ InputField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="Status" name="status" options={ statusList } component={ selectField } />
+            <Field label="F. Nacimiento" name="birthdate" component={ DatepickerField } />
+          </div>
+        </div>
+        <div className="row m-b">
+          <div className="col-sm-12 col-md-6">
+            <Field label="Sexo" name="gender" options={ genderList } component={ SelectField } />
+          </div>
+          <div className="col-sm-12 col-md-6">
+            <Field label="Status" name="status" options={ statusList } component={ SelectField } />
           </div>
         </div>
 
