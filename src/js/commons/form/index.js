@@ -86,7 +86,7 @@ function radioOptionsHelper(field) {
             value={option.value}
             className="has-value"
             type="radio"/>
-          <i className={option.decorator}></i>
+          <i className={option.value}></i>
           <span className="text-muted">{ option.display }</span>
         </label>
       </p>

@@ -5,6 +5,7 @@ import { fetchComments } from '../actions';
 
 class CommentList extends Component {
   componentDidMount() {
+    moment.locale('es');
     this.props.fetchComments(this.props.visitor.id);
   }
 
@@ -17,13 +18,13 @@ class CommentList extends Component {
   renderComments() {
     if(this.props.comments == null)
       return (<div>Loading...</div>);
-    moment.locale('es');
+
     return _.map(this.props.comments, comment => {
 
-      const className = `sl-item ${'b-' + comment.type}`;
+      const className = `sl-icon ${'b-' + comment.type}`;
       return (
-        <div key={comment.id} className={className}>
-          <div className="sl-icon">
+        <div key={comment.id} className="sl-item">
+          <div className="sl-icon" className={className}>
             <i className="material-icons">close</i>
           </div>
           <div className="sl-content">
