@@ -5,7 +5,7 @@ import { fetchVisitors, selectVisitor } from '../actions';
 
 class VisitorCardProfile extends Component {
   render() {
-    
+
     if(this.props.visitor == null) {
         return (<div></div>);
     }
@@ -27,7 +27,7 @@ class VisitorCardProfile extends Component {
         <div className="p-a-md text-center">
         	<p className="frame fm-md"><img src={ '/api/visitor/' + visitor.id + '/avatar' } className="picture"/></p>
           <div>
-            <span>{ visitor.firstName } { visitor.lastName }</span>
+            <span className="text-md block">{ visitor.firstName } { visitor.lastName }</span>
           </div>
         	<p><small>{ visitor.state }, { visitor.country }</small></p>
           <Link to={ '/visitor/' + visitor.id } className="btn btn-sm btn-outline rounded b-accent">Detalles</Link>
