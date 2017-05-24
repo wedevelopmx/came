@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import dateFormat from 'dateformat';
+import moment from 'moment';
 import { fetchComments } from '../actions';
 
 class CommentList extends Component {
@@ -17,7 +17,7 @@ class CommentList extends Component {
   renderComments() {
     if(this.props.comments == null)
       return (<div>Loading...</div>);
-
+    moment.locale('es');
     return _.map(this.props.comments, comment => {
 
       const className = `sl-item ${'b-' + comment.type}`;
@@ -28,7 +28,7 @@ class CommentList extends Component {
           </div>
           <div className="sl-content">
             <div className="sl-date text-muted">
-              { dateFormat(new Date(comment.createdAt), "dddd, mmmm dS, yyyy, h:MM TT")}
+              { moment(new Date(comment.createdAt)).format('llll') }
             </div>
             <div>{ comment.comment }</div>
           </div>
