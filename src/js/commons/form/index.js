@@ -86,7 +86,7 @@ function radioOptionsHelper(field) {
             value={option.value}
             className="has-value"
             type="radio"/>
-          <i className="blue"></i>
+          <i className={option.decorator}></i>
           <span className="text-muted">{ option.display }</span>
         </label>
       </p>
@@ -121,7 +121,7 @@ export function TextareaField(field) {
       <textarea
         {...field.input}
         className="form-control"
-        rows="3"></textarea>
+        ></textarea>
       <div className="text-help">
         {touched ? error : ''}
       </div>

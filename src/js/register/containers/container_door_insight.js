@@ -57,7 +57,7 @@ class DoorInsight extends Component {
           <div className="col-xs-4 b-r">
             <a className="p-a block text-center" onClick={() => this.switchTab(2)}>
               <i className="material-icons md-24 text-muted m-v-sm inline" style={ tab[2] }>warning</i>
-              <span className="block small">Comentarios</span>
+              <span className="block small">Alerta</span>
             </a>
           </div>
         </div>

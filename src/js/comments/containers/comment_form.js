@@ -24,18 +24,24 @@ class CommentForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     const commentTypes = [
-      { display: 'Informacion', value: 'primary' },
-      { display: 'Advertencia', value: 'warn' },
-      { display: 'Amonestacion', value: 'danger' }];
+      { display: 'Informacion', value: 'primary', decorator: 'blue' },
+      { display: 'Advertencia', value: 'warn', decorator: 'yellow' },
+      { display: 'Amonestacion', value: 'danger', decorator: 'red' }];
 
     return (
-      <div className="box-body b-t">
+      <div>
+        <div className="box-header blue">
+          <h3>Nueva Alerta</h3>
+          <small>Ingrese los detalles sobre la alerta.</small>
+        </div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-          <Field name="VisitorId"  component={ HiddenField }/>
-          <Field label="Comentario" name="comment" component={ TextareaField }/>
-          <Field label="Tipo" name="type" options={ commentTypes } component={ RadioField } />
-          <div className="text-right">
-            <button className="btn btn-sm white text-u-c" onClick={ this.props.hideForm }>Cancel</button>
+          <div className="box-body b-t">
+            <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
+            <Field label="Tipo:" name="type" options={ commentTypes } component={ RadioField } />
+            <Field name="VisitorId"  component={ HiddenField }/>
+          </div>
+          <div className="dker p-a text-right">
+            <button className="btn btn-sm white text-u-c m-r" onClick={ this.props.hideForm }>Cancel</button>
             <button type="submit" className="btn btn-sm info text-u-c">Submit</button>
           </div>
         </form>

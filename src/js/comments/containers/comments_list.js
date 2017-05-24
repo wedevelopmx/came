@@ -28,7 +28,7 @@ class CommentList extends Component {
           </div>
           <div className="sl-content">
             <div className="sl-date text-muted">
-              { dateFormat(new Date(comment.createdAt), "dddd, mmmm dS, yyyy, h:MM") }
+              { dateFormat(new Date(comment.createdAt), "dddd, mmmm dS, yyyy, h:MM TT")}
             </div>
             <div>{ comment.comment }</div>
           </div>
