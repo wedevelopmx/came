@@ -2,35 +2,23 @@
     <div class="left navside black dk" layout="column">
         <div class="navbar no-radius">
             <a class="navbar-brand">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
-                    <path d="M 4 4 L 44 4 L 44 44 Z" fill="#a88add"></path>
-                    <path d="M 4 4 L 34 4 L 24 24 Z" fill="rgba(0,0,0,0.15)"></path>
-                    <path d="M 4 4 L 24 4 L 4  44 Z" fill="#0cc2aa"></path>
-                </svg><img src="../assets/images/logo.png" alt="." class="hide"> <span class="hidden-folded inline ng-binding">Flatkit</span>
+                <img src="./images/logo.png" alt="came">
             </a>
         </div>
         <div flex="" class="hide-scroll">
             <nav class="scroll nav-active-primary">
                 <ul class="nav">
-                    <li class="active">
-                      <a  href="#/">
+                    <li class="<%= side.hasOwnProperty('door') ? 'active' : '' %>">
+                      <a  href="/">
                         <span class="nav-icon"><i class="material-icons md-24">home</i></span>
                         <span class="nav-text">Puerta</span>
                       </a>
                     </li>
-                    <li>
-                      <a>
-                        <span class="nav-caret"><i class="fa fa-caret-down"></i></span>
-                        <span class="nav-label"><b class="label rounded label-sm warn">5</b></span>
-                        <span class="nav-icon"><i class="material-icons">hotel</i></span>
-                        <span class="nav-text">Apps</span>
+                    <li class="<%= side.hasOwnProperty('admin') ? 'active' : '' %>">
+                      <a href="/admin">
+                        <span class="nav-icon"><i class="material-icons md-24">group</i></span>
+                        <span class="nav-text">Acc</span>
                       </a>
-                      <ul class="nav-sub">
-                            <li><a href="#/app/inbox/inbox/"><span class="nav-text">Inbox</span></a>
-                            </li>
-                            <li><a  href="#/app/contact"><span class="nav-text">Contacts</span></a>
-                            </li>
-                      </ul>
                     </li>
                     <li class="nav-header hidden-folded"><small class="text-muted">Help</small>
                     </li>

@@ -6,7 +6,16 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
 	res.render('index', {
-  		title: 'CAME'});
+  		title: 'CAME',
+			side: { door: true }
+		});
+});
+
+router.get('/admin', isLoggedIn, function(req, res, next) {
+	res.render('admin', {
+  		title: 'CAME',
+			side: { admin: true }
+		});
 });
 
 router.get('/login', function(req, res, next) {
