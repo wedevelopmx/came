@@ -8,7 +8,6 @@ class Flipper extends Component {
   }
 
   next() {
-    console.log(arguments);
     this.setState({
       enabled: !this.state.enabled
     });
