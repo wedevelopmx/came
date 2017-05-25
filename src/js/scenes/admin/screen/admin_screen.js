@@ -3,6 +3,7 @@ import { Tabs, Tab }from 'commons/tab';
 import { VisitorCard, VisitorsCard } from 'search';
 import { Flipper } from 'commons/flipper';
 import { CommentForm, CommentList } from 'comments';
+import { Assistance, AssistanceForm } from 'assistance';
 
 export default function() {
   return (
@@ -13,13 +14,13 @@ export default function() {
       <div className="col-half">
         <VisitorCard>
           <Tabs selected="0">
-            <Tab title="Alerta" icon="supervisor_account">
+            <Tab title="Acompanamiento" icon="supervisor_account">
+              <Flipper flip={Assistance} flop={AssistanceForm}/>
+            </Tab>
+            <Tab title="Alerta" icon="warning">
               <Flipper flip={CommentList} flop={CommentForm}/>
             </Tab>
-            <Tab title="Acompanamiento" icon="launch">
-              <h3>Acompanamiento</h3>
-            </Tab>
-            <Tab title="Salidas" icon="warning">
+            <Tab title="Salidas" icon="launch">
               <h3>Salidas</h3>
             </Tab>
           </Tabs>

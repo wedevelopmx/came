@@ -76,7 +76,7 @@ gulp.task('build', ['sass', 'vendor-resources'], function() {
 
 gulp.task('sass', function () {
   return gulp.src('./src/styles/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({style: 'expanded', includePaths: ['./node_modules']}).on('error', sass.logError))
     .pipe(gulp.dest('./dist/css'));
 });
 

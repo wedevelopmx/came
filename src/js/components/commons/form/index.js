@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DatepickerInput from './datepicker_input';
+import DateTime from 'react-datetime';
 
 export function HiddenField(field) {
   const { meta: { touched, error } } = field;
@@ -39,11 +39,11 @@ export function InputField(field) {
 export function DatepickerField(field) {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-
+  const props = { name: 'date' };
   return (
     <div className={className}>
       <label>{field.label}</label>
-      <DatepickerInput fieldInput={field.input} />
+      <DateTime  inputProps={props} {...field.input} defaultValue={ new Date() } dateFormat="LLLL"  />
       <div className="text-help">
         {touched ? error : ''}
       </div>
