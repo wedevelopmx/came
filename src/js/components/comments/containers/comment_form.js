@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { TextareaField, RadioField, HiddenField } from '../../commons/form'
+import { TextareaField, RadioField, HiddenField } from 'commons/form'
 import { createComment } from '../actions';
 
 class CommentForm extends Component {
@@ -18,7 +18,7 @@ class CommentForm extends Component {
   }
 
   onSubmit(values) {
-    this.props.createComment(values, this.props.hideForm);
+    this.props.createComment(values, this.props.hide);
   }
 
   render() {
@@ -41,7 +41,7 @@ class CommentForm extends Component {
             <Field name="VisitorId"  component={ HiddenField }/>
           </div>
           <div className="dker p-a text-right">
-            <button className="btn btn-sm white text-u-c m-r" onClick={ this.props.hideForm }>Cancel</button>
+            <button className="btn btn-sm white text-u-c m-r" onClick={ this.props.hide  }>Cancel</button>
             <button type="submit" className="btn btn-sm info text-u-c">Submit</button>
           </div>
         </form>

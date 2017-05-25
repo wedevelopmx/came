@@ -5,6 +5,7 @@ import { fetchComments } from '../actions';
 
 class CommentList extends Component {
   componentDidMount() {
+    console.log(this.props)
     moment.locale('es');
     this.props.fetchComments(this.props.visitor.id);
   }
@@ -43,6 +44,9 @@ class CommentList extends Component {
       <div className="box-body b-t">
         <div className="streamline b-l m-l">
           { this.renderComments() }
+        </div>
+        <div className="box-footer">
+          <a onClick={ this.props.hide } className="btn btn-sm btn-block info text-u-c">Nuevo</a>
         </div>
       </div>
     );
