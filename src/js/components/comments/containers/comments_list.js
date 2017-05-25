@@ -21,11 +21,13 @@ class CommentList extends Component {
 
     return _.map(this.props.comments, comment => {
 
-      const className = `sl-icon ${'b-' + comment.type}`;
+      const className = `w-40 circle ${comment.type}`;
       return (
         <div key={comment.id} className="sl-item">
-          <div className="sl-icon" className={className}>
-            <i className="material-icons">close</i>
+          <div className="sl-left">
+            <span className={className}>
+              <i className="material-icons">mode_comment</i>
+            </span>
           </div>
           <div className="sl-content">
             <div className="sl-date text-muted">

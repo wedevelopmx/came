@@ -29,7 +29,7 @@ class CommentForm extends Component {
       { display: 'Amonestacion', value: 'danger', decorator: 'red' }];
 
     return (
-      <div>
+      <div className="box">
         <div className="box-header blue">
           <h3>Nueva Alerta</h3>
           <small>Ingrese los detalles sobre la alerta.</small>
