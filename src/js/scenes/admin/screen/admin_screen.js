@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
-import VisitorsCard from 'search/containers/container_visitors_card';
 import { Tabs, Tab }from 'commons/tab';
+import { VisitorCard, VisitorsCard } from 'search';
+import { Flipper } from 'commons/flipper';
+import { CommentForm, CommentList } from 'comments';
 
 export default function() {
   return (
@@ -10,19 +11,19 @@ export default function() {
         <VisitorsCard />
       </div>
       <div className="col-half">
-        <div className="box">
-          <Tabs selected="1">
+        <VisitorCard>
+          <Tabs selected="0">
             <Tab title="Alerta" icon="supervisor_account">
-              <h3>One</h3>
+              <Flipper flip={CommentList} flop={CommentForm}/>
             </Tab>
             <Tab title="Acompanamiento" icon="launch">
-              <h3>Two</h3>
+              <h3>Acompanamiento</h3>
             </Tab>
             <Tab title="Salidas" icon="warning">
-              <h3>Three</h3>
+              <h3>Salidas</h3>
             </Tab>
           </Tabs>
-        </div>
+        </VisitorCard>
       </div>
     </div>
   );

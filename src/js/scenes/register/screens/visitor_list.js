@@ -7,7 +7,6 @@ import { CommentForm, CommentList } from 'comments';
 import FollowUpInsigth from '../containers/container_followup_insight';
 import ExitInsigth from '../containers/container_exit_insight';
 
-
 export default function() {
   return (
     <div className="container-flex">
@@ -18,13 +17,13 @@ export default function() {
         <VisitorCard>
           <Tabs selected="0">
             <Tab title="Alerta" icon="supervisor_account">
-              <FollowUpInsigth></FollowUpInsigth>
+              <Flipper flip={CommentList} flop={CommentForm}/>
             </Tab>
             <Tab title="Acompanamiento" icon="launch">
-              <ExitInsigth></ExitInsigth>
+              <FollowUpInsigth></FollowUpInsigth>
             </Tab>
             <Tab title="Salidas" icon="warning">
-              <Flipper flip={CommentList} flop={CommentForm}/>
+              <ExitInsigth></ExitInsigth>
             </Tab>
           </Tabs>
         </VisitorCard>

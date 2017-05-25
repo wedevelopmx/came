@@ -5,7 +5,6 @@ import { fetchComments } from '../actions';
 
 class CommentList extends Component {
   componentDidMount() {
-    console.log(this.props)
     moment.locale('es');
     this.props.fetchComments(this.props.visitor.id);
   }
