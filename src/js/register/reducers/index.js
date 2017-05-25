@@ -1,14 +1,15 @@
 import {combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { PROFILE_PIC_SET, VISITOR_SELECTED } from '../actions';
-import VisitorsReducer from './reducer_visitors';
-import ActiveVisitorReducer from './reducer_active_visitor';
+
+import { FetchVisitorsReducer, VisitorSelectedReducer } from '../../search/reducers';
+
 import CommentsReducer from '../../comments/reducers';
 
 const rootReducer = combineReducers({
+  visitors: FetchVisitorsReducer,
+  activeVisitor: VisitorSelectedReducer,
   comments: CommentsReducer,
-  visitors: VisitorsReducer,
-  activeVisitor: ActiveVisitorReducer,
   form: formReducer.plugin({
     // Intercepting Form reducer
     RegisterForm: (state, action) => {

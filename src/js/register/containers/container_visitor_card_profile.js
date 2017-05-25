@@ -14,7 +14,7 @@ class VisitorCardProfile extends Component {
     const {visitor} = this.props;
 
     return (
-      <div class="fit">
+      <div className="fit">
         <div className="box-tool">
           <ul className="nav">
             <li className="nav-item inline">
