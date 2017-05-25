@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createVisitor } from '../actions';
-import { HiddenField, InputField, DatepickerField, SelectField } from '../../commons/form'
+import { HiddenField, InputField, DatepickerField, SelectField } from 'commons/form'
 
 class RegisterForm extends Component {
   onSubmit(values) {

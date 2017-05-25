@@ -24,7 +24,7 @@
 
 .box.widget {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column;
   height: inherit;
   .fit {
     flex: 0 1 auto;

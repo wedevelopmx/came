@@ -3,8 +3,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-     register: "./src/js/register/index",
-     admin: "./src/js/admin/index"
+     register: "./src/js/scenes/register/index",
+     admin: "./src/js/scenes/admin/index"
   },
   output: {
      path: path.join(__dirname, "dist/js"),
@@ -19,8 +19,7 @@ module.exports = {
       }
     }]
   },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './'
+  resolve: {
+    root: [ path.resolve('./src/js/components')]
   }
 };

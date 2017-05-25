@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import VisitorsCard from '../../search/containers/container_visitors_card';
+import VisitorsCard from 'search/containers/container_visitors_card';
 
 export default function() {
   return (
