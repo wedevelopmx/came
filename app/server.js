@@ -23,6 +23,7 @@ var routes = require('./routes/index');
 var auth = require('./routes/auth')(passport);
 var visitor = require('./routes/visitor');
 var comment = require('./routes/comment');
+var checkout = require('./routes/checkout');
 
 // App
 var app = express();
@@ -53,6 +54,7 @@ app.use('/', routes);
 app.use('/auth', auth);
 app.use('/api/visitor', visitor);
 app.use('/api/comment', comment);
+app.use('/api/checkout', checkout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

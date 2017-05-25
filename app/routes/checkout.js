@@ -3,8 +3,7 @@ var router = express.Router();
 var models = require('../models');
 
 router.get('/:id', function(req, res, next) {
-  console.log(req.params.id);
-  models.Comment.findAll({
+  models.Checkout.findAll({
     where: { VisitorId: req.params.id },
     order: [['createdAt', 'DESC']]
   }).then(function(comments) {
@@ -14,10 +13,10 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   console.log(req.body);
-	models.Comment
+	models.Checkout
     .findOrCreate({
       where: {
-        comment: req.body.comment
+        startDate: req.body.startDate
       },
       defaults: req.body})
     .spread(function(visitor, created) {
