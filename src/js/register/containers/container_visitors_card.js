@@ -45,8 +45,8 @@ class VisitorList extends Component {
 
   render() {
     return (
-      <div className="box">
-        <div className="item dark">
+      <div className="box widget">
+        <div className="fit item dark">
           <form className="search-bar" onSubmit={ this.submit() }>
             <div className="form-group l-h m-a-0">
               <div className="input-group input-group-sm">
@@ -59,15 +59,15 @@ class VisitorList extends Component {
               </div>
             </div>
           </form>
-          <a href=""><img src="./images/rails_xs.jpg" className="w-full"/></a>
+          <img src="./images/rails_xs.jpg" className="w-full"/>
           <div className="bottom gd-overlay p-a-xs">
             <a href="" className="text-md block p-x-sm">Visitantes</a>
           </div>
+          <Link to="/visitor/new" className="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right blue">
+            <i className="material-icons md-24">add</i>
+          </Link>
         </div>
-        <Link to="/visitor/new" className="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right blue">
-          <i className="material-icons md-24">add</i>
-        </Link>
-        <div className="p-a">
+        <div className="fix p-a">
           <div className="text-muted m-b-xs">
             <span className="m-r">May 12, 2015</span>
             <a href="" className="m-r"><i className="material-icons md-12">favorite</i> 4</a>

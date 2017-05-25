@@ -5,10 +5,9 @@ import DoorInsight from '../containers/container_door_insight';
 class VisitorCard extends Component {
   render() {
     return (
-      <div>
-        <VisitorCardProfile>
-          <DoorInsight/>
-        </VisitorCardProfile>
+      <div className="box widget">
+        <VisitorCardProfile/>
+        <DoorInsight/>
       </div>
     );
   }

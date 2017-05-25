@@ -40,7 +40,7 @@ class DoorInsight extends Component {
     tab[this.state.tab] = { color: '#f44455', opacity: 1};
 
     return (
-      <div className="">
+      <div className="fix">
         <div className="row no-gutter b-t">
           <div className="col-xs-4 b-r">
             <a className="p-a block text-center" onClick={() => this.switchTab(0)}>

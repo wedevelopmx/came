@@ -18,7 +18,7 @@ class Register extends Component {
     return (
       <Provider store={createStoreWithMiddleware(reducers)}>
         <HashRouter>
-          <div>
+          <div className="screen">
             <Switch>
               <Route path="/visitor/new" component={VisitorNew} />
               <Route path="/visitor/:id" component={VisitorShow} />
@@ -31,4 +31,4 @@ class Register extends Component {
   }
 }
 
-ReactDOM.render(<Register />, document.querySelector('.react-container'));
+ReactDOM.render(<Register />, document.querySelector('.workspace'));

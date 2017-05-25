@@ -1,7 +1,37 @@
+.app-content {
+    height: 100vh;
+    .app-body {
+      height: 100%;
+    }
+}
 
+.workspace, .screen {
+  height: inherit;
+}
 
-.container {
-  padding-top: 1rem;
+.container-flex {
+  display: flex;
+  flex-flow: row wrap;
+  height: inherit;
+  .col-half {
+    width: 50%;
+    height: inherit;
+  }
+  .col-half:last-child {
+    padding-left: .5rem;
+  }
+}
+
+.box.widget {
+  display: flex;
+  flex-flow: column wrap;
+  height: inherit;
+  .fit {
+    flex: 0 1 auto;
+  }
+  .fix {
+    flex: 1 1 auto;
+  }
 }
 
 .profile {
