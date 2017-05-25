@@ -3,7 +3,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-     register: "./src/js/register/index"
+     register: "./src/js/register/index",
+     admin: "./src/js/admin/index"
   },
   output: {
      path: path.join(__dirname, "dist/js"),
