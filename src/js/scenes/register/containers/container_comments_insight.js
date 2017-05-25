@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import CommentForm from 'comments/containers/comment_form';
-import CommentList from 'comments/containers/comments_list';
+import { CommentForm, CommentList } from 'comments';
 
 class CommentsInsight extends Component {
   constructor(props) {
