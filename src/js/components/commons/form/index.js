@@ -28,6 +28,7 @@ export function InputField(field) {
         className="form-control"
         type="text"
         {...field.input}
+        disabled={field.disabled}
       />
       <div className="text-help">
         {touched ? error : ''}
@@ -39,11 +40,13 @@ export function InputField(field) {
 export function DatepickerField(field) {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-  const props = { name: 'date' };
+  const inputDate = field.input.value ? new Date(field.input.value) :  new Date(); //value={ inputDate } defaultValue={ inputDate } 
+  const inputProps = { disabled: field.disabled, name: field.input.name };
+
   return (
     <div className={className}>
       <label>{field.label}</label>
-      <DateTime  inputProps={props} {...field.input} defaultValue={ new Date() } dateFormat="LLLL"  />
+      <DateTime {...field.input} inputProps={inputProps} dateFormat="ddd, MMMM Do YYYY" timeFormat="h:mm a" />
       <div className="text-help">
         {touched ? error : ''}
       </div>

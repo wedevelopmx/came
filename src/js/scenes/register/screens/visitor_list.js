@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Tabs, Tab }from 'commons/tab';
 import { VisitorCard, VisitorsCard } from 'search';
-import { Flipper, FlipperModal } from 'commons/flipper';
+import { Crud, FlipperModal } from 'commons/flipper';
 import { CommentForm, CommentList } from 'comments';
-import { Checkout, CheckoutForm } from 'checkout';
+import { Checkout, CheckoutForm, CheckoutItem } from 'checkout';
 
 import FollowUpInsigth from '../containers/container_followup_insight';
 
@@ -23,7 +23,7 @@ export default function() {
               <FollowUpInsigth></FollowUpInsigth>
             </Tab>
             <Tab title="Salidas" icon="launch">
-              <FlipperModal flip={Checkout} flop={CheckoutForm}/>
+              <Crud list={Checkout} create={CheckoutForm} update={CheckoutItem}/>
             </Tab>
           </Tabs>
         </VisitorCard>

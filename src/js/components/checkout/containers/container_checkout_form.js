@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form'
-import { createExit } from '../actions';
+import { createCheckout } from '../actions';
 
 class CheckoutForm extends Component {
   componentDidMount() {
@@ -12,14 +12,14 @@ class CheckoutForm extends Component {
   handleInitialize() {
     const initData = {
       VisitorId: this.props.visitor.id,
-      date: new Date()
+      startDate: new Date()
     };
 
     this.props.initialize(initData);
   }
 
   onSubmit(values) {
-    this.props.createExit(values, this.props.hide);
+    this.props.createCheckout(values, this.props.onComplete);
   }
 
   render() {
@@ -44,7 +44,7 @@ class CheckoutForm extends Component {
             <Field name="VisitorId"  component={ HiddenField }/>
           </div>
           <div className="dker p-a text-right">
-            <button className="btn btn-sm white text-u-c m-r" onClick={ this.props.hide  }>Cancel</button>
+            <button className="btn btn-sm white text-u-c m-r" onClick={ () => this.props.onComplete() }>Cancel</button>
             <button type="submit" className="btn btn-sm info text-u-c">Submit</button>
           </div>
         </form>
@@ -57,8 +57,8 @@ function validate(values) {
   const errors = {};
   // Validate the inputs from 'values'
 
-  if (!values.date) {
-    errors.date = 'Campo fecha es necesario.';
+  if (!values.startDate) {
+    errors.startDate = 'Campo fecha es necesario.';
   }
 
   if (!values.reason) {
@@ -81,5 +81,5 @@ export default reduxForm({
   connect(
     state => ({
       visitor: state.activeVisitor
-    }), { createExit } )(CheckoutForm)
+    }), { createCheckout } )(CheckoutForm)
 );

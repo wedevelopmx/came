@@ -34,7 +34,7 @@ class CrudComponent extends Component {
         return (
           <div className="overlay-modal">
             <div>
-              <ComponentUpdate onComplete={ this.hideModal } />
+              <ComponentUpdate onComplete={ this.hideModal } activeItem={ this.state.activeItem } />
             </div>
           </div>
         );
