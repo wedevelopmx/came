@@ -37,7 +37,7 @@ class Checkout extends Component {
       return (
         <div key={checkout.id} className="sl-item">
           <div className="sl-left">
-            <span className={className}>
+            <span className={className} onClick={ () => _self.props.onUpdate(checkout) }>
               <i className="material-icons">{icon}</i>
             </span>
           </div>
@@ -47,22 +47,22 @@ class Checkout extends Component {
             </div>
             <a className="text-info">{ checkout.reason }</a>
             <div>{ checkout.comment }</div>
-            <div className="box-tool">
-              <ul className="nav">
-                <li className="nav-item inline">
-                  <a className="nav-link" onClick={ () => _self.props.onUpdate(checkout) }>
-                    <i className="material-icons md-18">alarm_off</i>
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       );
     });
   }
 
-  //<span onClick={ () => _self.props.onUpdate(checkout) } className="pull-right text-muted m-l-xs"><i className="material-icons">chevron_right</i></span>
+  // <span onClick={ () => _self.props.onUpdate(checkout) } className="pull-right text-muted m-l-xs"><i className="material-icons">chevron_right</i></span>
+  // <div className="box-tool">
+  //   <ul className="nav">
+  //     <li className="nav-item inline">
+  //       <a className="nav-link" onClick={ () => _self.props.onUpdate(checkout) }>
+  //         <i className="material-icons md-18">alarm_off</i>
+  //       </a>
+  //     </li>
+  //   </ul>
+  // </div>
 
   render() {
     return (
