@@ -6,22 +6,32 @@ router.get('/:id', function(req, res, next) {
   models.Checkout.findAll({
     where: { VisitorId: req.params.id },
     order: [['createdAt', 'DESC']]
-  }).then(function(comments) {
-    res.json(comments);
+  }).then(function(checkout) {
+    res.json(checkout);
   });
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
 	models.Checkout
     .findOrCreate({
       where: {
         startDate: req.body.startDate
       },
       defaults: req.body})
-    .spread(function(visitor, created) {
-      res.json(visitor);
+    .spread(function(checkout, created) {
+      res.json(checkout);
     });
+});
+
+router.put('/:id', function(req, res, next) {
+  models.Checkout
+  .findOne({ where : { id: req.params.id } })
+  .then(function(checkout) {
+    checkout.update(req.body, { fields: ['endDate', 'comment'] })
+      .then(function(checkout) {
+        res.json(checkout);
+      });
+  });
 });
 
 
