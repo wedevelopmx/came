@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Tab extends Component {
+class Tabs extends Component {
   constructor(props) {
     super(props);
     this.state = { selected: props.selected };
@@ -41,4 +41,4 @@ class Tab extends Component {
   }
 }
 
-export default Tab;
+export default Tabs;
