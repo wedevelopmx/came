@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectVisitor } from '../actions';
+import moment from 'moment';
 
 class VisitorCard extends Component {
+  componentDidMount() {
+    moment.locale('es');
+  }
+
   render() {
 
     if(this.props.visitor == null) {
@@ -29,9 +34,9 @@ class VisitorCard extends Component {
           	<p className="frame fm-md"><img src={ '/api/visitor/' + visitor.id + '/avatar' } className="picture"/></p>
             <div>
               <span className="text-md block">{ visitor.firstName } { visitor.lastName }</span>
+              <span><small>{ moment(new Date(visitor.birthdate)).fromNow(true) }</small></span>
             </div>
           	<p><small>{ visitor.state }, { visitor.country }</small></p>
-            <Link to={ '/visitor/' + visitor.id } className="btn btn-sm btn-outline rounded b-accent">Detalles</Link>
           </div>
           { this.props.children }
   			</div>
