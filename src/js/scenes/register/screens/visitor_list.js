@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Tab }from 'commons/tab';
 import { VisitorCard, VisitorsCard } from 'search';
-import { Crud, FlipperModal } from 'commons/flipper';
+import { Crud, FlipperModal, ModalWrapper } from 'commons/flipper';
 import { CommentForm, CommentList } from 'comments';
 import { Checkout, CheckoutForm, CheckoutItem } from 'checkout';
 
@@ -23,7 +23,7 @@ export default function() {
               <FollowUpInsigth></FollowUpInsigth>
             </Tab>
             <Tab title="Salidas" icon="launch">
-              <Crud list={Checkout} create={CheckoutForm} update={CheckoutItem}/>
+              <Crud list={Checkout} create={CheckoutForm} update={CheckoutItem} decorator={ModalWrapper}/>
             </Tab>
           </Tabs>
         </VisitorCard>
