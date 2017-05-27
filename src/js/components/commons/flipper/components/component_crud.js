@@ -25,27 +25,22 @@ class CrudComponent extends Component {
   }
 
   renderModal() {
-    const { create : ComponentForm, update : ComponentUpdate } = this.props;
-
+    const { create : ComponentForm, update : ComponentUpdate, decorator: Decorator } = this.props;
     // Modal is active
     if(this.state.activeModal) {
       // There is an item to be displayed
       if(this.state.activeItem) {
         return (
-          <div className="overlay-modal">
-            <div>
-              <ComponentUpdate onComplete={ this.hideModal } activeItem={ this.state.activeItem } />
-            </div>
-          </div>
+          <Decorator>
+            <ComponentUpdate onComplete={ this.hideModal } activeItem={ this.state.activeItem } />
+          </Decorator>
         );
       } else {
         // There is not initial item
         return (
-          <div className="overlay-modal">
-            <div>
-              <ComponentForm onComplete={ this.hideModal } />
-            </div>
-          </div>
+          <Decorator>
+            <ComponentForm onComplete={ this.hideModal } />
+          </Decorator>
         );
       }
     }
@@ -59,7 +54,7 @@ class CrudComponent extends Component {
     return (
       <div>
           <ComponentList onCreate={ this.showModal } onUpdate={ this.showModal }/>
-          { this.renderModal() }
+            { this.renderModal() }
       </div>
     );
   }
