@@ -9,22 +9,32 @@ import AdminScreen from './screen/admin_screen';
 
 import reducers from './reducers';
 
+import {CategoryCard} from 'category';
+
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 class Register extends Component {
   render() {
     return (
-      <Provider store={createStoreWithMiddleware(reducers)}>
-        <HashRouter>
-          <div className="screen">
-            <Switch>
-              <Route path="/" component={AdminScreen} />
-            </Switch>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-sm-12">
+            <Provider store={createStoreWithMiddleware(reducers)}>
+              <CategoryCard/>
+            </Provider>
           </div>
-        </HashRouter>
-      </Provider>
+        </div>
+      </div>
     );
   }
 }
+
+// <HashRouter>
+//   <div className="screen">
+//     <Switch>
+//       <Route path="/" component={AdminScreen} />
+//     </Switch>
+//   </div>
+// </HashRouter>
 
 ReactDOM.render(<Register />, document.querySelector('.workspace'));

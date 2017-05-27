@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import { FetchVisitorsReducer, VisitorSelectedReducer } from 'search/reducers';
-import CommentsReducer from 'comments/reducers';
+import { CategoriesReducer, ActiveCategoryReducer, CategoryEntitiesReducer } from 'category/reducers';
 
 const rootReducer = combineReducers({
-  visitors: FetchVisitorsReducer,
-  activeVisitor: VisitorSelectedReducer,
-  comments: CommentsReducer
+  categories: CategoriesReducer,
+  category: ActiveCategoryReducer,
+  categoryEntities: CategoryEntitiesReducer,
+  form: formReducer
 });
 
 export default rootReducer;
