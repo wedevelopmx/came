@@ -24,6 +24,7 @@ var auth = require('./routes/auth')(passport);
 var visitor = require('./routes/visitor');
 var comment = require('./routes/comment');
 var checkout = require('./routes/checkout');
+var category = require('./routes/category');
 
 // App
 var app = express();
@@ -55,6 +56,7 @@ app.use('/auth', auth);
 app.use('/api/visitor', visitor);
 app.use('/api/comment', comment);
 app.use('/api/checkout', checkout);
+app.use('/api/category', category);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
