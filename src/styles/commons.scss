@@ -22,7 +22,7 @@
   }
 }
 
-.box.widget {
+.expanse {
   display: flex;
   flex-flow: column;
   height: inherit;
@@ -32,6 +32,13 @@
   .fix {
     flex: 1 1 auto;
   }
+  .scrollable {
+    overflow-y: scroll;
+  }
+}
+
+.wrapper {
+  height: inherit;
 }
 
 .profile {

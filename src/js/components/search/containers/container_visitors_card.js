@@ -45,7 +45,7 @@ class VisitorList extends Component {
 
   render() {
     return (
-      <div className="box widget">
+      <div className="box expanse">
         <div className="fit item dark">
           <form className="search-bar" onSubmit={ this.submit() }>
             <div className="form-group l-h m-a-0">
@@ -67,12 +67,12 @@ class VisitorList extends Component {
             <i className="material-icons md-24">add</i>
           </a>
         </div>
-        <div className="fix p-a">
-          <div className="text-muted m-b-xs">
-            <span className="m-r">May 12, 2015</span>
-            <a href="" className="m-r"><i className="material-icons md-12">favorite</i> 4</a>
-            <a href=""><i className="material-icons md-12">bookmark</i> 20</a>
-          </div>
+        <div className="fit text-muted p-a b-b">
+          <span className="m-r">May 12, 2015</span>
+          <a href="" className="m-r"><i className="material-icons md-12">favorite</i> 4</a>
+          <a href=""><i className="material-icons md-12">bookmark</i> 20</a>
+        </div>
+        <div className="fix scrollable">
           <ul className="list inset m-a-0">
             { this.renderVisitors() }
           </ul>

@@ -52,7 +52,7 @@ class CrudComponent extends Component {
     const { list : ComponentList } = this.props;
 
     return (
-      <div>
+      <div className="wrapper">
           <ComponentList onCreate={ this.showModal } onUpdate={ this.showModal }/>
             { this.renderModal() }
       </div>
