@@ -7,7 +7,7 @@ const API_URL = '/api/comment';
 
 export function createComment(comment, callback) {
   const request = axios.post(API_URL, comment)
-  .then(function(comment) {
+  request.then(function(comment) {
     callback();
   });
 

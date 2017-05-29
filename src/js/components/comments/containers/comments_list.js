@@ -47,7 +47,7 @@ class CommentList extends Component {
           { this.renderComments() }
         </div>
         <div className="box-footer">
-          <a onClick={ this.props.hide } className="btn btn-sm btn-block info text-u-c">Nuevo</a>
+          <a onClick={ () => this.props.onCreate() } className="btn btn-sm btn-block info text-u-c">Nuevo</a>
         </div>
       </div>
     );

@@ -18,7 +18,7 @@ class CommentForm extends Component {
   }
 
   onSubmit(values) {
-    this.props.createComment(values, this.props.hide);
+    this.props.createComment(values, this.props.onComplete);
   }
 
   render() {
@@ -41,7 +41,7 @@ class CommentForm extends Component {
             <Field name="VisitorId"  component={ HiddenField }/>
           </div>
           <div className="dker p-a text-right">
-            <button className="btn btn-sm white text-u-c m-r" onClick={ this.props.hide  }>Cancel</button>
+            <button className="btn btn-sm white text-u-c m-r" onClick={ () => this.props.onComplete()  }>Cancel</button>
             <button type="submit" className="btn btn-sm info text-u-c">Submit</button>
           </div>
         </form>

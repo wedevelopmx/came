@@ -17,7 +17,7 @@ export default function() {
         <VisitorCard>
           <Tabs selected="0">
             <Tab title="Alerta" icon="warning">
-              <FlipperModal flip={CommentList} flop={CommentForm}/>
+              <Crud list={CommentList} create={CommentForm} update={CommentForm} decorator={ModalWrapper}/>
             </Tab>
             <Tab title="Acompanamiento" icon="supervisor_account">
               <FollowUpInsigth></FollowUpInsigth>
