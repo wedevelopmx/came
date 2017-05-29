@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import { HiddenField } from 'commons/form'
 import WebCamera from 'commons/webcam';
 import { setProfilePic } from '../../../actions';
@@ -9,7 +10,7 @@ class PictureForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <WebCamera updatePicture={setProfilePic} />
+        <WebCamera updatePicture={ this.props.setProfilePic } />
         <div className="row">
           <div className="col-sm-12">
             <Field name="profilePic" component={ HiddenField }/>
@@ -36,4 +37,4 @@ export default reduxForm({
   validate: validatePictureForm,
   form: 'RegisterForm',
   destroyOnUnmount: false
-})(PictureForm);
+})(connect(null, {setProfilePic})(PictureForm));

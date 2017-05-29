@@ -9,10 +9,7 @@ import { VisitorForm, LocationForm, DemographicForm, PictureForm } from './regis
 
 class RegisterForm extends Component {
   onSubmit(values) {
-    this.props.createVisitor(values, () => {
-      //this.props.history.push('/');
-      window.location='/#/';
-    });
+    this.props.createVisitor(values, this.props.onComplete);
   }
 
   render() {
@@ -22,7 +19,7 @@ class RegisterForm extends Component {
           <h3>Nuevo Visitante</h3>
           <small>Introduce los detalles sobre el visitante.</small>
         </div>
-        <WizardForm onSubmit={this.onSubmit.bind(this)}>
+        <WizardForm onSubmit={this.onSubmit.bind(this)} onCancel={this.props.onComplete}>
           <VisitorForm label="Visitante"/>
           <LocationForm label="Ubicacion" />
           <DemographicForm label="Demograficos" />

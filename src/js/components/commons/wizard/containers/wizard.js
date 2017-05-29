@@ -5,7 +5,7 @@ function Nav(props) {
     <div className="form-group row">
       <div className="col-sm-12">
         <div className="pull-right">
-          <button onClick={ () => props.onBack() } className="btn btn-fw white m-r">Atras</button>
+          <button onClick={ () => props.onBack() } className="btn btn-fw white m-r">{ props.back }</button>
           <button type="submit" className="btn btn-fw info">Siguiente</button>
         </div>
       </div>
@@ -45,10 +45,11 @@ class WizardForm extends Component {
   }
 
   render() {
-
+    const onBack = this.state.selected == 0 ? this.props.onCancel : this.back.bind(this);
+    const backButtonText = this.state.selected == 0 ? 'Cancel' : 'Back';
     const component = React.cloneElement(this.props.children[this.state.selected], {
         onSubmit: (this.props.children.length == this.state.selected + 1) ? this.props.onSubmit : this.next.bind(this)
-      }, <Nav onBack={this.back.bind(this)} />);
+      }, <Nav onBack={onBack} back={backButtonText}/>);
 
     return (
       <div className="tab">

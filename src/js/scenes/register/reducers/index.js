@@ -1,8 +1,6 @@
 import {combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { PROFILE_PIC_SET, VISITOR_SELECTED } from '../actions';
-
-import { FetchVisitorsReducer, VisitorSelectedReducer } from 'search/reducers';
+import { FetchVisitorsReducer, VisitorSelectedReducer, RegisterFormReducer } from 'search/reducers';
 import CommentsReducer from 'comments/reducers';
 import CheckoutsReducer from 'checkout/reducers';
 
@@ -12,26 +10,7 @@ const rootReducer = combineReducers({
   comments: CommentsReducer,
   checkouts: CheckoutsReducer,
   form: formReducer.plugin({
-    // Intercepting Form reducer
-    RegisterForm: (state, action) => {
-      switch(action.type) {
-        // Allow to update hidden field
-        case PROFILE_PIC_SET:
-          return {
-              ...state,
-              values: {
-                ...state.values,
-                profilePic: action.payload // <----- clear password value
-              },
-              fields: {
-                ...state.fields//,
-              }
-            }
-        break;
-        default:
-          return state;
-      }
-    }
+    RegisterForm: RegisterFormReducer
   })
 });
 

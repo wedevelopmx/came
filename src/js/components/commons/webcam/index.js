@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 navigator.getUserMedia = ( navigator.getUserMedia ||
                        navigator.webkitGetUserMedia ||
+                      //  navigator.mediaDevices.getUserMedia ||
                        navigator.mozGetUserMedia ||
                        navigator.msGetUserMedia);
 
@@ -92,9 +93,9 @@ class WebCamera extends Component {
     const { width, height } = this.state.constraints.video;
     context.fillStyle = '#FFF';
     context.fillRect(0, 0, width, height);
-
     const data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
+    if(photo)
+      photo.setAttribute('src', data);
   }
 
   handleStartClick(event) {
