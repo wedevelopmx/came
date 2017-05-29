@@ -17,7 +17,11 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <div className="box m-t">
+      <div className="box">
+        <div className="box-header blue">
+          <h3>Nuevo Visitante</h3>
+          <small>Introduce los detalles sobre el visitante.</small>
+        </div>
         <WizardForm onSubmit={this.onSubmit.bind(this)}>
           <VisitorForm label="Visitante"/>
           <LocationForm label="Ubicacion" />

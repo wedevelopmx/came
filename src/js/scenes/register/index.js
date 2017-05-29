@@ -17,15 +17,7 @@ class Register extends Component {
   render() {
     return (
       <Provider store={createStoreWithMiddleware(reducers)}>
-        <HashRouter>
-          <div className="screen">
-            <Switch>
-              <Route path="/visitor/new" component={VisitorNew} />
-              <Route path="/visitor/:id" component={VisitorShow} />
-              <Route path="/" component={VisitorList} />
-            </Switch>
-          </div>
-        </HashRouter>
+        <VisitorList/>
       </Provider>
     );
   }

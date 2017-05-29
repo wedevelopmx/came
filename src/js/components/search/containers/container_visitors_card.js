@@ -63,9 +63,9 @@ class VisitorList extends Component {
           <div className="bottom gd-overlay p-a-xs">
             <a href="" className="text-md block p-x-sm">Visitantes</a>
           </div>
-          <Link to="/visitor/new" className="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right blue">
+          <a onClick={ () => this.props.onCreate() } className="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right blue">
             <i className="material-icons md-24">add</i>
-          </Link>
+          </a>
         </div>
         <div className="fix p-a">
           <div className="text-muted m-b-xs">

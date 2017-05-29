@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tabs, Tab }from 'commons/tab';
-import { VisitorCard, VisitorsCard } from 'search';
-import { Crud, FlipperModal, ModalWrapper } from 'commons/flipper';
+import { Crud, ModalWrapper } from 'commons/flipper';
+import { VisitorCard, VisitorRegisterCard, VisitorsCard } from 'search';
 import { CommentForm, CommentList } from 'comments';
 import { Checkout, CheckoutForm, CheckoutItem } from 'checkout';
 
@@ -11,7 +11,7 @@ export default function() {
   return (
     <div className="container-flex">
       <div className="col-half">
-        <VisitorsCard />
+        <Crud list={VisitorsCard} create={VisitorRegisterCard} decorator={ModalWrapper} />
       </div>
       <div className="col-half">
         <VisitorCard>

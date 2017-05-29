@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { HiddenField } from 'commons/form'
-import WebCamera from '../../components/component_webcamera';
+import WebCamera from 'commons/webcam';
+import { setProfilePic } from '../../../actions';
 
 class PictureForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <WebCamera>
-        </WebCamera>
+        <WebCamera updatePicture={setProfilePic} />
         <div className="row">
           <div className="col-sm-12">
             <Field name="profilePic" component={ HiddenField }/>

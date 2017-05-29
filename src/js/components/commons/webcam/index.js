@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setProfilePic } from '../actions';
-
 
 navigator.getUserMedia = ( navigator.getUserMedia ||
                        navigator.webkitGetUserMedia ||
@@ -125,7 +122,7 @@ class WebCamera extends Component {
 
     const data = canvas.toDataURL('image/png');
     photo.setAttribute('src', data);
-    this.props.setProfilePic(data);
+    this.props.updatePicture(data);
     this.setState({ camera: 3 });
   }
 
@@ -182,10 +179,4 @@ class WebCamera extends Component {
   }
 }
 
-// (state) => {
-//   return {
-//     picture: state.form.RegisterForm.profilePic
-//   };
-// }
-
-export default connect(null, { setProfilePic })(WebCamera);
+export default WebCamera;
