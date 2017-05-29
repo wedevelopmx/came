@@ -176,6 +176,7 @@ class WebCamera extends Component {
         </div>
         {camera}
         <canvas id="canvas" hidden></canvas>
+        { this.props.children }
       </div>
     );
   }
