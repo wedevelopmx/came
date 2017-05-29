@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { fetchVisitors, selectVisitor } from '../actions';
+import moment from 'moment';
 
 import SearchBar from './container_search_bar';
 
@@ -68,9 +69,8 @@ class VisitorList extends Component {
           </a>
         </div>
         <div className="fit text-muted p-a b-b">
-          <span className="m-r">May 12, 2015</span>
-          <a href="" className="m-r"><i className="material-icons md-12">favorite</i> 4</a>
-          <a href=""><i className="material-icons md-12">bookmark</i> 20</a>
+          <span className="m-r">{ moment().format('MMMM DD YYYY') }</span>
+          <a href="" className="m-r"><i className="material-icons md-12">face</i> {this.props.numberOfVisitors}</a>
         </div>
         <div className="fix scrollable">
           <ul className="list inset m-a-0">
@@ -86,7 +86,8 @@ class VisitorList extends Component {
 function mapStateToProps(state) {
   // Generating props for VisitorList
   return {
-    visitors: state.visitors
+    visitors: state.visitors,
+    numberOfVisitors: Object.keys(state.visitors).length
   };
 }
 

@@ -19,7 +19,7 @@ class VisitorCard extends Component {
     const {visitor} = this.props;
 
     return (
-      <div className="box widget">
+      <div className="box expanse">
         <div className="fit">
           <div className="box-tool">
             <ul className="nav">
@@ -38,8 +38,8 @@ class VisitorCard extends Component {
             </div>
           	<p><small>{ visitor.state }, { visitor.country }</small></p>
           </div>
-          { this.props.children }
   			</div>
+        { this.props.children }
       </div>
     );
   }

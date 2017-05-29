@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tabs, Tab }from 'commons/tab';
+import { Tabs }from 'commons/tab';
 import { Crud, ModalWrapper } from 'commons/flipper';
 import { VisitorCard, VisitorRegisterCard, VisitorsCard } from 'search';
 import { CommentForm, CommentList } from 'comments';
@@ -16,15 +16,9 @@ export default function() {
       <div className="col-half">
         <VisitorCard>
           <Tabs selected="0">
-            <Tab title="Alerta" icon="warning">
-              <Crud list={CommentList} create={CommentForm} update={CommentForm} decorator={ModalWrapper}/>
-            </Tab>
-            <Tab title="Acompanamiento" icon="supervisor_account">
-              <FollowUpInsigth></FollowUpInsigth>
-            </Tab>
-            <Tab title="Salidas" icon="launch">
-              <Crud list={Checkout} create={CheckoutForm} update={CheckoutItem} decorator={ModalWrapper}/>
-            </Tab>
+            <Crud title="Alerta" icon="warning" list={CommentList} create={CommentForm} update={CommentForm} decorator={ModalWrapper}/>
+            <FollowUpInsigth title="Acompanamiento" icon="supervisor_account"></FollowUpInsigth>
+            <Crud title="Salidas" icon="launch" list={Checkout} create={CheckoutForm} update={CheckoutItem} decorator={ModalWrapper}/>
           </Tabs>
         </VisitorCard>
       </div>

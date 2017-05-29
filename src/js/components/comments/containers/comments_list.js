@@ -42,17 +42,21 @@ class CommentList extends Component {
 
   render() {
     return (
-      <div className="box-body b-t">
+      <div className="p-a">
         <div className="streamline b-l m-l">
           { this.renderComments() }
         </div>
-        <div className="box-footer">
-          <a onClick={ () => this.props.onCreate() } className="btn btn-sm btn-block info text-u-c">Nuevo</a>
-        </div>
+        <a onClick={ () => this.props.onCreate() } className="md-raised md-mini md-btn md-fab m-b-sm btn-float btn-sm blue">
+          <i className="material-icons md-24">add</i>
+        </a>
       </div>
     );
   }
 }
+
+// <div className="fit p-a">
+//   <a  className="btn btn-sm btn-block info text-u-c">Nuevo</a>
+// </div>
 
 export default connect((state) => {
   return {

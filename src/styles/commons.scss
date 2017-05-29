@@ -24,13 +24,14 @@
 
 .expanse {
   display: flex;
-  flex-flow: column;
+  flex-flow: column nowrap;
   height: inherit;
   .fit {
     flex: 0 1 auto;
   }
   .fix {
     flex: 1 1 auto;
+    overflow: hidden;
   }
   .scrollable {
     overflow-y: scroll;
@@ -39,6 +40,12 @@
 
 .wrapper {
   height: inherit;
+}
+
+.btn-float {
+  position: absolute;
+  right: 16px;
+  bottom: 0px;
 }
 
 .profile {

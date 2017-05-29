@@ -53,29 +53,16 @@ class Checkout extends Component {
     });
   }
 
-  // <span onClick={ () => _self.props.onUpdate(checkout) } className="pull-right text-muted m-l-xs"><i className="material-icons">chevron_right</i></span>
-  // <div className="box-tool">
-  //   <ul className="nav">
-  //     <li className="nav-item inline">
-  //       <a className="nav-link" onClick={ () => _self.props.onUpdate(checkout) }>
-  //         <i className="material-icons md-18">alarm_off</i>
-  //       </a>
-  //     </li>
-  //   </ul>
-  // </div>
-
   render() {
     return (
-      <div className="box">
-        <div className="box-body">
-          <div className="streamline b-l m-b m-l">
-            { this.renderCheckouts() }
-          </div>
+      <div className="p-a">
+        <div className="streamline b-l m-b m-l">
+          { this.renderCheckouts() }
         </div>
-        <div className="box-footer">
-          <a onClick={ () => this.props.onCreate() } className="btn btn-sm btn-block info text-u-c">Nuevo</a>
-        </div>
-    </div>
+        <a onClick={ () => this.props.onCreate() } className="md-raised md-mini md-btn md-fab m-b-sm btn-float btn-sm blue">
+          <i className="material-icons md-24">add</i>
+        </a>
+      </div>
     );
   }
 }

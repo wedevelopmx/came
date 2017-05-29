@@ -28,11 +28,11 @@ class Tabs extends Component {
 
   render() {
     return (
-      <div className="tab">
-        <div className="row no-gutter b-t">
+      <div className="fix expanse">
+        <div className="fit b-t b-b">
           { this.renderBar() }
         </div>
-        <div className="b-t">
+        <div className="fix scrollable">
           { this.props.children[this.state.selected] }
         </div>
       </div>
