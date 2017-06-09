@@ -34,8 +34,9 @@ class WizardForm extends Component {
     const _self = this;
 
     return this.props.children.map((child, index) => {
+      const active = index == this.state.selected ? 'active' : '';
       return (
-        <div key={index} className={`${column} b-r`}>
+        <div key={index} className={`${column} b-r ${active}`}>
           <a className="p-a block text-center" onClick={() => _self.switchTab(index)}>
             <span className="block small">{ child.props.label }</span>
           </a>
@@ -53,7 +54,7 @@ class WizardForm extends Component {
 
     return (
       <div className="tab">
-        <div className="row no-gutter b-t">
+        <div className="row no-gutter b-t tab-nav">
           { this.renderBar() }
         </div>
         <div className="b-t">
