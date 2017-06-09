@@ -40,3 +40,11 @@ export function createVisitor(visitor, callback) {
     payload: request
   };
 }
+
+export function fetchGender() {
+  const request = axios.get(API_URL);
+  return {
+    type: FETCH_VISITORS,
+    payload: request
+  }
+}
