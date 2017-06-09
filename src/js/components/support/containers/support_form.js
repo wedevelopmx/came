@@ -28,6 +28,24 @@ class SupportForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     const serviceList = _.map(this.props.services, service => { return { value: service.id, display: service.name } });
+    const availableServicesList = _.filter(serviceList, service => { !this.props.supports.hasOwnProperty(service.id) })
+
+    if(availableServicesList.length == 0)
+      return (
+        <div className="box">
+          <div className="box-header text-white orange">
+            <h3>Nuevo Acompañamiento</h3>
+            <small>Ingrese los detalles sobre el acompañamiento.</small>
+          </div>
+          <div className="box-body b-t text-center">
+            <h5>No se puede agregar otro acompañamiento.</h5>
+            <small>El visitante ya tiene registrados todas las opciones de acompañamiento disponibles.</small>
+          </div>
+          <div className="dker p-a text-right">
+            <button className="btn btn-sm white text-u-c m-r" onClick={ () => this.props.onComplete()  }>Cancel</button>
+          </div>
+        </div>
+      );
 
     return (
       <div className="box">
@@ -94,6 +112,7 @@ export default reduxForm({
 })(
   connect(
     state => ({
+      supports: state.supports,
       services: state.services,
       visitor: state.activeVisitor
     }), { fetchServices, createSupport })(SupportForm)
