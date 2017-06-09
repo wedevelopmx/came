@@ -25,6 +25,8 @@ var visitor = require('./routes/visitor');
 var comment = require('./routes/comment');
 var checkout = require('./routes/checkout');
 var category = require('./routes/category');
+var service = require('./routes/service');
+var support = require('./routes/support');
 
 // App
 var app = express();
@@ -57,6 +59,8 @@ app.use('/api/visitor', visitor);
 app.use('/api/comment', comment);
 app.use('/api/checkout', checkout);
 app.use('/api/category', category);
+app.use('/api/service', service);
+app.use('/api/support', support);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
