@@ -13,7 +13,7 @@ class Tabs extends Component {
   renderBar() {
     const column = 'col-xs-' + 12 / (this.props.children.length);
     const _self = this;
-    
+
     return this.props.children.map((child, index) => {
       const active = index == this.state.selected ? 'active' : '';
       return (
@@ -28,12 +28,14 @@ class Tabs extends Component {
   }
 
   render() {
+    const { scrollable = false } = this.props;
+    const fixClassName = `fix ${ scrollable ? 'scrollable': '' }`;
     return (
       <div className="fix expanse">
         <div className="fit b-t b-b tab-nav">
           { this.renderBar() }
         </div>
-        <div className="fix scrollable">
+        <div className={fixClassName}>
           { this.props.children[this.state.selected] }
         </div>
       </div>
