@@ -23,18 +23,18 @@ class Slider extends Component {
   }
 
   renderView() {
-    const { create : ComponentForm, update : ComponentUpdate, list : ComponentList } = this.props;
+    const { create : ComponentForm, update : ComponentUpdate, list : ComponentList, parent } = this.props;
     // Modal is active
     if(this.state.activeModal) {
       // There is an item to be displayed
       if(this.state.activeItem) {
-        return ( <ComponentUpdate key="1" onComplete={ this.hideModal } activeItem={ this.state.activeItem } />);
+        return ( <ComponentUpdate key="1" parent={parent} onComplete={ this.hideModal } activeItem={ this.state.activeItem } />);
       } else {
         // There is not initial item
-        return ( <ComponentForm key="2" onComplete={ this.hideModal } />);
+        return ( <ComponentForm key="2" parent={parent} onComplete={ this.hideModal } />);
       }
     } else {
-      return (<ComponentList key="3" onCreate={ this.showModal } onUpdate={ this.showModal }/>);
+      return (<ComponentList key="3" parent={parent} onCreate={ this.showModal } onUpdate={ this.showModal }/>);
     }
   }
 

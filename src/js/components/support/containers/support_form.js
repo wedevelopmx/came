@@ -27,8 +27,9 @@ class SupportForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    const serviceList = _.map(this.props.services, service => { return { value: service.id, display: service.name } });
-    const availableServicesList = _.filter(serviceList, service => { !this.props.supports.hasOwnProperty(service.id) })
+    const currentSupport = _.map(this.props.supports, support => {  return support.serviceId });
+    const availableServicesList = _.omit(this.props.services, currentSupport);
+    const serviceList = _.map(availableServicesList, service => { return { value: service.id, display: service.name } });
 
     if(availableServicesList.length == 0)
       return (

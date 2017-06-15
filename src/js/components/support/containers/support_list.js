@@ -19,19 +19,20 @@ class SupportList extends Component {
     if(this.props.supports == null)
       return (<div>Loading...</div>);
 
-    return _.map(this.props.supports, service => {
+    let _self = this;
 
+    return _.map(this.props.supports, service => {
       const className = `w-40 circle green`;
       return (
         <div key={service.id} className="sl-item">
           <div className="sl-left">
-            <span className="w-40 circle green">
+            <span className="w-40 circle green" onClick={ () => _self.props.onUpdate(service) }>
               <i className="material-icons w-24">{ service.resource }</i>
             </span>
           </div>
           <div className="sl-content">
             <a href="" className="text-info">{ service.name }</a><span className="m-l-sm sl-date"></span>
-            <div>{ moment(new Date(service.Support.startDate)).format('ddd, MMMM Do YYYY, h:mm a') }.</div>
+            <div>{ moment(new Date(service.startDate)).format('ddd, MMMM Do YYYY, h:mm a') }.</div>
           </div>
         </div>
       );
