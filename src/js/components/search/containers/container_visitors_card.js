@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { fetchVisitors, selectVisitor } from '../actions';
 import moment from 'moment';
+import { HourGlass } from 'commons/loaders';
 
 import SearchBar from './container_search_bar';
 
@@ -14,11 +15,17 @@ class VisitorList extends Component {
   }
 
   renderVisitors() {
-    let _self = this;
+    if(Array.isArray(this.props.visitors))
+      return (<HourGlass></HourGlass>);
 
-    if(this.props.visitors == null)
-      return (<div>Loading...</div>);
+    if(Object.keys(this.props.visitors).length == 0)
+      return (
+        <div className="p-a text-center">
+          <h6>No existen visitantes registrados.</h6>
+        </div>
+      );
 
+    const _self = this;
     return _.map(this.props.visitors, visitor => {
       return (
         <li key={visitor.id} className="list-item" onClick={() => _self.props.selectVisitor(visitor) }>

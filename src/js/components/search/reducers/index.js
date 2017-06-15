@@ -13,7 +13,7 @@ export function VisitorSelectedReducer(state = null, action) {
 }
 
 
-export function FetchVisitorsReducer(state = {}, action) {
+export function FetchVisitorsReducer(state = [], action) {
   switch (action.type) {
     case CREATE_VISITOR:
       return { ...state, [action.payload.data.id]: action.payload.data };
