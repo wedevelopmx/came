@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { CheckoutItem } from 'checkout'
 import { fetchCheckouts } from '../actions';
+import { HourGlass } from 'commons/loaders';
 
 class Checkout extends Component {
   constructor(props) {
@@ -22,9 +23,6 @@ class Checkout extends Component {
   }
 
   renderCheckouts() {
-    if(this.props.checkouts == null)
-      return (<div>Loading...</div>);
-
     let _self = this;
 
     return _.map(this.props.checkouts, checkout => {
@@ -54,6 +52,19 @@ class Checkout extends Component {
   }
 
   render() {
+    if(Array.isArray(this.props.checkouts))
+      return (<HourGlass></HourGlass>);
+
+    if(Object.keys(this.props.checkouts).length == 0)
+      return (
+        <div className="p-a text-center">
+          <h6>No existen elementos registrados.</h6>
+          <a onClick={ () => this.props.onCreate() } className="md-raised md-mini md-btn md-fab m-b-sm btn-float btn-sm blue">
+            <i className="material-icons md-24">add</i>
+          </a>
+        </div>
+      );
+
     return (
       <div className="p-a">
         <div className="streamline b-l m-b m-l">
