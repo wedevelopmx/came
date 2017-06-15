@@ -50,7 +50,7 @@ function ItemDetails(props) {
 
 class SupportItem extends Component {
   componentDidMount() {
-    
+
   }
 
   render() {
@@ -74,8 +74,8 @@ class SupportItem extends Component {
           </div>
         </div>
         <Tabs selected="0">
-          <ItemDetails title="Detalles" icon="face" activeItem={activeItem}/>
-          <Slider title="Citas" icon="face" parent={activeItem} list={AppointmentList} create={AppointmentForm} decorator={SlideWrapper}/>
+          <Slider title="Citas" icon="format_list_bulleted" parent={activeItem} list={AppointmentList} create={AppointmentForm} decorator={SlideWrapper}/>
+          <ItemDetails title="Detalles" icon="assignment" activeItem={activeItem}/>
         </Tabs>
       </div>
     );
