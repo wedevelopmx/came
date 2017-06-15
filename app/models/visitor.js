@@ -18,6 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         associate: function(models) {
           Visitor.hasMany(models.Comment, { as: 'comments'});
           Visitor.hasMany(models.Checkout, { as: 'checkouts'});
+          //Visitor.hasMany(models.Appointment, { as: 'appointments'});
 
           Visitor.belongsToMany(models.Service, { as: 'services', through: 'Support' });
         }

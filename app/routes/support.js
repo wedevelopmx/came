@@ -4,21 +4,16 @@ var models = require('../models');
 
 router.get('/:id', function(req, res, next) {
   console.log(req.params.id);
-  models.Visitor.findOne({
-    attributes: ['id'],
-    where: { id: req.params.id },
-    include: [{
-      attributes: ['id', 'name', 'description', 'resource'],
-      model: models.Service,
-      as: 'services',
-      through: {
-        attributes: ['startDate', 'interview', 'psychological', 'interviewComment', 'psychologicalComment'],
-        model: models.Support
-      }
-    }],
-    order: [['createdAt', 'DESC']]
-  }).then(function(visitor) {
-    res.json(visitor.get({ plain: true}).services);
+  var queryString =
+  "select s.id, sv.id as serviceId, sv.name, sv.description, sv.resource, sv.appointmentCatalog, datetime(s.startDate, 'localtime') as startDate, s.interview, s.psychological, s.interviewComment, s.psychologicalComment from Services sv join Supports s on sv.id = s.ServiceId and s.VisitorId = :visitorId";
+
+  models.sequelize
+  .query(queryString, {
+    replacements: { visitorId: req.params.id },
+    type: models.sequelize.QueryTypes.SELECT
+  })
+  .then(function(support) {
+    res.json(support);
   });
 });
 
@@ -32,25 +27,22 @@ router.post('/', function(req, res, next) {
       },
       defaults: req.body})
     .spread(function(support, created) {
-      models.Visitor.findOne({
-        attributes: ['id'],
-        where: { id: support.VisitorId },
-        include: [{
-          attributes: ['id', 'name', 'description', 'resource'],
-          model: models.Service,
-          as: 'services',
-          through: {
-            attributes: ['startDate', 'interview', 'psychological', 'interviewComment', 'psychologicalComment'],
-            model: models.Support
-          },
-          where: { id: support.ServiceId }
-        }],
-        order: [['createdAt', 'DESC']]
-      }).then(function(visitor) {
-        res.json(visitor.get({ plain: true}).services[0]);
+
+      var queryString =
+      "select s.id, sv.id as serviceId, sv.name, sv.description, sv.resource, sv.appointmentCatalog, datetime(s.startDate, 'localtime') as startDate, s.interview, s.psychological, s.interviewComment, s.psychologicalComment from Services sv join Supports s on sv.id = s.ServiceId and s.id = :supportId limit 1";
+
+      models.sequelize
+      .query(queryString, {
+        replacements: { supportId: support.id },
+        type: models.sequelize.QueryTypes.SELECT
+      })
+      .then(function(support) {
+        if(support.length > 0)
+          res.json(support[0]);
+        else
+          res.status(404);
       });
     });
 });
-
 
 module.exports = router;

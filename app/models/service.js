@@ -7,10 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     resource: { type: DataTypes.STRING, name: 'image'},
     instructions: { type: DataTypes.STRING, name: "instruction" },
     pictureDataURI: { type: DataTypes.STRING, name: 'picture_data_uri'},
-    onlyImmigrant: { type: DataTypes.INTEGER, name: 'only_inmmigrant' },
-    oneTime: { type: DataTypes.INTEGER, name: 'one_time' },
-    storeList: { type: DataTypes.INTEGER, name: 'store_data_type' },
-    order: { type: DataTypes.INTEGER, name: "order"}
+    appointmentCatalog: { type: DataTypes.INTEGER, name: 'appointment_catalog'}
   }, {
     classMethods: {
       associate: function(models) {

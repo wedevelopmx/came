@@ -27,6 +27,7 @@ var checkout = require('./routes/checkout');
 var category = require('./routes/category');
 var service = require('./routes/service');
 var support = require('./routes/support');
+var appointment = require('./routes/appointment');
 
 // App
 var app = express();
@@ -61,6 +62,7 @@ app.use('/api/checkout', checkout);
 app.use('/api/category', category);
 app.use('/api/service', service);
 app.use('/api/support', support);
+app.use('/api/appointment', appointment);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,3 +1,5 @@
+@import "slide.scss";
+
 .app-content {
     height: 100vh;
     .app-body {
@@ -32,6 +34,7 @@
   .fix {
     flex: 1 1 auto;
     overflow: hidden;
+    // position: inherit;
   }
   .scrollable {
     overflow-y: scroll;
@@ -43,6 +46,7 @@
 }
 
 .wrapper {
+  position: inherit;
   height: inherit;
 }
 

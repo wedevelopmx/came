@@ -2,6 +2,11 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Support = sequelize.define("Support", {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     startDate: { type: DataTypes.DATE, name: "start_date"},
     interview: { type: DataTypes.BOOLEAN, name: "interview"},
     psychological: { type: DataTypes.BOOLEAN, name: "psychological"},
@@ -10,8 +15,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-          Support.belongsTo(models.Visitor);
-          Support.belongsTo(models.Service);
+          // Support.belongsTo(models.Visitor);
+          // Support.belongsTo(models.Service);
+          Support.hasMany(models.Appointment, { as: 'appointments', foreignKey: 'id' });
       }
     }
   });
