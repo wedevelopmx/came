@@ -6,8 +6,6 @@ import { SupportForm, SupportList, SupportItem } from 'support';
 import { CommentForm, CommentList } from 'comments';
 import { Checkout, CheckoutForm, CheckoutItem } from 'checkout';
 
-import FollowUpInsigth from '../containers/container_followup_insight';
-
 export default function() {
   return (
     <div className="container-flex">
