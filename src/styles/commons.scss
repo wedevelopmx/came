@@ -1,4 +1,5 @@
 @import "slide.scss";
+@import "hourglass.scss";
 
 .app-content {
     height: 100vh;
@@ -151,4 +152,8 @@
   padding: 0.3rem;
   left: -15px !important;
   border-radius: 50%;
+}
+
+.sl-left {
+  cursor: pointer;
 }
