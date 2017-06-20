@@ -36,5 +36,5 @@ function validatePictureForm(values) {
 export default reduxForm({
   validate: validatePictureForm,
   form: 'RegisterForm',
-  destroyOnUnmount: false
+  destroyOnUnmount: true
 })(connect(null, {setProfilePic})(PictureForm));
