@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { FetchVisitorsReducer, VisitorSelectedReducer, RegisterFormReducer } from 'search/reducers';
+import { FetchVisitorsReducer, VisitorSelectedReducer, RegisterFormReducer, FetchGenderReducer, FetchStatusReducer } from 'search/reducers';
 import CommentsReducer from 'comments/reducers';
 import CheckoutsReducer from 'checkout/reducers';
 import SupportReducer from 'support/reducers';
@@ -17,6 +17,8 @@ const rootReducer = combineReducers({
   checkouts: CheckoutsReducer,
   appointments: AppointmentReducer,
   categoryEntities: CategoryEntitiesReducer,
+  genders: FetchGenderReducer,
+  status: FetchStatusReducer,
   form: formReducer.plugin({
     RegisterForm: RegisterFormReducer
   })

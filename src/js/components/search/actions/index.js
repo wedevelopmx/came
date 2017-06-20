@@ -41,10 +41,13 @@ export function createVisitor(visitor, callback) {
   };
 }
 
-export function fetchGender() {
-  const request = axios.get(API_URL);
+export const FETCH_GENDER = 'fetch_gender_entities';
+export const FETCH_STATUS = 'fetch_status_entities';
+
+export function fetchCategoryEntities(categoryId, destiny) {
+  const request = axios.get(`/api/category/${categoryId}/entries`);
   return {
-    type: FETCH_VISITORS,
+    type: destiny,
     payload: request
-  }
+  };
 }
