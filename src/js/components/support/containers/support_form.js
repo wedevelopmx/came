@@ -31,7 +31,7 @@ class SupportForm extends Component {
     const availableServicesList = _.omit(this.props.services, currentSupport);
     const serviceList = _.map(availableServicesList, service => { return { value: service.id, display: service.name } });
 
-    if(availableServicesList.length == 0)
+    if(serviceList.length == 0)
       return (
         <div className="box">
           <div className="box-header text-white orange">

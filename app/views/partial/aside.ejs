@@ -14,10 +14,16 @@
                         <span class="nav-text">Puerta</span>
                       </a>
                     </li>
-                    <li class="<%= side.hasOwnProperty('admin') ? 'active' : '' %>">
-                      <a href="/admin">
+                    <li class="<%= side.hasOwnProperty('support') ? 'active' : '' %>">
+                      <a href="/support">
                         <span class="nav-icon"><i class="material-icons md-24">group</i></span>
                         <span class="nav-text">Acc</span>
+                      </a>
+                    </li>
+                    <li class="<%= side.hasOwnProperty('admin') ? 'active' : '' %>">
+                      <a href="/admin">
+                        <span class="nav-icon"><i class="material-icons md-24">settings</i></span>
+                        <span class="nav-text">Admin</span>
                       </a>
                     </li>
                     <li class="nav-header hidden-folded"><small class="text-muted">Help</small>

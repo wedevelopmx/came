@@ -3,6 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
+     support: "./src/js/scenes/support/index",
      register: "./src/js/scenes/register/index",
      admin: "./src/js/scenes/admin/index"
   },

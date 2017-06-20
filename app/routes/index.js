@@ -11,6 +11,13 @@ router.get('/', isLoggedIn, function(req, res, next) {
 		});
 });
 
+router.get('/support', isLoggedIn, function(req, res, next) {
+	res.render('support', {
+  		title: 'CAME',
+			side: { support: true }
+		});
+});
+
 router.get('/admin', isLoggedIn, function(req, res, next) {
 	res.render('admin', {
   		title: 'CAME',
