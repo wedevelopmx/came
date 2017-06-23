@@ -59,5 +59,17 @@ router.get('/:id/avatar', function(req, res){
   res.sendFile(file);
 });
 
+router.get('/:id/appointments', function(req, res, next) {
+  var queryString = "select a.id, a.reason, a.comment, datetime(a.startDate, 'localtime') as startDate, datetime(a.scheduleEndDate, 'localtime') as scheduleEndDate, datetime(a.endDate, 'localtime') as endDate, sv.resource from Services sv join Supports s on sv.id = s.ServiceId and s.VisitorId = :visitorId join Appointments a on a.SupportId = s.id";
+
+  models.sequelize
+  .query(queryString, {
+    replacements: { visitorId: req.params.id },
+    type: models.sequelize.QueryTypes.SELECT
+  })
+  .then(function(appointments) {
+    res.json(appointments);
+  });
+});
 
 module.exports = router;

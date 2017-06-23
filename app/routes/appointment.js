@@ -27,7 +27,7 @@ router.put('/:id', function(req, res, next) {
   models.Appointment
   .findOne({ where : { id: req.params.id } })
   .then(function(appointment) {
-    appointment.update(req.body, { fields: ['endDate', 'duration', 'comment'] })
+    appointment.update(req.body, { fields: ['endDate', 'scheduleEndDate', 'comment'] })
       .then(function(appointment) {
         res.json(appointment);
       });

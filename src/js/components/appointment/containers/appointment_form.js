@@ -36,7 +36,7 @@ class AppointmentForm extends Component {
         <form  onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="box-body b-t">
             <Field label="Salida:" name="startDate" component={ DatepickerField } />
-            <Field label="Entrada:" name="endDate" component={ DatepickerField } />
+            <Field label="Retorno:" name="scheduleEndDate" component={ DatepickerField } />
             <Field label="Razon:" name="reason" options={ reasonList } component={ SelectField } />
             <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
             <Field name="VisitorId"  component={ HiddenField }/>
@@ -59,7 +59,7 @@ function validate(values) {
     errors.endDate = 'Campo fecha es necesario.';
   }
 
-  if (!values.startDate) {
+  if (!values.scheduleEndDate) {
     errors.startDate = 'Campo fecha es necesario.';
   }
 
