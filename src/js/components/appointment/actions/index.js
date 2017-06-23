@@ -40,8 +40,6 @@ export function updateAppointment(appointment, callback){
     callback();
   });
 
-  console.log('Updating', appointment);
-
   return {
     type: UPDATE_APPOINTMENT,
     payload: request

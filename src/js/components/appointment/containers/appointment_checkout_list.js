@@ -53,7 +53,6 @@ class AppointmentCheckoutList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     if (nextProps.visitor && nextProps.visitor.id !== this.props.visitor.id) {
       this.props.fetchAppointmentsByVisitorId(nextProps.visitor.id);
     }
@@ -86,7 +85,7 @@ class AppointmentCheckoutList extends Component {
   }
 
   render() {
-    console.log(this.props.appointments)
+
     if(Array.isArray(this.props.appointments))
       return (<HourGlass></HourGlass>);
 
