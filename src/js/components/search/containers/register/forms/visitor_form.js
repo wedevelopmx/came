@@ -37,15 +37,15 @@ function validateVisitorForm(values) {
   if (!values.firstName) {
     errors.firstName = 'Campo nombre es necesario.';
   }
-  if (!values.alias) {
-    errors.alias = 'Campo alias es necesario.';
-  }
+  // if (!values.alias) {
+  //   errors.alias = 'Campo alias es necesario.';
+  // }
   if (!values.lastName) {
     errors.lastName = 'Campo apellido paterno es necesario.';
   }
-  if (!values.secondSurename) {
-    errors.secondSurename = 'Campo apellido materno es necesario.';
-  }
+  // if (!values.secondSurename) {
+  //   errors.secondSurename = 'Campo apellido materno es necesario.';
+  // }
   return errors;
 }
 
