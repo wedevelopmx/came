@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { ActivityValidationField, CheckBoxField, TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form';
-import { createAppointment } from '../actions';
+import { createAppointment, updateAppointment } from '../actions';
 import { fetchCategoryEntities } from 'category/actions';
 
 class AppointmentForm extends Component {
@@ -13,16 +13,25 @@ class AppointmentForm extends Component {
   }
 
   handleInitialize() {
-    const initData = {
-      SupportId: this.props.parent.id,
-      startDate: new Date()
-    };
-
-    this.props.initialize(initData);
+    if(this.props.activeItem) {
+      const { id, VisitorId, SupportId, startDate, scheduleEndDate, reason, comment } = this.props.activeItem;
+      this.props.initialize({
+        id, VisitorId, SupportId, startDate: new Date(startDate), scheduleEndDate: new Date(scheduleEndDate), reason, comment
+      });
+    } else {
+      this.props.initialize({
+        SupportId: this.props.parent.id,
+        startDate: new Date()
+      });
+    }
   }
 
   onSubmit(values) {
-    this.props.createAppointment(values, this.props.onComplete);
+    if(values.id) {
+      this.props.updateAppointment(values, this.props.onComplete);
+    } else {
+      this.props.createAppointment(values, this.props.onComplete);
+    }
   }
 
   render() {
@@ -40,6 +49,8 @@ class AppointmentForm extends Component {
             <Field label="Razon:" name="reason" options={ reasonList } component={ SelectField } />
             <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
             <Field name="VisitorId"  component={ HiddenField }/>
+            <Field name="SupportId"  component={ HiddenField }/>
+            <Field name="id"  component={ HiddenField }/>
           </div>
           <div className="dker p-a text-right">
             <button className="btn btn-sm white text-u-c m-r" onClick={ () => this.props.onComplete() }>Cancel</button>
@@ -82,5 +93,5 @@ export default reduxForm({
   connect(
     state => ({
       categoryEntities: state.categoryEntities
-    }), { createAppointment, fetchCategoryEntities })(AppointmentForm)
+    }), { createAppointment, updateAppointment, fetchCategoryEntities })(AppointmentForm)
 );

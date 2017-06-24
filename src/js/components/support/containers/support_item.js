@@ -74,7 +74,7 @@ class SupportItem extends Component {
           </div>
         </div>
         <Tabs selected="0">
-          <Slider title="Citas" icon="format_list_bulleted" parent={activeItem} list={AppointmentList} create={AppointmentForm} decorator={SlideWrapper}/>
+          <Slider title="Citas" icon="format_list_bulleted" parent={activeItem} list={AppointmentList} create={AppointmentForm} update={AppointmentForm} decorator={SlideWrapper}/>
           <ItemDetails title="Detalles" icon="assignment" activeItem={activeItem}/>
         </Tabs>
       </div>

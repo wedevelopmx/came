@@ -52,7 +52,6 @@ export function createCategoryEntity(entity, callback) {
 }
 
 export function updateCategoryEntity(entity, callback) {
-  console.log(entity)
   const request = axios.put(`${API_URL}/${entity.CategoryId}/entry`, entity);
   request.then(() => callback());
 

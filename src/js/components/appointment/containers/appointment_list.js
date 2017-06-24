@@ -2,7 +2,9 @@ import _ from 'lodash';
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { HourGlass } from 'commons/loaders';
 import { fetchAppointments } from '../actions';
+import { convertToEvent } from 'commons/services';
 
 class AppointmentList extends Component {
   componentDidMount() {
@@ -17,27 +19,23 @@ class AppointmentList extends Component {
 
   renderAppointments() {
     const _self = this;
-    const { appointments: appointmentList } = this.props;
+    let events = _.orderBy(convertToEvent(this.props.appointments), ['order'], ['desc']);
 
-    if(Object.keys(appointmentList).length == 0) {
-      return (<h4 className="text-center">No existen citas registradas.</h4>);
-    }
-
-    return _.map(appointmentList, (appointment) => {
-      const className = `w-40 circle ${appointment.endDate ? 'blue' : 'red'}`;
+    return _.map(events, (event) => {
+      const className = `w-40 circle ${event.icon.color}`;
       return (
-        <div key={appointment.id} className="sl-item">
+        <div key={event.reference.id} className="sl-item">
           <div className="sl-left">
-            <span className={className} onClick={ () => _self.props.onUpdate(appointment) }>
-              <i className="material-icons">directions_walk</i>
+            <span className={className} onClick={ () => _self.props.onUpdate(event.reference) }>
+              <i className="material-icons">{ event.icon.material }</i>
             </span>
           </div>
           <div className="sl-content">
             <div className="sl-date text-muted">
-              Salida: { moment(new Date(appointment.startDate)).format('ddd, MMMM Do YYYY, h:mm a') } - Entrada: { moment(new Date(appointment.endDate)).format('ddd, MMMM Do YYYY, h:mm a') }
+              { event.time }
             </div>
-            <a className="text-info">{ appointment.reason }</a>
-            <div>{ appointment.comment }</div>
+            <a className="text-info">{ event.reference.reason }</a>
+            <div>{ event.reference.comment }</div>
           </div>
         </div>
       );
@@ -45,6 +43,13 @@ class AppointmentList extends Component {
   }
 
   render() {
+    if(Array.isArray(this.props.appointments))
+      return (<HourGlass></HourGlass>);
+
+    if(Object.keys(this.props.appointments).length == 0) {
+      return (<h4 className="text-center">No existen citas registradas.</h4>);
+    }
+
     return (
       <div className="p-a">
         <div className="streamline b-l m-b m-l">
