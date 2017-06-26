@@ -7,10 +7,58 @@ var Storage = require('../modules/storage');
 
 var storage = new Storage(config);
 
+/*
+  API: api/visitor?since=10&to20
+  Result:
+  {
+    lenght: 10,
+    results: [...]
+    paging: {
+      next: api/visitor?since=1&from=10,
+      back: api/visitor?since=21&from=30
+    }
+  }
+*/
+
+function searchCriteria(queryTerms) {
+  const { term, gender, status } = queryTerms;
+  let where = {};
+
+  if(term) {
+    where['$or'] = [
+        { firstName: { $like: `%${term}%` } },
+        { lastName: { $like: `%${term}%` } },
+        { secondSurename: { $like: `%${term}%` } },
+        { alias: { $like: `%${term}%` } }
+      ];
+  }
+
+  if(gender) where['$and'] = { gender: { $eq: gender } };
+
+  if(status) where['$and'] = { status: { $eq: status } };
+
+  return where;
+}
+
 router.get('/', function(req, res, next) {
-  models.Visitor.findAll().then(function(visitors) {
-    res.json(visitors);
+  const limit = parseInt(req.query.size);
+  const offset = parseInt(req.query.since);
+  const where = searchCriteria(req.query);
+
+  models.Visitor.findAll({
+    where, offset, limit
+  })
+  .then(function(visitors) {
+    res.json({
+      size: visitors.length,
+      results: visitors,
+      paging: {
+        next: `/api/visitor?since=${offset + limit}&size=${limit}`,
+        back: `/api/visitor?since=${offset >= limit ? (offset - limit) : 0}&size=${limit}`
+      }
+    });
   });
+
 });
 
 router.get('/:id', function(req, res, next) {
