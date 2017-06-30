@@ -7,8 +7,8 @@ export const VISITOR_SELECTED = 'visitor_selected';
 
 const API_URL = '/api/visitor';
 
-export function fetchVisitors() {
-  const request = axios.get(API_URL);
+export function fetchVisitors(params = {}) {
+  const request = axios.get(API_URL, { params });
   return {
     type: FETCH_VISITORS,
     payload: request

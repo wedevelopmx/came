@@ -8,6 +8,7 @@ import moment from 'moment';
 import { HourGlass } from 'commons/loaders';
 
 import SearchBar from './container_search_bar';
+import Pagination from './searchbar/container_pagination';
 
 class VisitorList extends Component {
   componentDidMount() {
@@ -47,55 +48,36 @@ class VisitorList extends Component {
     });
   }
 
-  submit() {
-    console.log('SearchBar Submit');
-  }
-
   render() {
     return (
       <div className="box expanse">
-        <div className="fit item dark">
-          <form className="search-bar" onSubmit={ this.submit() }>
-            <div className="form-group l-h m-a-0">
-              <div className="input-group input-group-sm">
-                <input className="form-control p-x b-a rounded" placeholder="Buscar visitante..." type="text"/>
-                <span className="input-group-btn">
-                  <button type="submit" className="btn white b-a rounded no-shadow">
-                    <i className="material-icons">search</i>
-                  </button>
-                </span>
-              </div>
-            </div>
-          </form>
+        <div className="fit item">
+          <SearchBar/>
           <img src="./images/rails_xs.jpg" className="w-full"/>
-          <div className="bottom gd-overlay p-a-xs">
-            <a href="" className="text-md block p-x-sm">Visitantes</a>
-          </div>
           <a onClick={ () => this.props.onCreate() } className="md-btn md-raised md-fab md-mini m-r pos-rlt md-fab-offset pull-right blue">
             <i className="material-icons md-24">add</i>
           </a>
         </div>
         <div className="fit text-muted p-a b-b">
           <span className="m-r">{ moment().format('MMMM DD YYYY') }</span>
-          <a href="" className="m-r"><i className="material-icons md-12">face</i> {this.props.numberOfVisitors}</a>
         </div>
         <div className="fix scrollable">
           <ul className="list inset m-a-0">
             { this.renderVisitors() }
           </ul>
         </div>
+        <div className="fit p-r p-l p-b-sm p-t-sm b-t">
+          <Pagination/>
+        </div>
       </div>
     );
   }
 }
 
-//Reducer State (rootReducer)
-function mapStateToProps(state) {
-  // Generating props for VisitorList
+export default connect((state) => {
   return {
+    pagination: state.pagination,
     visitors: state.visitors,
     numberOfVisitors: Object.keys(state.visitors).length
   };
-}
-
-export default connect(mapStateToProps, { fetchVisitors, selectVisitor })(VisitorList);
+}, { fetchVisitors, selectVisitor })(VisitorList);

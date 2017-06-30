@@ -41,24 +41,29 @@ function searchCriteria(queryTerms) {
 }
 
 router.get('/', function(req, res, next) {
-  const limit = parseInt(req.query.size);
-  const offset = parseInt(req.query.since);
+  const limit = parseInt(req.query.size || 3);
+  const offset = parseInt(req.query.since || 0);
   const where = searchCriteria(req.query);
 
-  models.Visitor.findAll({
+  models.Visitor.findAndCountAll({
     where, offset, limit
   })
-  .then(function(visitors) {
+  .then(function(results) {
+    // Removing actual offset and size to ovewrite pagination
+    delete req.query['since'];
+    delete req.query['size'];
+
+    // Build response
     res.json({
-      size: visitors.length,
-      results: visitors,
+      size: results.rows.length,
+      total: results.count,
+      results: results.rows,
       paging: {
-        next: `/api/visitor?since=${offset + limit}&size=${limit}`,
-        back: `/api/visitor?since=${offset >= limit ? (offset - limit) : 0}&size=${limit}`
+        next: Object.assign({ since: offset + limit, size: limit }, req.query),
+        back: Object.assign({ since: offset >= limit ? (offset - limit) : 0, size: limit }, req.query)
       }
     });
   });
-
 });
 
 router.get('/:id', function(req, res, next) {

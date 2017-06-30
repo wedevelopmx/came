@@ -12,15 +12,35 @@ export function VisitorSelectedReducer(state = null, action) {
   }
 }
 
-
 export function FetchVisitorsReducer(state = [], action) {
   switch (action.type) {
     case CREATE_VISITOR:
       return { ...state, [action.payload.data.id]: action.payload.data };
     case FETCH_VISITORS:
-      return _.mapKeys(action.payload.data, 'id');
+      return _.mapKeys(action.payload.data.results, 'id');
     default:
       return state;
+  }
+}
+
+export function VisitorPaginationReducer(state = {}, action) {
+  switch (action.type) {
+    case FETCH_VISITORS:
+      return action.payload.data.paging;
+    default:
+    return state;
+  }
+}
+
+export function VisitorDimReducer(state = {}, action) {
+  switch (action.type) {
+    case FETCH_VISITORS:
+      return {
+        size: action.payload.data.size,
+        total: action.payload.data.total,
+      };
+    default:
+    return state;
   }
 }
 

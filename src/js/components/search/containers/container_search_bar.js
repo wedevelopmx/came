@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
+import SimpleSearchBar from './searchbar/container_simple_search_bar';
+import AdvancedSearchBar from './searchbar/container_advanced_search_bar';
+
 
 class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { advancedSearch: false  };
+  }
+
+  filter() {
+    this.setState((prevState) => ({
+      advancedSearch: !prevState.advancedSearch
+    }));
+  }
+
   render() {
-    return (
-      <div className="">
-        <form className="form navbar-item p-l p-r p-t p-b">
-          <div className="form-group l-h m-a-0">
-            <div className="input-group input-group-sm">
-              <input className="form-control p-x b-a rounded" placeholder="Search visitor..." type="text"/>
-              <span className="input-group-btn">
-                <button type="submit" className="btn white b-a rounded no-shadow">
-                  <i className="material-icons">search</i>
-                </button>
-              </span>
-            </div>
-          </div>
-        </form>
-      </div>
-    );
+    if(this.state.advancedSearch) {
+      return (
+        <AdvancedSearchBar onSimple={  this.filter.bind(this)  } onComplete={ this.filter.bind(this) } />
+      );
+    } else {
+      return (
+        <SimpleSearchBar onAdvanced={ this.filter.bind(this) } onComplete={ this.filter.bind(this) }/>
+      );
+    }
   }
 }
 
