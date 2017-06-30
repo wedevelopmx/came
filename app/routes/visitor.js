@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var models = require('../models');
-var path = require('path');
-var config = require('../config')
-var Storage = require('../modules/storage');
+const express = require('express');
+const router = express.Router();
+const models = require('../models');
+const path = require('path');
+const crypto = require('crypto');
+const config = require('../config')
+const Storage = require('../modules/storage');
 
 var storage = new Storage(config);
 
@@ -41,7 +42,7 @@ function searchCriteria(queryTerms) {
 }
 
 router.get('/', function(req, res, next) {
-  const limit = parseInt(req.query.size || 3);
+  const limit = parseInt(req.query.size || 10);
   const offset = parseInt(req.query.since || 0);
   const where = searchCriteria(req.query);
 
@@ -89,6 +90,7 @@ router.put('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  req.body.avatar = crypto.randomBytes(20).toString('hex');
 	models.Visitor
       .findOrCreate({
         where: {
@@ -98,17 +100,13 @@ router.post('/', function(req, res, next) {
         },
         defaults: req.body})
       .spread(function(visitor, created) {
-        var avatar = `profile${visitor.id}.png`;
-        storage.storeb64(avatar, req.body.profilePic);
-
+        storage.storeb64(`${visitor.avatar}.jpg`, req.body.profilePic);
         res.json(visitor);
       });
 });
 
 router.get('/:id/avatar', function(req, res){
-  var avatar = `profile${req.params.id}.png`;
-  var file = path.join(__dirname, '../../storage'+ '/' + avatar);
-  console.log(file);
+  var file = path.join(__dirname, `../../storage/${req.params.id}.jpg`);
   res.sendFile(file);
 });
 

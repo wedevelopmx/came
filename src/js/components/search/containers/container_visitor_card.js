@@ -31,7 +31,7 @@ class VisitorCard extends Component {
             </ul>
           </div>
           <div className="p-a-md text-center">
-          	<p className="frame fm-md"><img src={ '/api/visitor/' + visitor.id + '/avatar' } className="picture"/></p>
+          	<p className="frame fm-md"><img src={ '/api/visitor/' + visitor.avatar + '/avatar' } className="picture"/></p>
             <div>
               <span className="text-md block">{ visitor.firstName } { visitor.lastName }</span>
               <span><small>{ moment(new Date(visitor.birthdate)).fromNow(true) }</small></span>
