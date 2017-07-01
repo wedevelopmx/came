@@ -53,6 +53,7 @@ router.get('/', function(req, res, next) {
     // Removing actual offset and size to ovewrite pagination
     delete req.query['since'];
     delete req.query['size'];
+    delete req.query['available'];
 
     // Build response
     res.json({
@@ -60,8 +61,8 @@ router.get('/', function(req, res, next) {
       total: results.count,
       results: results.rows,
       paging: {
-        next: Object.assign({ since: offset + limit, size: limit }, req.query),
-        back: Object.assign({ since: offset >= limit ? (offset - limit) : 0, size: limit }, req.query)
+        next: Object.assign({ since: offset + limit, size: limit, available: results.count > (offset + limit) }, req.query),
+        back: Object.assign({ since: offset >= limit ? (offset - limit) : 0, size: limit , available: offset - limit >= 0 }, req.query)
       }
     });
   });
