@@ -37,7 +37,7 @@ class Pagination extends Component {
     return (
       <div className="btn-group pull-right">
         <a className={backClass}  onClick={ this.back.bind(this) } ><i className="material-icons">chevron_left</i></a>
-        <span className="btn btn-icon-height white">{ this.state.start } - { this.state.end } de {this.props.displayedVisitors.total}</span>
+        <span className="btn btn-icon-height white text-italic">{ this.state.start } - { this.state.end } de {this.props.displayedVisitors.total}</span>
         <a className={nextClass} onClick={ this.next.bind(this) }><i className="material-icons">chevron_right</i></a>
       </div>
     );
