@@ -13,12 +13,15 @@ services:
     links:
       - mongo
   portal:
+    depends_on:
+       - mysql
     build: ./services/portal
     volumes:
       - ./services/portal:/portal
       - ./data/drive/storage:/portal/storage
     links:
       - mongo
+      - mysql
   gateway:
     build: nginx
     volumes:
@@ -35,3 +38,15 @@ services:
       - "27017:27017"
     volumes:
       - "./data/db/mongo:/data/db"
+  mysql:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./data/db/mysql:/var/lib/mysql
+    environment:
+       MYSQL_ROOT_PASSWORD: pass1word
+       MYSQL_DATABASE: came
+       MYSQL_USER: came
+       MYSQL_PASSWORD: came
