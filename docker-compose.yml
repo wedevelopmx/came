@@ -1,5 +1,11 @@
 version: "2"
 services:
+  geolocation:
+    build: ./services/geolocation
+    volumes:
+      - ./services/geolocation:/geolocation
+    links:
+      - mongo
   portal:
     build: ./services/portal
     volumes:
