@@ -4,10 +4,17 @@ const Category = require('../models/category');
 
 router.get('/', function(req, res, next) {
   // get all the users
-  Category.find({}, { name: 1 } , function(err, categories) {
+  Category.find({}, { name: 1, entries: 1, "entries.name": 1 } , function(err, categories) {
     if (err) throw err;
     // object of all the categories
-    res.json(categories);
+    const hash = {};
+    categories.forEach((category) => {
+      hash[category.name] = category.entries.map((entry) => {
+        return entry.name;
+      });
+    });
+
+    res.json(hash);
   });
 });
 
