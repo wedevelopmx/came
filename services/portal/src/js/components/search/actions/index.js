@@ -50,3 +50,32 @@ export function fetchCategories() {
     payload: request
   };
 }
+
+export const FETCH_COUNTRIES = 'fetch_countries';
+
+export function fetchCountries() {
+  const request = axios.get(`/api/countries`);
+  return {
+    type: FETCH_COUNTRIES,
+    payload: request
+  };
+}
+
+export const FETCH_CITIES = 'fetch_cities';
+
+export function fetchCities(countryId) {
+  const request = axios.get(`/api/countries/${countryId}`);
+  return {
+    type: FETCH_CITIES,
+    payload: request
+  };
+}
+
+export const SELECT_COUNTRY = 'select_country';
+
+export function selectCountry(country) {
+  return {
+    type: SELECT_COUNTRY,
+    payload: country
+  };
+}

@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR, FETCH_CATEOGRIES } from '../actions';
+import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR, FETCH_CATEOGRIES, FETCH_COUNTRIES, FETCH_CITIES, SELECT_COUNTRY } from '../actions';
 
 export function VisitorSelectedReducer(state = null, action) {
   switch (action.type) {
@@ -51,7 +51,19 @@ export function RegisterFormReducer(state, action) {
           ...state,
           values: {
             ...state.values,
-            profilePic: action.payload // <----- clear password value
+            profilePic: action.payload // <----- copy picture into profilePic field
+          },
+          fields: {
+            ...state.fields//,
+          }
+        }
+    break;
+    case SELECT_COUNTRY:
+      return {
+          ...state,
+          values: {
+            ...state.values,
+            coutry: action.payload // <----- copy selected state into state field
           },
           fields: {
             ...state.fields//,
@@ -66,6 +78,24 @@ export function RegisterFormReducer(state, action) {
 export function FetchCategories(state =[], action) {
   switch (action.type) {
     case FETCH_CATEOGRIES:
+      return action.payload.data;
+    default:
+      return state;
+  }
+}
+
+export function FetchCountries(state =[], action) {
+  switch (action.type) {
+    case FETCH_COUNTRIES:
+      return action.payload.data;
+    default:
+      return state;
+  }
+}
+
+export function FetchCities(state =[], action) {
+  switch (action.type) {
+    case FETCH_CITIES:
       return action.payload.data;
     default:
       return state;

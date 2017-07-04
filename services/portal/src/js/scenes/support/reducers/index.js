@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { FetchVisitorsReducer, VisitorPaginationReducer, VisitorDimReducer, VisitorSelectedReducer,
-  RegisterFormReducer, FetchCategories } from 'search/reducers';
+  RegisterFormReducer, FetchCategories, FetchCountries, FetchCities } from 'search/reducers';
 import CommentsReducer from 'comments/reducers';
 import CheckoutsReducer from 'checkout/reducers';
 import SupportReducer from 'support/reducers';
@@ -14,6 +14,8 @@ const rootReducer = combineReducers({
   services: ServiceReducer,
   visitors: FetchVisitorsReducer,
   categories: FetchCategories,
+  countries: FetchCountries,
+  cities: FetchCities,
   pagination: VisitorPaginationReducer,
   displayedVisitors: VisitorDimReducer,
   activeVisitor: VisitorSelectedReducer,
