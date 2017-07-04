@@ -6,6 +6,7 @@ data/db/mysql/**
 
 # nginx config log files
 data/log/nginx/**
+data/log/pm2/**
 
 # portal drive storage
 data/drive/storage/**

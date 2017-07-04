@@ -3,6 +3,9 @@
       "name": "came",
       "script": "./bin/www",
       "watch": false,
+      "error_file": "/var/log/pm2/portal-web.error",
+      "out_file": "/var/log/pm2/portal-web.out",
+      "pid_file": "/var/run/pm2/portal-web.pid",
       "env": {
         "NODE_ENV": "development"
       }

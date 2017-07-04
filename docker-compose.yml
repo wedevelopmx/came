@@ -4,12 +4,14 @@ services:
     build: ./services/catalog
     volumes:
       - ./services/catalog:/catalog
+      - ./data/log/pm2:/var/log/pm2
     links:
       - mongo
   geolocation:
     build: ./services/geolocation
     volumes:
       - ./services/geolocation:/geolocation
+      - ./data/log/pm2:/var/log/pm2
     links:
       - mongo
   portal:
@@ -19,6 +21,7 @@ services:
     volumes:
       - ./services/portal:/portal
       - ./data/drive/storage:/portal/storage
+      - ./data/log/pm2:/var/log/pm2
     links:
       - mongo
       - mysql

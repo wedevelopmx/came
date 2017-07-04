@@ -3,6 +3,9 @@
       "name": "catalog",
       "script": "./app/app.js",
       "watch": false,
+      "error_file": "/var/log/pm2/catalog-web.error",
+      "out_file": "/var/log/pm2/catalog-web.out",
+      "pid_file": "/var/run/pm2/catalog-web.pid",
       "env": {
         "NODE_ENV": "development"
       }

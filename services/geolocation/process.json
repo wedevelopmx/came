@@ -3,6 +3,9 @@
       "name": "geolocation",
       "script": "./app/app.js",
       "watch": false,
+      "error_file": "/var/log/pm2/geolocation-web.error",
+      "out_file": "/var/log/pm2/geolocation-web.out",
+      "pid_file": "/var/run/pm2/geolocation-web.pid",
       "env": {
         "NODE_ENV": "development"
       }
