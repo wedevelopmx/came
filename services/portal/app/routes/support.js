@@ -5,7 +5,7 @@ var models = require('../models');
 router.get('/:id', function(req, res, next) {
   console.log(req.params.id);
   var queryString =
-  "select s.id, sv.id as serviceId, sv.name, sv.description, sv.resource, sv.appointmentCatalog, datetime(s.startDate, 'localtime') as startDate, s.interview, s.psychological, s.interviewComment, s.psychologicalComment from Services sv join Supports s on sv.id = s.ServiceId and s.VisitorId = :visitorId";
+  "select s.id, sv.id as serviceId, sv.name, sv.description, sv.resource, sv.appointmentCatalog, s.startDate, s.interview, s.psychological, s.interviewComment, s.psychologicalComment from Services sv join Supports s on sv.id = s.ServiceId and s.VisitorId = :visitorId";
 
   models.sequelize
   .query(queryString, {
@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
     .spread(function(support, created) {
 
       var queryString =
-      "select s.id, sv.id as serviceId, sv.name, sv.description, sv.resource, sv.appointmentCatalog, datetime(s.startDate, 'localtime') as startDate, s.interview, s.psychological, s.interviewComment, s.psychologicalComment from Services sv join Supports s on sv.id = s.ServiceId and s.id = :supportId limit 1";
+      "select s.id, sv.id as serviceId, sv.name, sv.description, sv.resource, sv.appointmentCatalog, s.startDate, s.interview, s.psychological, s.interviewComment, s.psychologicalComment from Services sv join Supports s on sv.id = s.ServiceId and s.id = :supportId limit 1";
 
       models.sequelize
       .query(queryString, {
