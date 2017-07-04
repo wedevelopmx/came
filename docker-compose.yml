@@ -1,5 +1,11 @@
 version: "2"
 services:
+  catalog:
+    build: ./services/catalog
+    volumes:
+      - ./services/catalog:/catalog
+    links:
+      - mongo
   geolocation:
     build: ./services/geolocation
     volumes:
@@ -19,6 +25,8 @@ services:
       - ./data/log/nginx:/var/log/nginx/
     links:
       - portal
+      - geolocation
+      - catalog
     ports:
       - "80:80"
   mongo:
