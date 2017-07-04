@@ -20,6 +20,10 @@ class AdvancedSearchBar extends Component {
       const statusList = nextProps.categories.status.map((status) => { return { value: status, display: status } });
       const checkoutList = nextProps.categories.checkout.map((checkout) => { return { value: checkout, display: checkout } });
 
+      genderList.push({ value: '', display: 'Todas' });
+      statusList.push({ value: '', display: 'Todas' });
+      checkoutList.push({ value: '', display: 'Todas' });
+
       this.setState({
         genderList, statusList, checkoutList
       });
@@ -32,7 +36,7 @@ class AdvancedSearchBar extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    // { value: '', display: 'Todas' }
+    
     return (
       <form className="search-bar" onSubmit={ handleSubmit(this.submit.bind(this)) } >
         <div className="form-group l-h m-a-0">
