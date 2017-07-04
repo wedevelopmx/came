@@ -1,7 +1,7 @@
 {
   "apps": [{
-      "name": "came",
-      "script": "./bin/www",
+      "name": "geolocation",
+      "script": "./app/app.js",
       "watch": false,
       "env": {
         "NODE_ENV": "development"

@@ -5,10 +5,11 @@ RUN mkdir /catalog
 WORKDIR /catalog
 
 COPY package.json /catalog
+RUN npm install pm2 -g
 RUN npm install
 
 COPY . /catalog
 
 EXPOSE 80
 
-CMD ["npm", "start"]
+CMD ["pm2-docker", "process.json"]

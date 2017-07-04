@@ -7,10 +7,11 @@ RUN mkdir /portal
 WORKDIR /portal
 
 COPY package.json /catalog
+RUN npm install pm2 -g
 RUN npm install
 
 COPY . /portal
 
 EXPOSE 80
 
-CMD ["npm", "start"]
+CMD ["pm2-docker", "process.json"]
