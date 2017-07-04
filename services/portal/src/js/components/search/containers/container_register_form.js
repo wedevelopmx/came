@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createVisitor } from '../actions';
+import { createVisitor, fetchCategories } from '../actions';
 import { HiddenField, InputField, DatepickerField, SelectField } from 'commons/form'
 import { WizardForm, Step } from 'commons/wizard';
 import { VisitorForm, LocationForm, DemographicForm, PictureForm } from './register';
 
 class RegisterForm extends Component {
+  componentWillMount() {
+      this.props.fetchCategories();
+  }
+
   onSubmit(values) {
     this.props.createVisitor(values, this.props.onComplete);
   }
@@ -30,4 +34,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(null, { createVisitor })(RegisterForm);
+export default connect(null, { fetchCategories })(RegisterForm);

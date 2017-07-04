@@ -6,6 +6,9 @@ RUN apk add --no-cache make git
 RUN mkdir /portal
 WORKDIR /portal
 
+COPY package.json /catalog
+RUN npm install
+
 COPY . /portal
 
 EXPOSE 80

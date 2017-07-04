@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
-import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR, FETCH_GENDER, FETCH_STATUS } from '../actions';
-
+import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR, FETCH_CATEOGRIES } from '../actions';
 
 export function VisitorSelectedReducer(state = null, action) {
   switch (action.type) {
@@ -64,19 +63,10 @@ export function RegisterFormReducer(state, action) {
   }
 }
 
-export function FetchGenderReducer(state = [], action) {
+export function FetchCategories(state =[], action) {
   switch (action.type) {
-    case FETCH_GENDER:
-      return _.mapKeys(action.payload.data, 'id');
-    default:
-      return state;
-  }
-}
-
-export function FetchStatusReducer(state = [], action) {
-  switch (action.type) {
-    case FETCH_STATUS:
-      return _.mapKeys(action.payload.data, 'id');
+    case FETCH_CATEOGRIES:
+      return action.payload.data;
     default:
       return state;
   }

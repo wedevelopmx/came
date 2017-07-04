@@ -2,28 +2,35 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { SelectField } from 'commons/form'
-import { fetchCategoryEntities, FETCH_GENDER, FETCH_STATUS } from 'search/actions';
 
 class DemographicForm extends Component {
-  componentWillMount() {
-      this.props.fetchCategoryEntities(29, FETCH_GENDER);
-      this.props.fetchCategoryEntities(30, FETCH_STATUS);
+  constructor(props) {
+    super(props);
+    this.state = { genderList: [], statusList: [] };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.categories) {
+      const genderList = nextProps.categories.gender.map((gender) => { return { value: gender, display: gender } });
+      const statusList = nextProps.categories.status.map((status) => { return { value: status, display: status } });
+
+      this.setState({
+        genderList, statusList
+      });
+    }
   }
 
   render() {
     const { handleSubmit } = this.props;
 
-    const genderList = _.map(this.props.genders, function(gender) { return { value: gender.id, display: gender.name }; });
-    const statusList = _.map(this.props.status, function(status) { return { value: status.id, display: status.name }; });
-
     return (
       <form onSubmit={handleSubmit}>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Sexo" name="gender" options={ genderList } component={ SelectField } />
+            <Field label="Sexo" name="gender" options={ this.state.genderList } component={ SelectField } />
           </div>
           <div className="col-sm-12 col-md-6">
-            <Field label="Status" name="status" options={ statusList } component={ SelectField } />
+            <Field label="Status" name="status" options={ this.state.statusList } component={ SelectField } />
           </div>
         </div>
         { this.props.children }
@@ -52,7 +59,6 @@ export default reduxForm({
   destroyOnUnmount: false
 })(connect((state) => {
   return {
-    genders: state.genders,
-    status: state.status
+    categories: state.categories
   };
-}, { fetchCategoryEntities })(DemographicForm));
+}, { })(DemographicForm));
