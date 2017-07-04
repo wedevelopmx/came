@@ -1,0 +1,30 @@
+var models = require("../app/models");
+
+models.sequelize.sync().then(function () {
+
+  models.Category
+    .bulkCreate([
+      { name: 'sexo', description: 'Catalogo de sexo disponible para los visitantes.'},
+      { name: 'status', description: 'Catalogo de status migratiorio.'},
+      { name: 'tipo_de_alarma', description: 'Catalgo de tipo de alerta disponible. '},
+      { name: 'razon_de_salida', description: 'Catalogo de tipo de razon de salida para migrante.'},
+      { name: 'citas_atencion_medica', description: 'Catalogo de citas disponibles para acompanamiento de atencion medica.'},
+      { name: 'citas_atencion_psicologica', description: 'Catalogo de citas disponibles para acompanamiento de atencion psicologica.'},
+      { name: 'citas_atencion_legal', description: 'Catalogo de citas disponibles para acompanamiento de atencion legal.'},
+      { name: 'citas_trabajo', description: 'Catalogo de citas disponibles para acompanamiento de trabajo.'}
+    ])
+    .then(function(imported) {
+      console.log('imported catalog: ' + imported.length);
+    });
+
+  models.Service
+    .bulkCreate([
+      { name: 'Atencion Medica', description: 'Atencion Medica.', resource: 'local_hospital'},
+      { name: 'Atencion Psicologica', description: 'Atencion Psicologica.', resource: 'account_balance'},
+      { name: 'Atencion Legal', description: 'Atencion Legal. ', resource: 'face'},
+      { name: 'Trabajo', description: 'trabajo. ', resource: 'work'}
+    ])
+    .then(function(service) {
+      console.log('service catalog: ' + service.length);
+    });
+});
