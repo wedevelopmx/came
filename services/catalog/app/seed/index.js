@@ -13,6 +13,9 @@ const categories = [{
 }, {
   name: 'alert',
   entries: [{ name: 'informacion'}, { name: 'adventencia'}, { name: 'amonestacion'}]
+}, {
+  name: 'checkout',
+  entries: [{ name: 'Salida al tren'}, { name: 'Salida permanente'}]
 }];
 
 categories.forEach(function(data) {

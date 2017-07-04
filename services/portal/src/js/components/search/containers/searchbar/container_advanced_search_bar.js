@@ -1,20 +1,38 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { fetchVisitors } from '../../actions';
+import { fetchVisitors, fetchCategories } from '../../actions';
 import { TextInput, SelectField } from './form-controls'
 
 class AdvancedSearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { genderList: [], statusList: [], checkoutList: [] };
+  }
+
+  componentWillMount() {
+    this.props.fetchCategories();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.categories) {
+      const genderList = nextProps.categories.gender.map((gender) => { return { value: gender, display: gender } });
+      const statusList = nextProps.categories.status.map((status) => { return { value: status, display: status } });
+      const checkoutList = nextProps.categories.checkout.map((checkout) => { return { value: checkout, display: checkout } });
+
+      this.setState({
+        genderList, statusList, checkoutList
+      });
+    }
+  }
+
   submit(values) {
     this.props.fetchVisitors(values);
   }
 
   render() {
     const { handleSubmit } = this.props;
-    const genderList = [{ value: '', display: 'Todas' }, { value: 'male', display: 'Hombre' }, { value: 'female', display: 'Mujer' }, { value: 'trans', display: 'Transgenero' }];
-    const statusList = [{ value: '', display: 'Todas' }, { value: 'Migrante', display: 'Migrante' }, { value: 'Visitante', display: 'Visitante' }];
-    const checkoutList = [{ value: '', display: 'Todas' }, { value: 'Tren', display: 'Tren' }, { value: 'Permanente', display: 'Permanente' }];
-
+    // { value: '', display: 'Todas' }
     return (
       <form className="search-bar" onSubmit={ handleSubmit(this.submit.bind(this)) } >
         <div className="form-group l-h m-a-0">
@@ -31,9 +49,9 @@ class AdvancedSearchBar extends Component {
           </div>
         </div>
         <div className="container p-t white">
-          <Field label="Sexo" name="gender" options={genderList} component={ SelectField } />
-          <Field label="Tipo" name="status" options={statusList} component={ SelectField } />
-          <Field label="Salida" name="checkout" options={checkoutList} component={ SelectField } />
+          <Field label="Sexo" name="gender" options={this.state.genderList} component={ SelectField } />
+          <Field label="Tipo" name="status" options={this.state.statusList} component={ SelectField } />
+          <Field label="Salida" name="checkout" options={this.state.checkoutList} component={ SelectField } />
         </div>
       </form>
     );
@@ -52,7 +70,6 @@ export default reduxForm({
   form: 'AdvancedSearchBar'
 })(connect((state) => {
   return {
-    genders: state.genders,
-    status: state.status
+    categories: state.categories
   };
-}, { fetchVisitors })(AdvancedSearchBar));
+}, { fetchVisitors, fetchCategories })(AdvancedSearchBar));
