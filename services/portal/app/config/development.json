@@ -1,11 +1,16 @@
 {
   "DATABASE": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
-    "dialect": "sqlite",
-    "storage": "came.dev.sqlite"
+    "username": "came",
+    "password": "came",
+    "database": "came",
+    "host": "mysql",
+    "port": 3306,
+    "dialect": "mysql",
+    "define": {
+        "paranoid": true
+    },
+    "logging": false
   },
-  "MONGO_DB": "mongodb://mongo:27017", 
+  "MONGO_DB": "mongodb://mongo:27017",
   "STORAGE_PATH": "../../../storage"
 }

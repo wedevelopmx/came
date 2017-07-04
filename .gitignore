@@ -2,6 +2,7 @@
 
 # mongo database
 data/db/mongo/**
+data/db/mysql/**
 
 # nginx config log files
 data/log/nginx/**

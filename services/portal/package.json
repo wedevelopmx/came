@@ -31,6 +31,7 @@
     "moment-range": "^3.0.3",
     "mongoose": "^4.9.8",
     "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
     "passport": "~0.1.17",
     "passport-local": "~0.1.6",
     "path": "^0.12.7",
