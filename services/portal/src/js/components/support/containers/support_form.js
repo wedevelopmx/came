@@ -31,6 +31,9 @@ class SupportForm extends Component {
     const availableServicesList = _.omit(this.props.services, currentSupport);
     const serviceList = _.map(availableServicesList, service => { return { value: service.id, display: service.name } });
 
+    console.log('Supports', this.props.supports)
+    console.log('Services', this.props.services)
+
     if(serviceList.length == 0)
       return (
         <div className="box">

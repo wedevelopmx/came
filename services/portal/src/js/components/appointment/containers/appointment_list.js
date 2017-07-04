@@ -47,7 +47,14 @@ class AppointmentList extends Component {
       return (<HourGlass></HourGlass>);
 
     if(Object.keys(this.props.appointments).length == 0) {
-      return (<h4 className="text-center">No existen citas registradas.</h4>);
+      return (
+          <div className="p-a">
+            <h4 className="text-center">No existen citas registradas.</h4>
+            <a onClick={ () => this.props.onCreate() } className="md-raised md-mini md-btn md-fab m-b-sm btn-float btn-sm blue">
+              <i className="material-icons md-24">add</i>
+            </a>
+          </div>
+        );
     }
 
     return (

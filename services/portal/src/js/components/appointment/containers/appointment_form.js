@@ -4,12 +4,28 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { ActivityValidationField, CheckBoxField, TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form';
 import { createAppointment, updateAppointment } from '../actions';
-import { fetchCategoryEntities } from 'category/actions';
+import { fetchCategories } from 'search/actions';
 
 class AppointmentForm extends Component {
+  constructor(props) {
+      super(props);
+      this.state = { reasonList: [] };
+  }
+
   componentDidMount() {
-    this.props.fetchCategoryEntities(this.props.parent.appointmentCatalog);
+    console.log('activeItem', this.props.parent.appointmentCatalog)
+    this.props.fetchCategories();
     this.handleInitialize();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.categories.hasOwnProperty(nextProps.parent.appointmentCatalog)) {
+      const reasonList = nextProps.categories[nextProps.parent.appointmentCatalog].map((entry) => {
+        return { value: entry, display: entry};
+      });
+
+      this.setState({ reasonList });
+    }
   }
 
   handleInitialize() {
@@ -36,9 +52,6 @@ class AppointmentForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    const reasonList = _.map(this.props.categoryEntities, (entity) => {
-      return { value: entity.name, display: entity.name};
-    });
 
     return (
       <div>
@@ -46,7 +59,7 @@ class AppointmentForm extends Component {
           <div className="box-body b-t">
             <Field label="Salida:" name="startDate" component={ DatepickerField } />
             <Field label="Retorno:" name="scheduleEndDate" component={ DatepickerField } />
-            <Field label="Razon:" name="reason" options={ reasonList } component={ SelectField } />
+            <Field label="Razon:" name="reason" options={ this.state.reasonList } component={ SelectField } />
             <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
             <Field name="VisitorId"  component={ HiddenField }/>
             <Field name="SupportId"  component={ HiddenField }/>
@@ -92,6 +105,6 @@ export default reduxForm({
 })(
   connect(
     state => ({
-      categoryEntities: state.categoryEntities
-    }), { createAppointment, updateAppointment, fetchCategoryEntities })(AppointmentForm)
+      categories: state.categories
+    }), { createAppointment, updateAppointment, fetchCategories })(AppointmentForm)
 );

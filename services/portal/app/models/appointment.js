@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     comment: { type: DataTypes.STRING, name: "comment" },
     startDate: { type: DataTypes.DATE, name: "start_date"},
     endDate: { type: DataTypes.DATE, name: "end_date"},
-    scheduleEndDate: { type: DataTypes.INTEGER, name: "schedule_end_date"}
+    scheduleEndDate: { type: DataTypes.DATE, name: "schedule_end_date"}
   }, {
       classMethods: {
         associate: function(models) {
