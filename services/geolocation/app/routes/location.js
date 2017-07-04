@@ -16,7 +16,10 @@ router.get('/:id', function(req, res, next) {
   Country.findOne({ _id: req.params.id }, { cities: 1, "cities.name": 1 } , function(err, country) {
     if (err) throw err;
     // object of all the country
-    res.json(country.cities);
+    const cities = country.cities.map((city) => {
+      return city.name;
+    });
+    res.json(cities);
   });
 });
 
