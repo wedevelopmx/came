@@ -2,11 +2,27 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form'
+import { fetchCategories } from 'search/actions';
 import { createCheckout } from '../actions';
 
 class CheckoutForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { reasonList: [] };
+  }
+
   componentDidMount() {
     this.handleInitialize();
+    this.props.fetchCategories();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.categories && nextProps.categories.checkout) {
+      const reasonList = nextProps.categories.checkout.map((reason) => { return { value: reason, display: reason } });
+      this.setState({
+        reasonList
+      });
+    }
   }
 
   handleInitialize() {
@@ -24,11 +40,6 @@ class CheckoutForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    const reasonList = [
-      {value: 'Fue a la tienda', display: 'Fue a la tienda'},
-      {value: 'Fue a trabajo', display: 'Fue a trabajo'},
-      {value: 'Fue a subir al tren', display: 'Fue a subir al tren'},
-      {value: 'Baja definitiva', display: 'Baja definitiva'}];
 
     return (
       <div className="box">
@@ -39,7 +50,7 @@ class CheckoutForm extends Component {
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="box-body b-t">
             <Field label="Fecha:" name="startDate" component={ DatepickerField } />
-            <Field label="Razon:" name="reason" options={ reasonList } component={ SelectField } />
+            <Field label="Razon:" name="reason" options={ this.state.reasonList } component={ SelectField } />
             <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
             <Field name="VisitorId"  component={ HiddenField }/>
           </div>
@@ -80,6 +91,7 @@ export default reduxForm({
 })(
   connect(
     state => ({
+      categories: state.categories,
       visitor: state.activeVisitor
-    }), { createCheckout } )(CheckoutForm)
+    }), { fetchCategories, createCheckout } )(CheckoutForm)
 );
