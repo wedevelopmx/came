@@ -15,7 +15,7 @@ const categories = [{
   entries: [{ name: 'informacion'}, { name: 'adventencia'}, { name: 'amonestacion'}]
 }, {
   name: 'checkout',
-  entries: [{ name: 'Salida al tren'}, { name: 'Salida permanente'}]
+  entries: [{ name: 'Salida a la tienda'}, { name: 'Salida al tren'}, { name: 'Salida permanente'}]
 }, {
   name: 'health',
   entries: [{ name: 'Revision en hospital'}, { name: 'Hospitalizacion necesaria'}, { name: 'Salida a farmacia'}]
