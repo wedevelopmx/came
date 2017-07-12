@@ -1,0 +1,10 @@
+[{
+  "name": "sexo",
+  "entries": [{ "name": "masculino"}, { "name": "femenino"}, { "name": "transgenero"}]
+}, {
+  "name": "status",
+  "entries": [{ "name": "migrante"}, { "name": "visitante"}, { "name": "otro"}]
+}, {
+  "name": "alert",
+  "entries": [{ "name": "informacion"}, { "name": "precaucion"}, { "name": "restriccion"}]
+}]

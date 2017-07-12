@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Entry = new Schema({
-    name: String
+    name: String,
+    description: String
 });
 
 var Category = new Schema({

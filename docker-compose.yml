@@ -29,6 +29,7 @@ services:
     build: nginx
     volumes:
       - ./data/log/nginx:/var/log/nginx/
+      - ./nginx/services:/etc/nginx/conf.d/
     links:
       - portal
       - geolocation

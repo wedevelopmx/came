@@ -1,0 +1,51 @@
+[{
+    "name": "Salida a la tienda",
+    "description": "El visitante tiene una toleraciona de 15min para volver al centro",
+    "time": 900000,
+    "service": "salida"
+}, {
+    "name": "Salida recreacional",
+    "description": "El visitante tiene una toleraciona de 5 horas para volver al centro",
+    "time": 18000000,
+    "service": "salida"
+}, {
+  "name": "Revision al hospital",
+  "description": "El visitante tiene una toleraciona de 5 horas para volver al centro",
+  "time": 18000000,
+  "service": "health"
+}, {
+  "name": "Salida a farmacia",
+  "description": "El visitante tiene una toleraciona de 15 min para volver al centro",
+  "time": 900000,
+  "service": "health"
+}, {
+  "name": "Visita a centro de atencion externo",
+  "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+  "time": 18000000,
+  "service": "social"
+}, {
+  "name": "Visita a consulado",
+  "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+  "time": 18000000,
+  "service": "legal"
+}, {
+  "name": "Visita a ministerio publico",
+  "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+  "time": 18000000,
+  "service": "legal"
+}, {
+  "name": "Visita a CEDH",
+  "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+  "time": 18000000,
+  "service": "legal"
+}, {
+  "name": "Trabajo comunitario",
+  "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+  "time": 18000000,
+  "service": "work"
+}, {
+  "name": "Trabajo",
+  "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+  "time": 18000000,
+  "service": "work"
+}]
