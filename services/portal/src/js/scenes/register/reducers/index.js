@@ -6,7 +6,7 @@ import CommentsReducer from 'comments/reducers';
 import { CheckoutsReducer, CheckoutFormReducer} from 'checkout/reducers';
 import SupportReducer from 'support/reducers';
 import ServiceReducer from 'service/reducers';
-import AppointmentReducer from 'appointment/reducers';
+import { AppointmentReducer } from 'appointment/reducers';
 import { CategoryEntitiesReducer, AppointmentCatalog } from 'category/reducers';
 
 const rootReducer = combineReducers({
