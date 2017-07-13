@@ -12,6 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     state: { type: DataTypes.STRING, name: "state"},
     town: { type: DataTypes.STRING, name: "town"},
     status: { type: DataTypes.STRING, name: "status"},
+    departure: { type: DataTypes.STRING, name: "departure"},
     birthdate: {type: DataTypes.DATE, name: "birth_date"}
   }, {
       classMethods: {

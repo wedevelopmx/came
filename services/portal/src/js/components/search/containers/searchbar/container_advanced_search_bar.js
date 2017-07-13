@@ -7,7 +7,7 @@ import { TextInput, SelectField } from './form-controls'
 class AdvancedSearchBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { genderList: [], statusList: [], checkoutList: [] };
+    this.state = { genderList: [], statusList: [], departureList: [] };
   }
 
   componentWillMount() {
@@ -18,14 +18,14 @@ class AdvancedSearchBar extends Component {
     if (nextProps.categories) {
       const genderList = nextProps.categories.gender.map((gender) => { return { value: gender, display: gender } });
       const statusList = nextProps.categories.status.map((status) => { return { value: status, display: status } });
-      const checkoutList = nextProps.categories.checkout.map((checkout) => { return { value: checkout, display: checkout } });
+      const departureList = nextProps.categories.departure.map((checkout) => { return { value: checkout, display: checkout } });
 
       genderList.push({ value: '', display: 'Todas' });
       statusList.push({ value: '', display: 'Todas' });
-      checkoutList.push({ value: '', display: 'Todas' });
+      departureList.push({ value: '', display: 'Todas' });
 
       this.setState({
-        genderList, statusList, checkoutList
+        genderList, statusList, departureList
       });
     }
   }
@@ -36,7 +36,7 @@ class AdvancedSearchBar extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    
+
     return (
       <form className="search-bar" onSubmit={ handleSubmit(this.submit.bind(this)) } >
         <div className="form-group l-h m-a-0">
@@ -55,7 +55,7 @@ class AdvancedSearchBar extends Component {
         <div className="container p-t white">
           <Field label="Sexo" name="gender" options={this.state.genderList} component={ SelectField } />
           <Field label="Tipo" name="status" options={this.state.statusList} component={ SelectField } />
-          <Field label="Salida" name="checkout" options={this.state.checkoutList} component={ SelectField } />
+          <Field label="Salida" name="departure" options={this.state.departureList} component={ SelectField } />
         </div>
       </form>
     );

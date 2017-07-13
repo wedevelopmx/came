@@ -1,9 +1,12 @@
 [{
-  "name": "sexo",
+  "name": "gender",
   "entries": [{ "name": "masculino"}, { "name": "femenino"}, { "name": "transgenero"}]
 }, {
   "name": "status",
   "entries": [{ "name": "migrante"}, { "name": "visitante"}, { "name": "otro"}]
+}, {
+  "name": "departure",
+  "entries": [{ "name": "expulsado"}, { "name": "automatico"}, { "name": "normal"}, { "name": "acompanamiento"}]
 }, {
   "name": "alert",
   "entries": [{ "name": "informacion"}, { "name": "precaucion"}, { "name": "restriccion"}]

@@ -22,21 +22,27 @@ var storage = new Storage(config);
 */
 
 function searchCriteria(queryTerms) {
-  const { term, gender, status } = queryTerms;
-  let where = {};
+  const { term, gender, status, departure } = queryTerms;
+  let where = {
+    $and : []
+  };
 
   if(term) {
-    where['$or'] = [
+    where.$and.push({
+      $or: [
         { firstName: { $like: `%${term}%` } },
         { lastName: { $like: `%${term}%` } },
         { secondSurename: { $like: `%${term}%` } },
         { alias: { $like: `%${term}%` } }
-      ];
+      ]
+    });
   }
 
-  if(gender) where['$and'] = { gender: { $eq: gender } };
+  if(gender) where.$and.push({ gender: { $eq: gender } });
 
-  if(status) where['$and'] = { status: { $eq: status } };
+  if(status) where.$and.push({ status: { $eq: status } });
+
+  if(departure) where.$and.push({ departure: { $eq: departure } });
 
   return where;
 }
