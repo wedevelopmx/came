@@ -45,3 +45,12 @@ export function updateAppointment(appointment, callback){
     payload: request
   }
 }
+
+export const SELECT_REASON = 'select_reason';
+
+export function selectReason(reason) {
+  return {
+    type: SELECT_REASON,
+    payload: reason
+  }
+}

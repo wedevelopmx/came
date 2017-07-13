@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
           // Support.belongsTo(models.Visitor);
           // Support.belongsTo(models.Service);
-          Support.hasMany(models.Appointment, { as: 'appointments', foreignKey: 'id' });
+          Support.hasMany(models.Appointment, { as: 'appointments', foreignKey: 'SupportId' });
       }
     }
   });

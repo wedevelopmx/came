@@ -41,3 +41,16 @@ export function convertToEvent(appointments) {
     return event;
   });
 }
+
+function textTime(milliseconds) {
+  const now = new Date();
+  const future = new Date(now.getTime() + milliseconds);
+  return moment(now).to(future, true);
+}
+
+export function eventCatalogHelpers(events, eventName) {
+  const catalog  = events[eventName];
+  const eventList =  catalog.map((option) => { return { value: option._id, display: `${option.name} - ${textTime(option.time)}`  }; });
+  const eventHash = _.keyBy(catalog, (option) => { return option._id } );
+  return { eventList, eventHash };
+}

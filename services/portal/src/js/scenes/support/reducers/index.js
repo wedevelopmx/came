@@ -6,14 +6,15 @@ import CommentsReducer from 'comments/reducers';
 import CheckoutsReducer from 'checkout/reducers';
 import SupportReducer from 'support/reducers';
 import ServiceReducer from 'service/reducers';
-import AppointmentReducer from 'appointment/reducers';
-import { CategoryEntitiesReducer } from 'category/reducers';
+import { AppointmentReducer, AppointmentFormReducer } from 'appointment/reducers';
+import { CategoryEntitiesReducer, AppointmentCatalog } from 'category/reducers';
 
 const rootReducer = combineReducers({
   supports: SupportReducer,
   services: ServiceReducer,
   visitors: FetchVisitorsReducer,
   categories: FetchCategories,
+  appointmentCatalog: AppointmentCatalog,
   countries: FetchCountries,
   cities: FetchCities,
   pagination: VisitorPaginationReducer,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   appointments: AppointmentReducer,
   categoryEntities: CategoryEntitiesReducer,
   form: formReducer.plugin({
-    RegisterForm: RegisterFormReducer
+    RegisterForm: RegisterFormReducer,
+    AppointmentForm: AppointmentFormReducer
   })
 });
 

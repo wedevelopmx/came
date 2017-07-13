@@ -2,29 +2,26 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { eventCatalogHelpers } from 'commons/services'
 import { ActivityValidationField, CheckBoxField, TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form';
-import { createAppointment, updateAppointment } from '../actions';
-import { fetchCategories } from 'search/actions';
+import { createAppointment, updateAppointment, selectReason } from '../actions';
+import { fetchAppointmentCatalog } from 'category/actions';
 
 class AppointmentForm extends Component {
   constructor(props) {
       super(props);
-      this.state = { reasonList: [] };
+      this.state = { eventList: [] };
   }
 
   componentDidMount() {
-    console.log('activeItem', this.props.parent.appointmentCatalog)
-    this.props.fetchCategories();
+    this.props.fetchAppointmentCatalog();
     this.handleInitialize();
   }
 
   componentWillReceiveProps(nextProps) {
-    if(nextProps.categories.hasOwnProperty(nextProps.parent.appointmentCatalog)) {
-      const reasonList = nextProps.categories[nextProps.parent.appointmentCatalog].map((entry) => {
-        return { value: entry, display: entry};
-      });
-
-      this.setState({ reasonList });
+    const { appointmentCatalog } = this.props.parent;
+    if (nextProps.appointmentCatalog && nextProps.appointmentCatalog[appointmentCatalog]) {
+      this.setState(eventCatalogHelpers(nextProps.appointmentCatalog, appointmentCatalog));
     }
   }
 
@@ -42,7 +39,14 @@ class AppointmentForm extends Component {
     }
   }
 
+  onChange(value) {
+    const { name: reason, time: tolerance } = this.state.eventHash[value];
+    this.props.selectReason({ reason, tolerance });
+  }
+
   onSubmit(values) {
+    // Removing unsused fields
+    delete values.reasonSelect;
     if(values.id) {
       this.props.updateAppointment(values, this.props.onComplete);
     } else {
@@ -58,12 +62,14 @@ class AppointmentForm extends Component {
         <form  onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="box-body b-t">
             <Field label="Salida:" name="startDate" component={ DatepickerField } />
-            <Field label="Retorno:" name="scheduleEndDate" component={ DatepickerField } />
-            <Field label="Razon:" name="reason" options={ this.state.reasonList } component={ SelectField } />
+            <Field label="Razon:" name="reasonSelect" onChange={ (evt) => this.onChange(evt.target.value) } options={ this.state.eventList } component={ SelectField } />
+            <Field label="Retorno:" name="scheduleEndDate" disabled component={ DatepickerField } />
             <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
             <Field name="VisitorId"  component={ HiddenField }/>
             <Field name="SupportId"  component={ HiddenField }/>
             <Field name="id"  component={ HiddenField }/>
+            <Field name="reason" component={ HiddenField }/>
+            <Field name="tolerance" component={ HiddenField }/>
           </div>
           <div className="dker p-a text-right">
             <button className="btn btn-sm white text-u-c m-r" onClick={ () => this.props.onComplete() }>Cancel</button>
@@ -105,6 +111,7 @@ export default reduxForm({
 })(
   connect(
     state => ({
+      appointmentCatalog: state.appointmentCatalog,
       categories: state.categories
-    }), { createAppointment, updateAppointment, fetchCategories })(AppointmentForm)
+    }), { createAppointment, updateAppointment, fetchAppointmentCatalog, selectReason })(AppointmentForm)
 );
