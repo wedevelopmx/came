@@ -11,6 +11,6 @@
     },
     "logging": false
   },
-  "MONGO_DB": "mongodb://mongo:27017",
+  "MONGO_DB": "mongodb://mongo:27017/came",
   "STORAGE_PATH": "../../../storage"
 }

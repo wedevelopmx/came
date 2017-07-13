@@ -88,6 +88,7 @@ export function SelectField(field) {
       <select
         className="form-control"
         {...field.input}>
+        <option value="0">-- Seleccionar --</option>
         { selectOptionsHelper(field.options) }
       </select>
       <div className="text-help">

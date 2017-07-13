@@ -6,7 +6,7 @@ export const FETCH_CATEGORIES = 'fetch_categories';
 export const FETCH_CATEGORY_ENTITIES = 'fetch_categoty_entity';
 export const CREATE_CATEGORY_ENTITY = 'create_category_entity';
 
-const API_URL = '/api/category';
+const API_URL = '/api/categories';
 
 export function selectCategory(category) {
   return {
@@ -26,7 +26,7 @@ export function createCategory(category, callback) {
 }
 
 export function fetchCategories() {
-  const request = axios.get(API_URL);
+  const request = axios.get(`${API_URL}?plain=false`);
   return {
     type: FETCH_CATEGORIES,
     payload: request
@@ -59,4 +59,16 @@ export function updateCategoryEntity(entity, callback) {
     type: CREATE_CATEGORY_ENTITY,
     payload: request
   };
+}
+
+export const APPOINTMENT_CATALOG = 'appointment_catalog';
+const API_APPOINTMENTS_URL = '/api/appointments';
+
+export function fetchAppointmentCatalog() {
+  const request = axios.get(API_APPOINTMENTS_URL);
+
+  return {
+    type: APPOINTMENT_CATALOG,
+    payload: request
+  }
 }

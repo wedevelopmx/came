@@ -4,6 +4,7 @@ import moment from 'moment';
 import { CheckoutItem } from 'checkout'
 import { fetchCheckouts } from '../actions';
 import { HourGlass } from 'commons/loaders';
+import { convertToEvent } from 'commons/services';
 
 class Checkout extends Component {
   constructor(props) {
@@ -24,27 +25,23 @@ class Checkout extends Component {
 
   renderCheckouts() {
     let _self = this;
+    let events = _.orderBy(convertToEvent(this.props.checkouts), ['order'], ['desc']);
 
-    return _.map(this.props.checkouts, checkout => {
-      const className = `w-40 circle ${checkout.endDate ? 'blue' : 'red'}`;
-      const icon = checkout.endDate? 'alarm_off': 'access_alarm';
-      const time = checkout.endDate ?
-        ( moment(new Date(checkout.startDate)).format('ddd, MMMM Do YYYY, h:mm a') + ' - ' + moment(new Date(checkout.endDate)).format('h:mm a')) :
-        (moment(new Date(checkout.startDate)).fromNow());
-
+    return _.map(events, event => {
+      const className = `w-40 circle ${event.icon.color}`;
       return (
-        <div key={checkout.id} className="sl-item">
+        <div key={event.reference.id} className="sl-item">
           <div className="sl-left">
-            <span className={className} onClick={ () => _self.props.onUpdate(checkout) }>
-              <i className="material-icons">{icon}</i>
+            <span className={className} onClick={ () => _self.props.onUpdate(event.reference) }>
+              <i className="material-icons">{event.icon.material}</i>
             </span>
           </div>
           <div className="sl-content">
             <div className="sl-date text-muted">
-              { time }
+              { event.time }
             </div>
-            <a className="text-info">{ checkout.reason }</a>
-            <div>{ checkout.comment }</div>
+            <a className="text-info">{ event.reference.reason }</a>
+            <div>{ event.reference.comment }</div>
           </div>
         </div>
       );
