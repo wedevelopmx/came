@@ -37,7 +37,7 @@ class WebCamera extends Component {
     super(props);
 
     this.state = {
-        constraints: { audio: false, video: { width: 320, height: 240 }},
+        constraints: { audio: false, video: { width: 1280, height: 960 }},
       camera: 1
     };
 
