@@ -35,4 +35,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(null, { fetchCategories, fetchCountries })(RegisterForm);
+export default connect(null, { fetchCategories, fetchCountries, createVisitor })(RegisterForm);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { SelectField } from 'commons/form'
+import { SelectField, DatepickerField } from 'commons/form'
 
 class DemographicForm extends Component {
   constructor(props) {
@@ -32,6 +32,9 @@ class DemographicForm extends Component {
           <div className="col-sm-12 col-md-6">
             <Field label="Status" name="status" options={ this.state.statusList } component={ SelectField } />
           </div>
+          <div className="col-sm-12 col-md-6">
+            <Field label="Nacimiento:" name="birthdate" component={ DatepickerField } />
+          </div>
         </div>
         { this.props.children }
       </form>
@@ -47,6 +50,9 @@ function validateDemographicForm(values) {
   }
   if (!values.status) {
     errors.status = 'Campo status es necesario.';
+  }
+  if (!values.birthdate) {
+    errors.birthdate = 'Campo status es necesario.';
   }
 
   return errors;
