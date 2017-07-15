@@ -36,12 +36,10 @@ class VisitorList extends Component {
             </span>
           </a>
           <div className="list-body profile">
-            <div>
-              <span className="name" href="">{visitor.firstName} {visitor.lastName} {visitor.secondSurename}</span>
-            </div>
-            <small className="location text-muted text-ellipsis">
-              <i className="fa fa-map-marker m-r-xs"></i>{visitor.state}, {visitor.country}
-              </small>
+            <span className="block m-b-xs" href="">{visitor.firstName} {visitor.lastName} {visitor.secondSurename}</span>
+            <small className="block text-muted text-ellipsis">
+              <i className="material-icons m-r-xs">event</i> { moment(new Date(visitor.birthdate)).fromNow(true) } | <i className="material-icons m-r-xs">room</i> { `${visitor.state}, ${visitor.country}` }
+            </small>
           </div>
         </li>
       );
@@ -59,7 +57,7 @@ class VisitorList extends Component {
           </a>
         </div>
         <div className="fit text-muted p-a b-b">
-          <span className="m-r">{ moment().format('MMMM DD YYYY') }</span>
+          <span className="m-r">{ moment().format('MMMM DD, YYYY') }</span>
         </div>
         <div className="fix scrollable">
           <ul className="list inset m-a-0">

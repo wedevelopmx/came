@@ -33,10 +33,16 @@ class VisitorCard extends Component {
           <div className="p-a-md text-center">
           	<p className="frame fm-md"><img src={ '/api/visitor/' + visitor.avatar + '/avatar' } className="picture"/></p>
             <div>
-              <span className="text-md block">{ visitor.firstName } { visitor.lastName }</span>
-              <span><small>{ moment(new Date(visitor.birthdate)).fromNow(true) }</small></span>
+              <span className="text-md block">
+                { `${visitor.firstName} ${visitor.lastName}` }
+              </span>
+              <small className="text-sm text-muted block">
+                <i className="material-icons m-r-xs">event</i> { moment(new Date(visitor.birthdate)).fromNow(true) } | <i className="material-icons m-r-xs">room</i> { `${visitor.state}, ${visitor.country}` }
+              </small>
+              <span className="block p-t">
+                <a href="" className="btn btn-sm btn-outline rounded b-danger">Salida</a>
+              </span>
             </div>
-          	<p><small>{ visitor.state }, { visitor.country }</small></p>
           </div>
   			</div>
         { this.props.children }
