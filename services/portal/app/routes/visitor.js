@@ -53,7 +53,13 @@ router.get('/', function(req, res, next) {
   const where = searchCriteria(req.query);
 
   models.Visitor.findAndCountAll({
-    where, offset, limit
+    attributes: ["id", "firstName", "lastName", "secondSurename", "alias", "avatar", "country", "state", "status", "birthdate"],
+    where, offset, limit,
+    include: [{
+      attributes: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'],
+      model: models.Departure,
+      as: 'departure'
+    }]
   })
   .then(function(results) {
     // Removing actual offset and size to ovewrite pagination
@@ -74,13 +80,26 @@ router.get('/', function(req, res, next) {
   });
 });
 
+function findVisitor(visitorId) {
+  return new Promise((resolve, reject) => {
+    models.Visitor
+      .findOne({
+        attributes: ["id", "firstName", "lastName", "secondSurename", "alias", "gender", "avatar", "country", "state", "town", "status", "birthdate"],
+        where: { id: visitorId },
+        include: [{
+          attributes: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'],
+          model: models.Departure,
+          as: 'departure'
+        }]
+      })
+      .then(resolve)
+      .catch(reject);
+  });
+}
+
 router.get('/:id', function(req, res, next) {
-  models.Visitor
-    .findOne({
-      where: { id: req.params.id }
-    })
+  findVisitor(req.params.id)
     .then(function(visitor) {
-      visitor = visitor.get({ plain: true });
       res.json(visitor);
     });
 });
@@ -96,20 +115,48 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+function baseDeparture(VisitorId) {
+  let startDate = new Date();
+  let scheduleEndDate= new Date();
+  return {
+    state: 'normal',
+    startDate,
+    scheduleEndDate: scheduleEndDate.setDate(scheduleEndDate.getDate() + 3),
+    VisitorId
+  };
+}
+
 router.post('/', function(req, res, next) {
   req.body.avatar = crypto.randomBytes(20).toString('hex');
 	models.Visitor
-      .findOrCreate({
-        where: {
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          secondSurename: req.body.secondSurename,
-        },
-        defaults: req.body})
-      .spread(function(visitor, created) {
+    .findOrCreate({
+      where: {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+      },
+      defaults: req.body
+    })
+    .spread(function(visitor, created) {
+      if(created) {
+        // Save picture
         storage.storeb64(`${visitor.avatar}.jpg`, req.body.profilePic);
-        res.json(visitor);
-      });
+        // Create departure details
+        models.Departure
+        .create(baseDeparture(visitor.id))
+        .then(() => {
+          findVisitor(visitor.id)
+            .then(function(visitor) {
+              res.json(visitor);
+            });
+        });
+      } else {
+        // Return available user
+        findVisitor(visitor.id)
+          .then(function(visitor) {
+            res.json(visitor);
+          });
+      }
+    });
 });
 
 router.get('/:id/avatar', function(req, res){
@@ -127,6 +174,17 @@ router.get('/:id/appointments', function(req, res, next) {
   })
   .then(function(appointments) {
     res.json(appointments);
+  });
+});
+
+router.put('/:id/departure', (req, res) => {
+  models.Departure
+  .findOne({ where : { VisitorId: req.params.id } })
+  .then(function(departure) {
+    departure.update(req.body, { fields: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'] })
+      .then(function(departure) {
+        res.json(departure);
+      });
   });
 });
 

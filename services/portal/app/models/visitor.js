@@ -12,15 +12,13 @@ module.exports = function(sequelize, DataTypes) {
     state: { type: DataTypes.STRING, name: "state"},
     town: { type: DataTypes.STRING, name: "town"},
     status: { type: DataTypes.STRING, name: "status"},
-    departure: { type: DataTypes.STRING, name: "departure"},
     birthdate: {type: DataTypes.DATE, name: "birth_date"}
   }, {
       classMethods: {
         associate: function(models) {
+          Visitor.hasOne(models.Departure, { as: 'departure'});
           Visitor.hasMany(models.Comment, { as: 'comments'});
           Visitor.hasMany(models.Checkout, { as: 'checkouts'});
-          //Visitor.hasMany(models.Appointment, { as: 'appointments'});
-
           Visitor.belongsToMany(models.Service, { as: 'services', through: 'Support' });
         }
       }
