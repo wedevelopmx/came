@@ -79,3 +79,13 @@ export function selectCountry(country) {
     payload: country
   };
 }
+
+export const SAVE_DEPARTURE = 'save_departure';
+
+export function saveDeparture(visitorId, departure) {
+  const request = axios.put(`/api/visitor/${visitorId}/departure`, departure);
+  return {
+    type: SAVE_DEPARTURE,
+    payload: request
+  };
+}

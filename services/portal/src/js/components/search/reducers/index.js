@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR, FETCH_CATEOGRIES, FETCH_COUNTRIES, FETCH_CITIES, SELECT_COUNTRY } from '../actions';
+import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR, FETCH_CATEOGRIES, FETCH_COUNTRIES, FETCH_CITIES, SELECT_COUNTRY, SAVE_DEPARTURE } from '../actions';
 
 export function VisitorSelectedReducer(state = null, action) {
   switch (action.type) {
@@ -13,6 +13,9 @@ export function VisitorSelectedReducer(state = null, action) {
 
 export function FetchVisitorsReducer(state = [], action) {
   switch (action.type) {
+    case SAVE_DEPARTURE:
+      state[action.payload.data.VisitorId].departure = action.payload.data;
+      return { ...state };
     case CREATE_VISITOR:
       return { ...state, [action.payload.data.id]: action.payload.data };
     case FETCH_VISITORS:

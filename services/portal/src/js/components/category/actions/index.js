@@ -25,8 +25,8 @@ export function createCategory(category, callback) {
   };
 }
 
-export function fetchCategories() {
-  const request = axios.get(`${API_URL}?plain=false`);
+export function fetchCategories(plain = true) {
+  const request = axios.get(`${API_URL}?plain=${plain}`);
   return {
     type: FETCH_CATEGORIES,
     payload: request

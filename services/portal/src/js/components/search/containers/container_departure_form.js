@@ -1,0 +1,123 @@
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form'
+import { fetchCategories } from 'category/actions';
+import { saveDeparture } from '../actions';
+
+class DepartureForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { departureList: [] };
+  }
+
+  componentDidMount() {
+    this.props.fetchCategories();
+    this.handleInitialize();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.categories && nextProps.categories.departure) {
+      const departureList = nextProps.categories.departure.map((checkout) => { return { value: checkout, display: checkout } });
+      this.setState({ departureList });
+    }
+  }
+
+  handleInitialize() {
+    const departure = this.props.visitor.departure;
+    this.props.initialize({
+      state: departure.state,
+      startDate: new Date(departure.startDate),
+      scheduleEndDate: new Date(departure.scheduleEndDate),
+      endDate: departure.endDate ? new Date(departure.endDate): new Date(),
+      comment: departure.comment
+    });
+  }
+
+  onSubmit(values) {
+    this.props.saveDeparture(this.props.visitor.id, values);
+  }
+
+  render() {
+    const { handleSubmit } = this.props;
+    return (
+      <div className="box text-left">
+        <div className="box-header blue">
+          <h3>Estancia</h3>
+          <small>Estos son los detalles sobre la estancia del visitante.</small>
+        </div>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <div className="box-body b-t">
+            <div className="row">
+              <div className="col-sm-6">
+                <Field label="Estado" name="state" options={this.state.departureList} component={ SelectField } />
+              </div>
+              <div className="col-sm-6">
+                <Field label="Ingreso:" name="startDate" component={ DatepickerField } />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-6">
+                <Field label="Salida Programada:" name="scheduleEndDate" component={ DatepickerField } />
+              </div>
+              <div className="col-sm-6">
+                <Field label="Salida:" name="endDate" component={ DatepickerField } />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-12">
+                <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
+              </div>
+            </div>
+            <div className="form-group row">
+              <div className="col-sm-12">
+                <div className="pull-right">
+                  <button onClick={ () => this.props.onClose() } className="btn btn-fw white m-r">Cancel</button>
+                  <button type="submit" className="btn btn-fw info">Guardar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+function validate(values) {
+  const errors = {};
+
+  // Validate the inputs from 'values'
+  if (!values.state) {
+    errors.state = 'Campo estado es necesario.';
+  }
+
+  // Validate the inputs from 'values'
+  if (!values.startDate) {
+    errors.startDate = 'Campo fecha es necesario.';
+  }
+
+  // Validate the inputs from 'values'
+  if (!values.scheduleEndDate) {
+    errors.scheduleEndDate = 'Campo fecha salida programada es necesario.';
+  }
+
+  if (!values.comment) {
+    errors.comment = 'Campo descripcion es necesario.';
+  }
+
+  // If errors has *any* properties, redux form assumes form is invalid
+  return errors;
+}
+
+
+export default reduxForm({
+  validate,
+  form: 'DepartureForm'
+})(
+  connect(
+    state => ({
+      categories: state.categories,
+      visitor: state.activeVisitor
+    }), { fetchCategories, saveDeparture } )(DepartureForm)
+);

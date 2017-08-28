@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectVisitor } from '../actions';
 import moment from 'moment';
+import { ButtonModal } from 'commons/flipper'
+import DepartureForm from './container_departure_form';
 
 class VisitorCard extends Component {
   componentDidMount() {
@@ -37,10 +39,12 @@ class VisitorCard extends Component {
                 { `${visitor.firstName} ${visitor.lastName}` }
               </span>
               <small className="text-sm text-muted block">
-                <i className="material-icons m-r-xs">event</i> { moment(new Date(visitor.birthdate)).fromNow(true) } | <i className="material-icons m-r-xs">room</i> { `${visitor.state}, ${visitor.country}` }
+                <i className="material-icons m-r-xs">event</i> { moment(new Date(visitor.birthdate)).fromNow(true) } &nbsp;
+                  | <i className="material-icons m-r-xs">room</i> { `${visitor.state}, ${visitor.country}` } &nbsp;
+                  | <i className="material-icons m-r-xs">airline_seat_individual_suite</i> { moment(new Date(visitor.departure.startDate)).fromNow(true) }
               </small>
               <span className="block p-t">
-                <a href="" className="btn btn-sm btn-outline rounded b-danger">Salida</a>
+                <ButtonModal className="btn btn-sm btn-outline rounded b-danger" text="Salida" component={DepartureForm} reference={visitor}></ButtonModal>
               </span>
             </div>
           </div>

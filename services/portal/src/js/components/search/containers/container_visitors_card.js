@@ -38,7 +38,8 @@ class VisitorList extends Component {
           <div className="list-body profile">
             <span className="block m-b-xs" href="">{visitor.firstName} {visitor.lastName} {visitor.secondSurename}</span>
             <small className="block text-muted text-ellipsis">
-              <i className="material-icons m-r-xs">event</i> { moment(new Date(visitor.birthdate)).fromNow(true) } | <i className="material-icons m-r-xs">room</i> { `${visitor.state}, ${visitor.country}` }
+              <i className="material-icons m-r-xs">airline_seat_individual_suite</i> { moment(new Date(visitor.departure.startDate)).fromNow(true) } &nbsp;
+                | <i className="material-icons m-r-xs">room</i> { `${visitor.state}, ${visitor.country}` }
             </small>
           </div>
         </li>
