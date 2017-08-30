@@ -35,7 +35,7 @@ class DepartureForm extends Component {
   }
 
   onSubmit(values) {
-    this.props.saveDeparture(this.props.visitor.id, values);
+    this.props.saveDeparture(this.props.visitor.id, values, this.props.onClose);
   }
 
   render() {
@@ -53,15 +53,15 @@ class DepartureForm extends Component {
                 <Field label="Estado" name="state" options={this.state.departureList} component={ SelectField } />
               </div>
               <div className="col-sm-6">
-                <Field label="Ingreso:" name="startDate" component={ DatepickerField } />
+                <Field label="Ingreso:" name="startDate" component={ DatepickerField } disabled/>
               </div>
             </div>
             <div className="row">
               <div className="col-sm-6">
-                <Field label="Salida Programada:" name="scheduleEndDate" component={ DatepickerField } />
+                <Field label="Salida Programada:" name="scheduleEndDate" component={ DatepickerField } disabled />
               </div>
               <div className="col-sm-6">
-                <Field label="Salida:" name="endDate" component={ DatepickerField } />
+                <Field label="Salida:" name="endDate" component={ DatepickerField } disabled />
               </div>
             </div>
             <div className="row">

@@ -82,8 +82,9 @@ export function selectCountry(country) {
 
 export const SAVE_DEPARTURE = 'save_departure';
 
-export function saveDeparture(visitorId, departure) {
+export function saveDeparture(visitorId, departure, callback) {
   const request = axios.put(`/api/visitor/${visitorId}/departure`, departure);
+  request.then(callback);
   return {
     type: SAVE_DEPARTURE,
     payload: request

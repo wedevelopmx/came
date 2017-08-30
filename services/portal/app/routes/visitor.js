@@ -22,7 +22,7 @@ var storage = new Storage(config);
 */
 
 function searchCriteria(queryTerms) {
-  const { term, gender, status, departure } = queryTerms;
+  const { term, gender, status } = queryTerms;
   let where = {
     $and : []
   };
@@ -42,8 +42,6 @@ function searchCriteria(queryTerms) {
 
   if(status) where.$and.push({ status: { $eq: status } });
 
-  if(departure) where.$and.push({ departure: { $eq: departure } });
-
   return where;
 }
 
@@ -58,6 +56,7 @@ router.get('/', function(req, res, next) {
     include: [{
       attributes: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'],
       model: models.Departure,
+      where: req.query.departure ? { state: { $eq: req.query.departure } } : {},
       as: 'departure'
     }]
   })
