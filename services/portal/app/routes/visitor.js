@@ -56,7 +56,7 @@ router.get('/', function(req, res, next) {
     include: [{
       attributes: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'],
       model: models.Departure,
-      where: req.query.departure ? { state: { $eq: req.query.departure } } : {},
+      where: !req.query.departure ? { state: { $eq: 'hospedado' } } : req.query.departure == 'all' ? {} : { state: { $eq: req.query.departure } },
       as: 'departure'
     }]
   })

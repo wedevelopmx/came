@@ -22,7 +22,7 @@ class AdvancedSearchBar extends Component {
 
       genderList.push({ value: '', display: 'Todas' });
       statusList.push({ value: '', display: 'Todas' });
-      departureList.push({ value: '', display: 'Todas' });
+      departureList.push({ value: 'all', display: 'Todas' });
 
       this.setState({
         genderList, statusList, departureList

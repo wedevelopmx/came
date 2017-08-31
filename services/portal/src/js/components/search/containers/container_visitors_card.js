@@ -10,6 +10,32 @@ import { HourGlass } from 'commons/loaders';
 import SearchBar from './container_search_bar';
 import Pagination from './searchbar/container_pagination';
 
+// <DepartureState departure={visitor.departure}/>
+const DepartureState = function(props) {
+  const { state, scheduleEndDate, endDate } = props.departure;
+  let statusColor = "pull-right ";
+
+  // If visitor has not exit and should go out within next 24 hours
+  if(!endDate && Date.parse(scheduleEndDate) > Date.now() && Date.parse(scheduleEndDate) - Date.now() < 86400000) {
+    statusColor += " text-warn";
+  } else {
+    switch (state) {
+      case "expulsado":
+        statusColor += "text-danger";
+        break;
+      case "hospedado":
+        statusColor += "text-success";
+        break;
+      default: // normal
+        statusColor += "text-blue";
+    }
+  }
+
+  return (
+    <span className={`${statusColor}`}><i className="material-icons m-r-xs">brightness_1 </i></span>
+  );
+}
+
 class VisitorList extends Component {
   componentDidMount() {
     this.props.fetchVisitors();
@@ -28,6 +54,7 @@ class VisitorList extends Component {
 
     const _self = this;
     return _.map(this.props.visitors, visitor => {
+
       return (
         <li key={visitor.id} className="list-item" onClick={() => _self.props.selectVisitor(visitor) }>
           <a href="#/visitor/" className="list-left">
@@ -36,7 +63,10 @@ class VisitorList extends Component {
             </span>
           </a>
           <div className="list-body profile">
-            <span className="block m-b-xs" href="">{visitor.firstName} {visitor.lastName} {visitor.secondSurename}</span>
+            <span className="block m-b-xs" href="">
+              {`${visitor.firstName} ${visitor.lastName} ${visitor.secondSurename || ''}`} &nbsp;
+              <DepartureState departure={visitor.departure}/>
+            </span>
             <small className="block text-muted text-ellipsis">
               <i className="material-icons m-r-xs">airline_seat_individual_suite</i> { moment(new Date(visitor.departure.startDate)).fromNow(true) } &nbsp;
                 | <i className="material-icons m-r-xs">room</i> { `${visitor.state}, ${visitor.country}` }

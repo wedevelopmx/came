@@ -6,7 +6,7 @@
   "entries": [{ "name": "migrante"}, { "name": "visitante"}, { "name": "otro"}]
 }, {
   "name": "departure",
-  "entries": [{ "name": "expulsado"}, { "name": "automatico"}, { "name": "normal"}, { "name": "acompanamiento"}]
+  "entries": [{ "name": "expulsado"}, { "name": "hospedado"}, { "name": "normal"}]
 }, {
   "name": "alert",
   "entries": [{ "name": "informacion"}, { "name": "precaucion"}, { "name": "restriccion"}]

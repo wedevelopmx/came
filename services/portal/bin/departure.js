@@ -17,14 +17,16 @@ models.sequelize.sync().then(function () {
   })
   .then(function(visitors) {
     let departures = [];
-    let enterDate = new Date();
+    let startDate = new Date();
+    let scheduleEndDate = new Date();
+    scheduleEndDate.setDate(startDate.getDate() + 3);
 
     visitors.forEach((visitor) => {
       departures.push({
         VisitorId: visitor.id,
-        state: 'Ingreso',
-        startDate: new Date(enterDate.getTime()),
-        scheduleEndDate: new Date(enterDate.getTime() + 3)
+        state: 'hospedado',
+        startDate: startDate,
+        scheduleEndDate: scheduleEndDate
       });
     });
 
