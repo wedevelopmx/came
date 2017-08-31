@@ -26,7 +26,7 @@ const DepartureState = function(props) {
       case "hospedado":
         statusColor += "text-success";
         break;
-      default: // normal
+      default: // baja definitiva | por tren
         statusColor += "text-blue";
     }
   }
