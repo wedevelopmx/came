@@ -5,7 +5,8 @@ module.exports = {
   entry: {
      support: "./src/js/scenes/support/index",
      register: "./src/js/scenes/register/index",
-     admin: "./src/js/scenes/admin/index"
+     admin: "./src/js/scenes/admin/index",
+     reports: "./src/js/scenes/reports/index"
   },
   output: {
      path: path.join(__dirname, "dist/js"),

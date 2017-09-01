@@ -16,6 +16,11 @@
   display: flex;
   flex-flow: row wrap;
   height: inherit;
+  .col-full {
+    width: 100%;
+    height: inherit;
+  }
+
   .col-half {
     width: 50%;
     height: inherit;
@@ -170,4 +175,8 @@
 
 .text-italic {
     font-style: italic;
+}
+
+.table tbody tr td {
+  vertical-align: middle;
 }

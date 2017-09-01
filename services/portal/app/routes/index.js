@@ -18,6 +18,13 @@ router.get('/support', isLoggedIn, function(req, res, next) {
 		});
 });
 
+router.get('/reports', isLoggedIn, function(req, res, next) {
+	res.render('reports', {
+  		title: 'CAME',
+			side: { reports: true }
+		});
+});
+
 router.get('/admin', isLoggedIn, function(req, res, next) {
 	res.render('admin', {
   		title: 'CAME',

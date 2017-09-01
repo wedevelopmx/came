@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
   const where = searchCriteria(req.query);
 
   models.Visitor.findAndCountAll({
-    attributes: ["id", "firstName", "lastName", "secondSurename", "alias", "avatar", "country", "state", "status", "birthdate"],
+    attributes: ["id", "firstName", "lastName", "secondSurename","gender", "alias", "avatar", "country", "state", "status", "birthdate"],
     where, offset, limit,
     include: [{
       attributes: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'],
