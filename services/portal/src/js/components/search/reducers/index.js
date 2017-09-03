@@ -1,6 +1,8 @@
 import _ from 'lodash';
 
-import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR, FETCH_CATEOGRIES, FETCH_COUNTRIES, FETCH_CITIES, SELECT_COUNTRY, SAVE_DEPARTURE } from '../actions';
+import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR,
+  FETCH_CATEOGRIES, FETCH_COUNTRIES, FETCH_CITIES, SELECT_COUNTRY, SAVE_DEPARTURE,
+  REMOVE_SEARCH_CRITERIA } from '../actions';
 
 export function VisitorSelectedReducer(state = null, action) {
   switch (action.type) {
@@ -101,6 +103,28 @@ export function FetchCities(state =[], action) {
   switch (action.type) {
     case FETCH_CITIES:
       return action.payload.data;
+    default:
+      return state;
+  }
+}
+
+
+export function SearchBarFormReducer(state, action) {
+  switch(action.type) {
+    // Allow to update hidden field
+    case REMOVE_SEARCH_CRITERIA:
+      console.log('Removing', action.payload)
+      delete state.values[action.payload];
+      return {
+          ...state,
+          values: {
+            ...state.values
+          },
+          fields: {
+            ...state.fields
+          }
+        }
+    break;
     default:
       return state;
   }

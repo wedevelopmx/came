@@ -1,4 +1,5 @@
 export { default as SearchBar } from './containers/container_search_bar';
+export { default as InlineSearchBar } from './containers/searchbar/container_search_bar';
 export { default as Pagination } from './containers/searchbar/container_pagination';
 export { default as DepartureState } from './containers/container_departure_state';
 export { default as VisitorCard } from './containers/container_visitor_card';

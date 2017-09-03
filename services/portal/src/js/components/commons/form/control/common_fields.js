@@ -98,6 +98,18 @@ export function SelectField(field) {
   );
 }
 
+export function SimpleSelectField(field) {
+  return (
+    <div className={field.className}>
+      <select
+        className="form-control form-control-sm"
+        {...field.input}>
+        { selectOptionsHelper(field.options) }
+      </select>
+    </div>
+  );
+}
+
 function radioOptionsHelper(field) {
   return field.options.map(function(option) {
     return (

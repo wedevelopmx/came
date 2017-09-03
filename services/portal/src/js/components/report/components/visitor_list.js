@@ -7,7 +7,7 @@ import { fetchVisitors, selectVisitor } from 'search/actions';
 import moment from 'moment';
 import { HourGlass } from 'commons/loaders';
 
-import { DepartureState, Pagination } from 'search';
+import { DepartureState, Pagination, InlineSearchBar } from 'search';
 
 class VisitorList extends Component {
   componentDidMount() {
@@ -68,7 +68,7 @@ class VisitorList extends Component {
         <div className="wrapper">
           <div className="box expanse">
             <div className="fit p-r p-l p-b-sm p-t-sm b-t">
-
+              <InlineSearchBar/>
             </div>
             <div className="fix scrollable">
               <table className="table table-striped b-t">

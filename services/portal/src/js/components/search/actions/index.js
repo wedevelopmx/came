@@ -90,3 +90,13 @@ export function saveDeparture(visitorId, departure, callback) {
     payload: request
   };
 }
+
+
+export const REMOVE_SEARCH_CRITERIA = 'remove_search_criteria';
+
+export function removeSerchCriteria(filterName) {
+  return {
+    type: REMOVE_SEARCH_CRITERIA,
+    payload: filterName
+  };
+}
