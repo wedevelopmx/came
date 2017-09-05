@@ -58,16 +58,16 @@ function departureSearchCriteria(queryTerms) {
   if(checkinFrom && checkinTo)
     where.$and.push({
       startDate: {
-        $lte: new Date(checkinFrom),
-        $gte: new Date(checkinTo)
+        $gte: new Date(checkinFrom),
+        $lte: new Date(checkinTo)
       }
     });
 
   if(checkoutFrom && checkoutTo)
     where.$and.push({
       scheduleEndDate: {
-        $lte: new Date(checkoutFrom),
-        $gte: new Date(checkoutTo)
+        $gte: new Date(checkoutFrom),
+        $lte: new Date(checkoutTo)
       }
     });
 
