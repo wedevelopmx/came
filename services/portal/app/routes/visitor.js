@@ -21,8 +21,9 @@ var storage = new Storage(config);
   }
 */
 
+/* Visitor search criteria*/
 function searchCriteria(queryTerms) {
-  const { term, gender, status } = queryTerms;
+  const { term, gender, status,  } = queryTerms;
   let where = {
     $and : []
   };
@@ -45,6 +46,34 @@ function searchCriteria(queryTerms) {
   return where;
 }
 
+/* Departure search criteria */
+function departureSearchCriteria(queryTerms) {
+  const { departure, checkinFrom, checkinTo, checkoutFrom, checkoutTo } = queryTerms;
+  let where = {
+    $and : []
+  };
+
+  where.$and.push(!departure ? { endDate: { $eq: null } } : departure == 'all' ? {} : { state: { $eq: departure } });
+
+  if(checkinFrom && checkinTo)
+    where.$and.push({
+      startDate: {
+        $lte: new Date(checkinFrom),
+        $gte: new Date(checkinTo)
+      }
+    });
+
+  if(checkoutFrom && checkoutTo)
+    where.$and.push({
+      scheduleEndDate: {
+        $lte: new Date(checkoutFrom),
+        $gte: new Date(checkoutTo)
+      }
+    });
+
+  return where;
+}
+
 router.get('/', function(req, res, next) {
   const limit = parseInt(req.query.size || 10);
   const offset = parseInt(req.query.since || 0);
@@ -56,9 +85,10 @@ router.get('/', function(req, res, next) {
     include: [{
       attributes: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'],
       model: models.Departure,
-      where: !req.query.departure ? { state: { $eq: 'hospedado' } } : req.query.departure == 'all' ? {} : { state: { $eq: req.query.departure } },
+      where: departureSearchCriteria(req.query),
       as: 'departure'
-    }]
+    }],
+    order: [[models.Sequelize.literal('UNIX_TIMESTAMP(departure.startDate)'), 'ASC']]
   })
   .then(function(results) {
     // Removing actual offset and size to ovewrite pagination
