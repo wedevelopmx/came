@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { fetchVisitors, fetchCategories, removeSerchCriteria } from 'search/actions';
 import { TextInput, SelectField, DatepickerField, SimpleDatepickerField } from './form-controls'
-import { SimpleSelectField } from 'commons/form';
+import { SimpleSelectField, SimpleHiddenField } from 'commons/form';
 
 class InlineSearchBar extends Component {
   constructor(props) {
@@ -56,6 +56,8 @@ class InlineSearchBar extends Component {
                  onClick={ ()=> { this.setState({ demo: !this.state.demo })  } } >
                 Mas <i className="material-icons">filter_list</i>
               </button>
+              <Field name="orderBy" component={SimpleHiddenField}/>
+              <Field name="order" component={SimpleHiddenField}/>
             </span>
           </div>
         </div>

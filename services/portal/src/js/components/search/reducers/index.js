@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR,
   FETCH_CATEOGRIES, FETCH_COUNTRIES, FETCH_CITIES, SELECT_COUNTRY, SAVE_DEPARTURE,
-  REMOVE_SEARCH_CRITERIA } from '../actions';
+  REMOVE_SEARCH_CRITERIA, ORDER_SEARCH_CRITERIA } from '../actions';
 
 export function VisitorSelectedReducer(state = null, action) {
   switch (action.type) {
@@ -113,7 +113,6 @@ export function SearchBarFormReducer(state, action) {
   switch(action.type) {
     // Allow to update hidden field
     case REMOVE_SEARCH_CRITERIA:
-      console.log('Removing', action.payload)
       delete state.values[action.payload];
       return {
           ...state,
@@ -123,7 +122,20 @@ export function SearchBarFormReducer(state, action) {
           fields: {
             ...state.fields
           }
-        }
+        };
+    break;
+  case ORDER_SEARCH_CRITERIA:
+  return {
+      ...state,
+      values: {
+        ...state.values,
+        orderBy: action.payload.field,
+        order: action.payload.order
+      },
+      fields: {
+        ...state.fields//,
+      }
+    }
     break;
     default:
       return state;

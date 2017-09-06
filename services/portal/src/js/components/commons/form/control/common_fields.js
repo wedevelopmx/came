@@ -35,6 +35,15 @@ export function HiddenField(field) {
   );
 }
 
+export function SimpleHiddenField(field) {
+  return (
+    <input
+      type="hidden"
+      {...field.input}
+    />
+  );
+}
+
 export function InputField(field) {
   const { meta: { touched, error } } = field;
   const className = `form-group ${touched && error ? 'has-danger' : ''}`;

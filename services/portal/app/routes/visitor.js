@@ -74,6 +74,15 @@ function departureSearchCriteria(queryTerms) {
   return where;
 }
 
+function orderCriteria(queryTerms) {
+  const { orderBy, order } = queryTerms;
+  console.log('order', queryTerms)
+  if(orderBy && order)
+    return [[models.Sequelize.literal('UNIX_TIMESTAMP(' + orderBy + ')'), order]];
+
+  return [[models.Sequelize.literal('UNIX_TIMESTAMP(departure.startDate)'), 'ASC']]
+}
+
 router.get('/', function(req, res, next) {
   const limit = parseInt(req.query.size || 10);
   const offset = parseInt(req.query.since || 0);
@@ -88,7 +97,7 @@ router.get('/', function(req, res, next) {
       where: departureSearchCriteria(req.query),
       as: 'departure'
     }],
-    order: [[models.Sequelize.literal('UNIX_TIMESTAMP(departure.startDate)'), 'ASC']]
+    order: orderCriteria(req.query)
   })
   .then(function(results) {
     // Removing actual offset and size to ovewrite pagination

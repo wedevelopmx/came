@@ -100,3 +100,12 @@ export function removeSerchCriteria(filterName) {
     payload: filterName
   };
 }
+
+export const ORDER_SEARCH_CRITERIA = 'order_search_criteria';
+
+export function orderSearchCriteria(field, asc) {
+  return  {
+    type: ORDER_SEARCH_CRITERIA,
+    payload: { field, order: asc ? 'ASC' : 'DESC' }
+  }
+}

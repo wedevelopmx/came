@@ -3,15 +3,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { fetchVisitors, selectVisitor } from 'search/actions';
+import { fetchVisitors, selectVisitor, orderSearchCriteria } from 'search/actions';
 import moment from 'moment';
 import { HourGlass } from 'commons/loaders';
 
 import { DepartureState, Pagination, InlineSearchBar } from 'search';
 
 class VisitorList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { headers: [
+        {name: 'Edad', field: 'birthdate' },
+        {name: 'Sexo', field: 'gender' },
+        {name: 'Tipo', field: 'status' },
+        {name: 'Status', field: 'departure.state' },
+        {name: 'Entrada', field: 'departure.startDate' },
+        {name: 'Programada', field: 'departure.scheduleEndDate' }
+      ],
+      sort: {
+        field: 'departure.startDate',
+        asc: true
+      }};
+  }
+
   componentDidMount() {
     this.props.fetchVisitors();
+    this.props.orderSearchCriteria(this.state.sort.field, this.state.sort.asc);
     moment.locale('es');
   }
 
@@ -76,12 +93,7 @@ class VisitorList extends Component {
                   <tr>
                     <th></th>
                     <th colSpan="2">Visitante</th>
-                    <th>Edad</th>
-                    <th>Sexo</th>
-                    <th>Tipo</th>
-                    <th>Status</th>
-                    <th>Entrada</th>
-                    <th>Programada</th>
+                    { this.renderHeader() }
                   </tr>
                 </thead>
                 <tbody>
@@ -97,6 +109,23 @@ class VisitorList extends Component {
       </div>
     );
   }
+
+  renderHeader() {
+      return _.map(this.state.headers, header => {
+        return (
+          <th key={header.name} onClick={ () => this.updateOrder(header) }>
+            { header.name }
+            <i className="material-icons">{ header.field == this.state.sort.field ?  (this.state.sort.asc ? 'arrow_drop_up' : 'arrow_drop_down') : '' }</i>
+          </th>
+        );
+      });
+  }
+
+  updateOrder(header) {
+    let asc = this.state.sort.field == header.field ? !this.state.sort.asc : false;
+    this.setState({ sort: { field: header.field, asc: asc } });
+    this.props.orderSearchCriteria(header.field, asc);
+  }
 }
 
 export default connect((state) => {
@@ -105,4 +134,4 @@ export default connect((state) => {
     visitors: state.visitors,
     numberOfVisitors: Object.keys(state.visitors).length
   };
-}, { fetchVisitors, selectVisitor })(VisitorList);
+}, { fetchVisitors, selectVisitor, orderSearchCriteria })(VisitorList);
