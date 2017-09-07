@@ -17,10 +17,11 @@ class InlineSearchBar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.categories) {
-      const genderList = nextProps.categories.gender.map((gender) => { return { value: gender, display: gender } });
-      const statusList = nextProps.categories.status.map((status) => { return { value: status, display: status } });
-      const departureList = nextProps.categories.departure.map((checkout) => { return { value: checkout, display: checkout } });
+    const { gender, status, departure } = nextProps.categories;
+    if (gender && status && departure) {
+      const genderList = gender.map((gender) => { return { value: gender, display: gender } });
+      const statusList = status.map((status) => { return { value: status, display: status } });
+      const departureList = departure.map((checkout) => { return { value: checkout, display: checkout } });
 
       genderList.push({ value: '', display: 'Todas' });
       statusList.push({ value: '', display: 'Todas' });

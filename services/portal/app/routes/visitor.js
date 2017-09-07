@@ -75,12 +75,13 @@ function departureSearchCriteria(queryTerms) {
 }
 
 function orderCriteria(queryTerms) {
-  const { orderBy, order } = queryTerms;
-  console.log('order', queryTerms)
-  if(orderBy && order)
-    return [[models.Sequelize.literal('UNIX_TIMESTAMP(' + orderBy + ')'), order]];
+  const orderBy = queryTerms.orderBy  ||  'departure.startDate';
+  const order = queryTerms.order  ||  'ASC';
 
-  return [[models.Sequelize.literal('UNIX_TIMESTAMP(departure.startDate)'), 'ASC']]
+  // if(orderBy == 'birthdate' || orderBy == 'departure.startDate' || orderBy == 'departure.scheduleEndDate' || orderBy == 'departure.endDate') {
+  //   return [[models.Sequelize.literal('DATE(' + orderBy + ')'), order]];
+  // }
+  return [[models.Sequelize.literal(orderBy), order]]
 }
 
 router.get('/', function(req, res, next) {

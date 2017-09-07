@@ -21,8 +21,16 @@ export function FetchVisitorsReducer(state = [], action) {
     case CREATE_VISITOR:
       return { ...state, [action.payload.data.id]: action.payload.data };
     case FETCH_VISITORS:
-      console.log('visitors', action.payload.data.results)
       return _.mapKeys(action.payload.data.results, 'id');
+    default:
+      return state;
+  }
+}
+
+export function FetchOrderedVisitorsReducer(state = [], action) {
+  switch (action.type) {
+    case FETCH_VISITORS:
+      return action.payload.data.results;
     default:
       return state;
   }

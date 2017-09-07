@@ -48,7 +48,7 @@ class VisitorList extends Component {
       );
 
     const _self = this;
-    return _.map(this.props.visitors, visitor => {
+    return _.map(this.props.orderedVisitors, visitor => {
       const location = `${visitor.state}, ${visitor.country}`;
       return (
         <tr key={visitor.id}>
@@ -132,6 +132,7 @@ export default connect((state) => {
   return {
     pagination: state.pagination,
     visitors: state.visitors,
+    orderedVisitors: state.orderedVisitors,
     numberOfVisitors: Object.keys(state.visitors).length
   };
 }, { fetchVisitors, selectVisitor, orderSearchCriteria })(VisitorList);
