@@ -37,6 +37,10 @@ class InlineSearchBar extends Component {
     this.props.fetchVisitors(values);
   }
 
+  onOrderChange() {
+    console.log('Order change');
+  }
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -57,7 +61,7 @@ class InlineSearchBar extends Component {
                  onClick={ ()=> { this.setState({ demo: !this.state.demo })  } } >
                 Mas <i className="material-icons">filter_list</i>
               </button>
-              <Field name="orderBy" component={SimpleHiddenField}/>
+              <Field name="orderBy" component={SimpleHiddenField} onChange={ this.onOrderChange.bind(this) }/>
               <Field name="order" component={SimpleHiddenField}/>
             </span>
           </div>
@@ -106,7 +110,7 @@ class InlineSearchBar extends Component {
         let display = moment.isMoment(value) ? `${key}: ${value.format('DD/MM/YYYY')}` :  value;
 
         filters.push(
-          <button key={display} className="btn btn-sm success white m-r-sm m-b-sm" onClick={ () => _self.props.removeSerchCriteria(key) }>
+          <button key={display} className="btn btn-xs success white m-r-sm m-b-xs" onClick={ () => _self.props.removeSerchCriteria(key) }>
             { display } <i className="material-icons m-r-xs">clear</i>
           </button>
         );
