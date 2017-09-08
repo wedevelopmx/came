@@ -9,8 +9,6 @@ import AdminScreen from './screen/admin_screen';
 
 import reducers from './reducers';
 
-import {CategoryCard} from 'category';
-
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 class Register extends Component {
@@ -20,7 +18,7 @@ class Register extends Component {
         <div className="row">
           <div className="col-sm-12">
             <Provider store={createStoreWithMiddleware(reducers)}>
-              <CategoryCard/>
+              <AdminScreen/>
             </Provider>
           </div>
         </div>
@@ -28,13 +26,5 @@ class Register extends Component {
     );
   }
 }
-
-// <HashRouter>
-//   <div className="screen">
-//     <Switch>
-//       <Route path="/" component={AdminScreen} />
-//     </Switch>
-//   </div>
-// </HashRouter>
 
 ReactDOM.render(<Register />, document.querySelector('.workspace'));

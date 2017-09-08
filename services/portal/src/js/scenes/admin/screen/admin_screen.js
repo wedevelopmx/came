@@ -6,15 +6,13 @@ import { CommentForm, CommentList } from 'comments';
 import { Assistance, AssistanceForm } from 'assistance';
 
 import {CategoryCard} from 'category';
+import {UserList} from 'user';
 
 export default function() {
   return (
     <div className="container-flex">
-      <div className="col-half">
-        <CategoryCard/>
-      </div>
-      <div className="col-half">
-
+      <div className="col-sm-12">
+        <UserList/>
       </div>
     </div>
   );

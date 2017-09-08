@@ -9,7 +9,6 @@ var session      = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
-
 var config    = require('./config');
 
 // Setup passport
@@ -28,6 +27,7 @@ var category = require('./routes/category');
 var service = require('./routes/service');
 var support = require('./routes/support');
 var appointment = require('./routes/appointment');
+var user = require('./routes/user');
 
 // App
 var app = express();
@@ -63,6 +63,7 @@ app.use('/api/category', category);
 app.use('/api/service', service);
 app.use('/api/support', support);
 app.use('/api/appointment', appointment);
+app.use('/api/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
