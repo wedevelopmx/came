@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var auth = require('../auth');
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', auth.isAuthenticated, function(req, res, next) {
   models.Checkout.findAll({
     where: { VisitorId: req.params.id },
     order: [['createdAt', 'DESC']]
@@ -11,7 +12,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', auth.isAuthenticated, function(req, res, next) {
 	models.Checkout
     .findOrCreate({
       where: {
@@ -23,7 +24,7 @@ router.post('/', function(req, res, next) {
     });
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', auth.isAuthenticated, function(req, res, next) {
   models.Checkout
   .findOne({ where : { id: req.params.id } })
   .then(function(checkout) {

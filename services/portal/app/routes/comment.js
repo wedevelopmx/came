@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var auth = require('../auth');
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', auth.isAuthenticated, function(req, res, next) {
   console.log(req.params.id);
   models.Comment.findAll({
     where: { VisitorId: req.params.id },
@@ -12,7 +13,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', auth.isAuthenticated, function(req, res, next) {
   console.log(req.body);
 	models.Comment
     .findOrCreate({

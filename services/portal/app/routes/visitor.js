@@ -5,6 +5,7 @@ const path = require('path');
 const crypto = require('crypto');
 const config = require('../config')
 const Storage = require('../modules/storage');
+const auth = require('../auth');
 
 var storage = new Storage(config);
 
@@ -84,7 +85,7 @@ function orderCriteria(queryTerms) {
   return [[models.Sequelize.literal(orderBy), order]]
 }
 
-router.get('/', function(req, res, next) {
+router.get('/', auth.isAuthenticated, function(req, res, next) {
   const limit = parseInt(req.query.size || 10);
   const offset = parseInt(req.query.since || 0);
   const where = searchCriteria(req.query);
@@ -136,14 +137,14 @@ function findVisitor(visitorId) {
   });
 }
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', auth.isAuthenticated, function(req, res, next) {
   findVisitor(req.params.id)
     .then(function(visitor) {
       res.json(visitor);
     });
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', auth.isAuthenticated, function(req, res, next) {
   models.Visitor
   .findOne({ where : { id: req.params.id } })
   .then(function(visitor) {
@@ -165,7 +166,7 @@ function baseDeparture(VisitorId) {
   };
 }
 
-router.post('/', function(req, res, next) {
+router.post('/', auth.isAuthenticated, function(req, res, next) {
   req.body.avatar = crypto.randomBytes(20).toString('hex');
 	models.Visitor
     .findOrCreate({
@@ -198,7 +199,7 @@ router.post('/', function(req, res, next) {
     });
 });
 
-router.get('/:id/avatar', function(req, res){
+router.get('/:id/avatar', auth.isAuthenticated, function(req, res){
   var file = path.join(__dirname, `../../storage/${req.params.id}.jpg`);
   res.sendFile(file);
 });
@@ -216,7 +217,7 @@ router.get('/:id/appointments', function(req, res, next) {
   });
 });
 
-router.put('/:id/departure', (req, res) => {
+router.put('/:id/departure', auth.isAuthenticated, (req, res) => {
   models.Departure
   .findOne({ where : { VisitorId: req.params.id } })
   .then(function(departure) {

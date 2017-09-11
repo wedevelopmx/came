@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var auth = require('../auth');
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', auth.isAuthenticated, function(req, res, next) {
   console.log(req.params.id);
   var queryString =
   "select s.id, sv.id as serviceId, sv.name, sv.description, sv.resource, sv.appointmentCatalog, s.startDate, s.interview, s.psychological, s.interviewComment, s.psychologicalComment from Services sv join Supports s on sv.id = s.ServiceId and s.VisitorId = :visitorId";
@@ -17,7 +18,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', auth.isAuthenticated, function(req, res, next) {
   console.log(req.body);
 	models.Support
     .findOrCreate({

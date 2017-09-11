@@ -24,6 +24,14 @@ module.exports =  {
   parseUser: parseUser,
   hasAdminACL: hasAdminACL,
   hasVolunterACL: hasVolunterACL,
+  isAuthenticated: function(req, res, next) {
+    if (req.isAuthenticated()) {
+      res.locals.user = req.user;
+      return next();
+    }
+    // if they aren't redirect them to the home page
+    res.status(401).json({ message: 'You are not authenticated'});
+  },
   // route middleware to make sure a user is logged in
   isLoggedIn: function(req, res, next) {
       // if user is authenticated in the session, carry on

@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var auth = require('../auth');
 
-
-router.get('/', function(req, res, next) {
+router.get('/', auth.isAuthenticated, function(req, res, next) {
   models.Service.findAll().then(function(services) {
     res.json(services);
   });
 });
-router.post('/', function(req, res, next) {
+router.post('/', auth.isAuthenticated, function(req, res, next) {
 	console.log(req.body);
 	models.Service
       .findOrCreate({

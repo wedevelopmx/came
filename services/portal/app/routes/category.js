@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var auth = require('../auth');
 
-router.get('/', function(req, res, next) {
+router.get('/', auth.isAuthenticated, function(req, res, next) {
   models.Category.findAll().then(function(category) {
     res.json(category);
   });
 });
 
-router.get('/:id', function(req, res, next) {
+router.get('/:id', auth.isAuthenticated, function(req, res, next) {
   models.Category
     .findOne({
       attributes: ['id', 'name', 'description'],
@@ -24,7 +25,7 @@ router.get('/:id', function(req, res, next) {
     });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', auth.isAuthenticated, function(req, res, next) {
 	models.Category
       .findOrCreate({
         where: { name: req.body.name },
@@ -34,7 +35,7 @@ router.post('/', function(req, res, next) {
       });
 });
 
-router.get('/:id/entries', function(req, res, next) {
+router.get('/:id/entries', auth.isAuthenticated, function(req, res, next) {
   models.CategoryEntry
     .findAll({
       attributes: ['id', 'name', 'description', 'CategoryId'],
@@ -46,7 +47,7 @@ router.get('/:id/entries', function(req, res, next) {
 });
 
 
-router.post('/:id/entry', function(req, res, next) {
+router.post('/:id/entry', auth.isAuthenticated, function(req, res, next) {
   var entry = req.body;
   if(req.params.id == entry.CategoryId) {
     models.CategoryEntry
@@ -61,7 +62,7 @@ router.post('/:id/entry', function(req, res, next) {
   }
 });
 
-router.put('/:id/entry', function(req, res, next) {
+router.put('/:id/entry', auth.isAuthenticated, function(req, res, next) {
   var entry = req.body;
   if(req.params.id == entry.CategoryId) {
     models.CategoryEntry

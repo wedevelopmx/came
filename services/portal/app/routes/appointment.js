@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var auth = require('../auth');
 
-router.get('/:supportId', function(req, res, next) {
+router.get('/:supportId', auth.isAuthenticated, function(req, res, next) {
   models.Appointment.findAll({
     where: { SupportId: req.params.supportId },
     order: [['createdAt', 'DESC']]
@@ -11,7 +12,7 @@ router.get('/:supportId', function(req, res, next) {
   });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', auth.isAuthenticated, function(req, res, next) {
 	models.Appointment
     .findOrCreate({
       where: {
@@ -23,7 +24,7 @@ router.post('/', function(req, res, next) {
     });
 });
 
-router.put('/:id', function(req, res, next) {
+router.put('/:id', auth.isAuthenticated, function(req, res, next) {
   models.Appointment
   .findOne({ where : { id: req.params.id } })
   .then(function(appointment) {
