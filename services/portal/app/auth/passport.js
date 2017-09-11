@@ -1,11 +1,14 @@
 // load all the things we need
 var LocalStrategy   = require('passport-local').Strategy;
-
 // load up the user model
 var User            = require('./models/user');
+var auth = require('./index');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
+    function makeSessionUser(user) {
+
+    }
 
     // =========================================================================
     // passport session setup ==================================================
@@ -21,7 +24,7 @@ module.exports = function(passport) {
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
         User.findById(id, function(err, user) {
-            done(err, user);
+            done(err, auth.parseUser(user));
         });
     });
 
@@ -61,7 +64,7 @@ module.exports = function(passport) {
                   newUser.save(function(err) {
                       if (err)
                           throw err;
-                      return done(null, newUser);
+                      return done(null, auth.parseUser(newUser));
                   });
               }
           });
@@ -93,10 +96,7 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('message', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
             // all is well, return successful user
-            return done(null, user);
+            return done(null, auth.parseUser(user));
         });
-
     }));
-
-
 };

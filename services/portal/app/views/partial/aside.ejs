@@ -8,12 +8,15 @@
         <div flex="" class="hide-scroll">
             <nav class="scroll nav-active-primary">
                 <ul class="nav">
+                    <% if (user && (user.roles.volunteer || user.roles.admin)) { %>
                     <li class="<%= side.hasOwnProperty('door') ? 'active' : '' %>">
                       <a  href="/">
                         <span class="nav-icon"><i class="material-icons md-24">home</i></span>
                         <span class="nav-text">Puerta</span>
                       </a>
                     </li>
+                    <% } %>
+                    <% if (user && user.roles.admin) { %>
                     <li class="<%= side.hasOwnProperty('support') ? 'active' : '' %>">
                       <a href="/support">
                         <span class="nav-icon"><i class="material-icons md-24">group</i></span>
@@ -32,6 +35,7 @@
                         <span class="nav-text">Admin</span>
                       </a>
                     </li>
+                    <% } %>
                     <li class="nav-header hidden-folded"><small class="text-muted">Help</small>
                     </li>
                     <li class="hidden-folded">
