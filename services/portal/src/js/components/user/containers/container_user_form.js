@@ -26,7 +26,7 @@ class UserForm extends Component {
         <Field name="local.email"  component={ SimpleHiddenField }/>
         <Field name="_id"  component={ SimpleHiddenField }/>
         <Field name="roles"  component={ SimpleHiddenField }/>
-        <button className="btn btn-icon btn-rounded btn-danger"><i className="material-icons">save</i></button>
+        <button className="btn btn-sm btn-icon btn-rounded btn-danger"><i className="material-icons">save</i></button>
       </form>
     );
   }
