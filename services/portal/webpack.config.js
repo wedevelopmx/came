@@ -1,6 +1,8 @@
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+console.log('Searching', path.resolve('./src/js/components'))
+
 module.exports = {
   entry: {
      support: "./src/js/scenes/support/index",
@@ -22,6 +24,6 @@ module.exports = {
     }]
   },
   resolve: {
-    root: [ path.resolve('./src/js/components')]
+    modules: [path.resolve('./src/js/components'), "node_modules"]
   }
 };
