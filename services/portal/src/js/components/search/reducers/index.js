@@ -77,7 +77,7 @@ export function RegisterFormReducer(state, action) {
           ...state,
           values: {
             ...state.values,
-            coutry: action.payload // <----- copy selected state into state field
+            country: action.payload // <----- copy selected state into state field
           },
           fields: {
             ...state.fields//,
