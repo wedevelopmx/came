@@ -11,7 +11,7 @@ import { AppointmentList, AppointmentForm } from 'appointment';
 function ItemDetails(props) {
   const { activeItem } = props;
   return (
-    <div className="box-body b-t">
+    <div className="modal-content box-body b-t">
       <div className="row m-b">
         <div className="col-xs-6">
           <small className="text-muted">Tipo:</small>
