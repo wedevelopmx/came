@@ -10,9 +10,9 @@ class CategoryEntities extends Component {
   }
 
   renderEntities() {
-    return _.map(this.props.categoryEntities, entity => {
+    return _.map(this.props.category.entries, entity => {
       return (
-        <tr key={entity.id}>
+        <tr key={entity.name}>
           <td><label className="ui-check m-a-0"><input name="post[]" type="checkbox"/><i className="dark-white"></i></label></td>
           <td>{ entity.name }</td>
           <td>{ entity.description }</td>

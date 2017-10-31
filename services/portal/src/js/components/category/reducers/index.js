@@ -8,7 +8,7 @@ export function CategoriesReducer(state = {}, action) {
     case CREATE_CATEGORY:
       return { ...state, [action.payload.data.id]: action.payload.data };
     case FETCH_CATEGORIES:
-      return _.mapKeys(action.payload.data, '_id');
+      return _.mapKeys(action.payload.data, 'name');
     default:
       return state;
   }

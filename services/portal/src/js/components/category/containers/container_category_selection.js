@@ -4,7 +4,7 @@ import { fetchCategories, selectCategory } from '../actions';
 
 class CategorySelection extends Component {
   componentDidMount() {
-    this.props.fetchCategories();
+    this.props.fetchCategories(false);
   }
 
   renderOptions() {
@@ -14,7 +14,7 @@ class CategorySelection extends Component {
   }
 
   updateSelection(event) {
-    this.props.selectCategory(this.props.categories[event.target.value]);
+    this.props.selectCategory(this.props.categories[event.currentTarget.value]);
   }
 
   render() {
@@ -34,10 +34,6 @@ class CategorySelection extends Component {
     );
   }
 }
-
-// <span className="input-group-btn">
-//   <a className="btn btn-icon blue" type="button"><i className="material-icons">add</i></a>
-// </span>
 
 export default connect((state) => {
   return {

@@ -14,6 +14,9 @@ export default function() {
       <div className="col-sm-12">
         <UserList/>
       </div>
+      <div className="col-sm-12">
+        <CategoryCard/>
+      </div>
     </div>
   );
 }
