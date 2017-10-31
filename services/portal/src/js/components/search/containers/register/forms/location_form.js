@@ -45,7 +45,7 @@ class LocationForm extends Component {
         </div>
         <div className="row m-b">
           <div className="col-sm-12 col-md-6">
-            <Field label="Municipio" name="municipality" component={ InputField } />
+            <Field label="Municipio" name="town" component={ InputField } />
           </div>
           <div className="col-sm-12 col-md-6">
 
@@ -65,8 +65,8 @@ function validateLocationForm(values) {
   if (!values.state) {
     errors.state = 'Campo estado es necesario.';
   }
-  if (!values.municipality) {
-    errors.municipality = 'Campo municipio es necesario.';
+  if (!values.town) {
+    errors.town = 'Campo municipio es necesario.';
   }
   return errors;
 }

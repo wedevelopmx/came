@@ -18,7 +18,8 @@ class VisitorList extends Component {
         {name: 'Tipo', field: 'status' },
         {name: 'Status', field: 'departure.state' },
         {name: 'Entrada', field: 'departure.startDate' },
-        {name: 'Programada', field: 'departure.scheduleEndDate' }
+        {name: 'Programada', field: 'departure.scheduleEndDate' },
+        {name: 'Salida', field: 'departure.endDate' }
       ],
       sort: {
         field: 'departure.startDate',
@@ -74,6 +75,7 @@ class VisitorList extends Component {
           <td>{ visitor.departure.state }</td>
           <td>{ moment(new Date(visitor.departure.startDate)).format("DD/MM/YYYY") }</td>
           <td>{ moment(new Date(visitor.departure.scheduleEndDate)).format("DD/MM/YYYY") }</td>
+          <td>{ visitor.departure.endDate ? moment(new Date(visitor.departure.endDate)).format("DD/MM/YYYY") : '-' }</td>
         </tr>
       );
     });

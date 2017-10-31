@@ -17,9 +17,11 @@ export function SelectField(field) {
   return (
     <div className={ `form-group form-group-sm l-h p-r ${ field.inline ? 'col-sm-2': 'row'}` }>
       <label className={ `form-control-label ${ field.inline ? '' : 'col-sm-2'}` } htmlFor={field.input.name} >{field.label}</label>
-      <select id={field.input.name} className={ `form-control form-control-sm  ${ field.inline ? '' : 'col-sm-10' }` } { ...field.input }>
+      <div className={ `${ field.inline ? '' : 'col-sm-10' }` }>
+        <select id={field.input.name} className={ `form-control form-control-sm` } { ...field.input }>
         { selectOptionsHelper(field.options) }
-      </select>
+        </select>
+      </div>
     </div>
   );
 }
