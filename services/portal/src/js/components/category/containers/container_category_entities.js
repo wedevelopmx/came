@@ -60,7 +60,6 @@ class CategoryEntities extends Component {
 
 export default connect((state) => {
   return {
-    category: state.category,
-    categoryEntities: state.categoryEntities
+    category: state.category
   };
 }, { fetchCategoryEntities })(CategoryEntities);

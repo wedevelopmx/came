@@ -9,7 +9,7 @@ class CategorySelection extends Component {
 
   renderOptions() {
     return _.map(this.props.categories, category => {
-      return (<option key={category.id} value={category.id}>{ category.name }</option>);
+      return (<option key={category._id} value={category.name}>{ category.name }</option>);
     });
   }
 

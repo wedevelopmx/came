@@ -21,9 +21,9 @@ class CategoryEntityForm extends Component {
 
   onSubmit(values) {
     if(this.props.activeItem) {
-      this.props.updateCategoryEntity(values, this.props.onComplete);
+      this.props.updateCategoryEntity(this.props.category._id, values, this.props.onComplete);
     } else {
-      this.props.createCategoryEntity(values, this.props.onComplete);
+      this.props.createCategoryEntity(this.props.category._id, values, this.props.onComplete);
     }
   }
 

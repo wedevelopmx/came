@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 
-import { CategoriesReducer, ActiveCategoryReducer, CategoryEntitiesReducer } from 'category/reducers';
+import { CategoriesReducer, ActiveCategoryReducer } from 'category/reducers';
 import { UserListReducer, ActiveUserReducer } from 'user/reducers';
 
 const rootReducer = combineReducers({
@@ -9,7 +9,6 @@ const rootReducer = combineReducers({
   activeUser: ActiveUserReducer,
   categories: CategoriesReducer,
   category: ActiveCategoryReducer,
-  categoryEntities: CategoryEntitiesReducer,
   form: formReducer
 });
 
