@@ -26,10 +26,17 @@ router.get('/reports', auth.isAdmin, function(req, res, next) {
 		});
 });
 
-router.get('/admin', auth.isAdmin, function(req, res, next) {
-	res.render('admin', {
+router.get('/admin/users', auth.isAdmin, function(req, res, next) {
+	res.render('users', {
   		title: 'CAME',
-			side: { admin: true }
+			side: { users: true }
+		});
+});
+
+router.get('/admin/catalog', auth.isAdmin, function(req, res, next) {
+	res.render('catalog', {
+  		title: 'CAME',
+			side: { catalog: true }
 		});
 });
 

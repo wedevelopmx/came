@@ -9,7 +9,7 @@
             <nav class="scroll nav-active-primary">
                 <ul class="nav">
                     <% if (user && (user.roles.volunteer || user.roles.admin)) { %>
-                    <li class="<%= side.hasOwnProperty('door') ? 'active' : '' %>">
+                    <li class="<%= side.hasOwnProperty('door') ? 'selected' : '' %>">
                       <a  href="/">
                         <span class="nav-icon"><i class="material-icons md-24">home</i></span>
                         <span class="nav-text">Puerta</span>
@@ -17,23 +17,35 @@
                     </li>
                     <% } %>
                     <% if (user && user.roles.admin) { %>
-                    <li class="<%= side.hasOwnProperty('support') ? 'active' : '' %>">
+                    <li class="<%= side.hasOwnProperty('support') ? 'selected' : '' %>">
                       <a href="/support">
                         <span class="nav-icon"><i class="material-icons md-24">group</i></span>
                         <span class="nav-text">Acc</span>
                       </a>
                     </li>
-                    <li class="<%= side.hasOwnProperty('reports') ? 'active' : '' %>">
+                    <li class="<%= side.hasOwnProperty('reports') ? 'selected' : '' %>">
                       <a href="/reports">
                         <span class="nav-icon"><i class="material-icons md-24">assignment_ind </i></span>
                         <span class="nav-text">Reporte</span>
                       </a>
                     </li>
-                    <li class="<%= side.hasOwnProperty('admin') ? 'active' : '' %>">
-                      <a href="/admin">
+                    <li class="active <%= side.hasOwnProperty('admin') ? 'selected' : '' %>">
+                      <a>
                         <span class="nav-icon"><i class="material-icons md-24">settings</i></span>
                         <span class="nav-text">Admin</span>
                       </a>
+                      <ul class="nav-sub">
+                        <li>
+                          <a href="/admin/users">
+                            <span class="nav-text">Usuarios</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/admin/catalog">
+                            <span class="nav-text">Catalogos</span>
+                          </a>
+                        </li>
+                      </ul>
                     </li>
                     <% } %>
                     <li class="nav-header hidden-folded"><small class="text-muted">Help</small>

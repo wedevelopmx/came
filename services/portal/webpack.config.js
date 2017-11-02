@@ -7,7 +7,8 @@ module.exports = {
   entry: {
      support: "./src/js/scenes/support",
      register: "./src/js/scenes/register",
-     admin: "./src/js/scenes/admin",
+     catalog: "./src/js/scenes/catalog",
+     user: "./src/js/scenes/user",
      reports: "./src/js/scenes/reports"
   },
   output: {
