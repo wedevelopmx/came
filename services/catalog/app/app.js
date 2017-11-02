@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 // App
 const app = express();
@@ -11,6 +12,8 @@ mongoose.connect("mongodb://mongo:27017/came");
 const category = require('./routes/category');
 const appointment = require('./routes/appointment');
 
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 //Define paths
 app.use('/categories', category);

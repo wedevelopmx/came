@@ -9,6 +9,7 @@ var Entry = new Schema({
 
 var Category = new Schema({
   name: String,
+  description: String,
   entries: [Entry]
 });
 
