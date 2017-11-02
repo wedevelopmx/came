@@ -5,10 +5,10 @@ console.log('Searching', path.resolve('./src/js/components'))
 
 module.exports = {
   entry: {
-     support: "./src/js/scenes/support/index",
-     register: "./src/js/scenes/register/index",
-     admin: "./src/js/scenes/admin/index",
-     reports: "./src/js/scenes/reports/index"
+     support: "./src/js/scenes/support",
+     register: "./src/js/scenes/register",
+     admin: "./src/js/scenes/admin",
+     reports: "./src/js/scenes/reports"
   },
   output: {
      path: path.join(__dirname, "dist/js"),
@@ -24,6 +24,7 @@ module.exports = {
     }]
   },
   resolve: {
-    modules: [path.resolve('./src/js/components'), "node_modules"]
+    modulesDirectories: ['node_modules', path.resolve('./src/js/components')],
+    extension: ['', '.js', '.scss']
   }
 };
