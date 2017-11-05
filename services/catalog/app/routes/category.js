@@ -5,7 +5,7 @@ const Category = require('../models/category');
 router.get('/', function(req, res, next) {
   const plain = req.query.plain ? req.query.plain == 'true' : true;
   // get all the users
-  Category.find({}, { name: 1, entries: 1, "entries.name": 1, "entries._id": 1, "entries.description": 1 } , function(err, categories) {
+  Category.find({}, { name: 1, entries: 1, dataType: 1, "entries.name": 1, "entries._id": 1, "entries.description": 1, "entries.data": 1 } , function(err, categories) {
     if (err) throw err;
     // object of all the categories
     if(!plain) {
@@ -27,10 +27,10 @@ router.put('/:id/entry', function(req, res, next) {
   // get all the users
   Category.update(
     { _id: req.params.id, "entries._id": req.body._id },
-    { $set: { "entries.$": {name: req.body.name, description: req.body.description} } } ,
+    { $set: { "entries.$": {name: req.body.name, description: req.body.description, data: req.body.data} } } ,
     function(err, category) {
       if (err) throw err;
-      Category.findOne({ _id: req.params.id }, { name: 1, entries: 1, "entries.name": 1, "entries._id": 1, "entries.description": 1 } , function(err, category) {
+      Category.findOne({ _id: req.params.id }, { name: 1, entries: 1, dataType: 1, "entries.name": 1, "entries._id": 1, "entries.description": 1, "entries.data": 1 } , function(err, category) {
         if (err) throw err;
         res.json(category);
       });
@@ -41,7 +41,7 @@ router.post('/:id/entry', function(req, res, next) {
   // get all the users
   Category.update({ _id: req.params.id}, { $addToSet: { entries: req.body} }, function(err, category) {
       if (err) throw err;
-      Category.findOne({ _id: req.params.id }, { name: 1, entries: 1, "entries.name": 1, "entries._id": 1, "entries.description": 1 } , function(err, category) {
+      Category.findOne({ _id: req.params.id }, { name: 1, entries: 1, dataType: 1, "entries.name": 1, "entries._id": 1, "entries.description": 1, "entries.data": 1 } , function(err, category) {
         if (err) throw err;
         res.json(category);
       });

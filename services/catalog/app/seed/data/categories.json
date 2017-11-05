@@ -9,5 +9,65 @@
   "entries": [{ "name": "expulsado"}, { "name": "hospedado"}, { "name": "baja definitiva"}, { "name": "baja por tren"}]
 }, {
   "name": "alert",
-  "entries": [{ "name": "informacion"}, { "name": "precaucion"}, { "name": "restriccion"}]
+  "entries": [{ "name": "precaucion", "data": "yellow"}, { "name": "restriccion", "data": "red"}]
+}, {
+  "name": "salida",
+  "dataType": "time",
+  "entries": [{
+    "name": "Salida a la tienda",
+    "description": "El visitante tiene una toleraciona de 15min para volver al centro",
+    "data": 900000
+  }, {
+    "name": "Salida recreacional",
+    "description": "El visitante tiene una toleraciona de 5 horas para volver al centro",
+    "data": 18000000
+  }]
+}, {
+  "name": "health",
+  "dataType": "time",
+  "entries": [{
+    "name": "Revision al hospital",
+    "description": "El visitante tiene una toleraciona de 5 horas para volver al centro",
+    "data": 18000000
+  }, {
+    "name": "Salida a farmacia",
+    "description": "El visitante tiene una toleraciona de 15 min para volver al centro",
+    "data": 900000
+  }]
+}, {
+  "name": "social",
+  "dataType": "time",
+  "entries": [{
+    "name": "Visita a centro de atencion externo",
+    "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+    "data": 18000000
+  }]
+}, {
+  "name": "legal",
+  "dataType": "time",
+  "entries": [{
+    "name": "Visita a consulado",
+    "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+    "data": 18000000
+  }, {
+    "name": "Visita a ministerio publico",
+    "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+    "data": 18000000
+  }, {
+    "name": "Visita a CEDH",
+    "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+    "data": 18000000
+  }]
+}, {
+  "name": "work",
+  "dataType": "time",
+  "entries": [{
+    "name": "Trabajo comunitario",
+    "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+    "data": 18000000
+  }, {
+    "name": "Trabajo",
+    "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
+    "data": 18000000
+  }]
 }]
