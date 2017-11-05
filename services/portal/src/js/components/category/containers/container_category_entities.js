@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { fetchCategoryEntities } from '../actions';
 
 class CategoryEntities extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.category && nextProps.category.id !== this.props.category.id) {
-      this.props.fetchCategoryEntities(nextProps.category.id);
-    }
-  }
-
   renderAdditional(entity) {
     switch (this.props.category.dataType) {
       case 'time':
@@ -75,4 +68,4 @@ export default connect((state) => {
   return {
     category: state.category
   };
-}, { fetchCategoryEntities })(CategoryEntities);
+}, { })(CategoryEntities);

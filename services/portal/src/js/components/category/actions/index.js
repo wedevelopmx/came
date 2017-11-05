@@ -34,14 +34,6 @@ export function fetchCategories(plain = true) {
   };
 }
 
-export function fetchCategoryEntities(categoryId) {
-  const request = axios.get(`${API_URL}/${categoryId}/entries`);
-  return {
-    type: FETCH_CATEGORY_ENTITIES,
-    payload: request
-  };
-}
-
 export function createCategoryEntity(categoryId, entity, callback) {
   const request = axios.post(`${API_URL}/${categoryId}/entry`, entity);
   request.then(() => callback());

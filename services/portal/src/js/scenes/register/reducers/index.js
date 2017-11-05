@@ -7,7 +7,7 @@ import { CheckoutsReducer, CheckoutFormReducer} from 'checkout/reducers';
 import SupportReducer from 'support/reducers';
 import ServiceReducer from 'service/reducers';
 import { AppointmentReducer } from 'appointment/reducers';
-import { CategoryEntitiesReducer, AppointmentCatalog } from 'category/reducers';
+import { AppointmentCatalog } from 'category/reducers';
 
 const rootReducer = combineReducers({
   supports: SupportReducer,
@@ -23,7 +23,6 @@ const rootReducer = combineReducers({
   comments: CommentsReducer,
   checkouts: CheckoutsReducer,
   appointments: AppointmentReducer,
-  categoryEntities: CategoryEntitiesReducer,
   form: formReducer.plugin({
     RegisterForm: RegisterFormReducer,
     CheckoutForm: CheckoutFormReducer
