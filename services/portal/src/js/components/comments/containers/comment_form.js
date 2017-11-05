@@ -24,7 +24,6 @@ class CommentForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     const commentTypes = [
-      { display: 'Informacion', value: 'primary', decorator: 'blue' },
       { display: 'Advertencia', value: 'warn', decorator: 'yellow' },
       { display: 'Amonestacion', value: 'danger', decorator: 'red' }];
 
