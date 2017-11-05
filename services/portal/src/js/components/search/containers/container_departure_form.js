@@ -61,7 +61,7 @@ class DepartureForm extends Component {
                 <Field label="Salida Programada:" name="scheduleEndDate" component={ DatepickerField } disabled />
               </div>
               <div className="col-sm-6">
-                <Field label="Salida:" name="endDate" component={ DatepickerField } disabled />
+                <Field label="Salida Definitiva:" name="endDate" component={ DatepickerField } disabled />
               </div>
             </div>
             <div className="row">
@@ -100,10 +100,6 @@ function validate(values) {
   // Validate the inputs from 'values'
   if (!values.scheduleEndDate) {
     errors.scheduleEndDate = 'Campo fecha salida programada es necesario.';
-  }
-
-  if (!values.comment) {
-    errors.comment = 'Campo descripcion es necesario.';
   }
 
   // If errors has *any* properties, redux form assumes form is invalid
