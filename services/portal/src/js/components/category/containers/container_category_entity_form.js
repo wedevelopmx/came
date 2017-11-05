@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { TextareaField, InputField, HiddenField } from 'commons/form'
 import { createCategoryEntity, updateCategoryEntity } from '../actions';
+import TimeInput from './container_time_input';
 
 class CategoryEntityForm extends Component {
   componentDidMount() {
@@ -27,6 +28,15 @@ class CategoryEntityForm extends Component {
     }
   }
 
+  renderAdditional() {
+    switch (this.props.category.dataType) {
+      case 'time':
+        return <Field name="Tolerancia: " name="data" component={TimeInput} />
+      default:
+
+    }
+  }
+
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -39,6 +49,7 @@ class CategoryEntityForm extends Component {
           <div className="box-body b-t">
             <Field label="Nombre:" name="name" component={ InputField }/>
             <Field label="Descripcion:" rows="2" name="description" component={ TextareaField }/>
+            { this.renderAdditional() }
             <Field name="CategoryId"  component={ HiddenField }/>
           </div>
           <div className="dker p-a text-right">
