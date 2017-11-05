@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { eventCatalogHelpers } from 'commons/services'
 import { ActivityValidationField, CheckBoxField, TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form';
 import { createAppointment, updateAppointment, selectReason } from '../actions';
-import { fetchAppointmentCatalog } from 'category/actions';
+import { fetchCategories } from 'category/actions';
 
 class AppointmentForm extends Component {
   constructor(props) {
@@ -14,14 +14,19 @@ class AppointmentForm extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchAppointmentCatalog();
+    this.props.fetchCategories(false);
     this.handleInitialize();
   }
 
   componentWillReceiveProps(nextProps) {
     const { appointmentCatalog } = this.props.parent;
-    if (nextProps.appointmentCatalog && nextProps.appointmentCatalog[appointmentCatalog]) {
-      this.setState(eventCatalogHelpers(nextProps.appointmentCatalog, appointmentCatalog));
+    if (nextProps.appointmentCatalog && nextProps.categories) {
+      console.log('looking', appointmentCatalog)
+      let category = nextProps.categories.find((element) => element.name === appointmentCatalog);
+      if(category) {
+        this.setState(eventCatalogHelpers(category.entries));
+        console.log(this.state);
+      }
     }
   }
 
@@ -40,8 +45,8 @@ class AppointmentForm extends Component {
   }
 
   onChange(value) {
-    const { name: reason, time: tolerance } = this.state.eventHash[value];
-    this.props.selectReason({ reason, tolerance });
+    const { name: reason, data: tolerance } = this.state.eventHash[value];
+    this.props.selectReason({ reason, tolerance: parseInt(tolerance) });
   }
 
   onSubmit(values) {
@@ -113,5 +118,5 @@ export default reduxForm({
     state => ({
       appointmentCatalog: state.appointmentCatalog,
       categories: state.categories
-    }), { createAppointment, updateAppointment, fetchAppointmentCatalog, selectReason })(AppointmentForm)
+    }), { createAppointment, updateAppointment, fetchCategories, selectReason })(AppointmentForm)
 );
