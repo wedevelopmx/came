@@ -29,14 +29,14 @@ router.get('/reports', auth.isAdmin, function(req, res, next) {
 router.get('/admin/users', auth.isAdmin, function(req, res, next) {
 	res.render('users', {
   		title: 'CAME',
-			side: { users: true }
+			side: { admin: true }
 		});
 });
 
 router.get('/admin/catalog', auth.isAdmin, function(req, res, next) {
 	res.render('catalog', {
   		title: 'CAME',
-			side: { catalog: true }
+			side: { admin: true }
 		});
 });
 

@@ -9,7 +9,7 @@
             <nav class="scroll nav-active-primary">
                 <ul class="nav">
                     <% if (user && (user.roles.volunteer || user.roles.admin)) { %>
-                    <li class="<%= side.hasOwnProperty('door') ? 'selected' : '' %>">
+                    <li class="<%= side.hasOwnProperty('door') ? 'active' : '' %>">
                       <a  href="/">
                         <span class="nav-icon"><i class="material-icons md-24">home</i></span>
                         <span class="nav-text">Puerta</span>
@@ -17,19 +17,19 @@
                     </li>
                     <% } %>
                     <% if (user && user.roles.admin) { %>
-                    <li class="<%= side.hasOwnProperty('support') ? 'selected' : '' %>">
+                    <li class="<%= side.hasOwnProperty('support') ? 'active' : '' %>">
                       <a href="/support">
                         <span class="nav-icon"><i class="material-icons md-24">group</i></span>
                         <span class="nav-text">Acc</span>
                       </a>
                     </li>
-                    <li class="<%= side.hasOwnProperty('reports') ? 'selected' : '' %>">
+                    <li class="<%= side.hasOwnProperty('reports') ? 'active' : '' %>">
                       <a href="/reports">
                         <span class="nav-icon"><i class="material-icons md-24">assignment_ind </i></span>
                         <span class="nav-text">Reporte</span>
                       </a>
                     </li>
-                    <li class="active <%= side.hasOwnProperty('admin') ? 'selected' : '' %>">
+                    <li class="<%= side.hasOwnProperty('admin') ? 'active' : '' %>">
                       <a>
                         <span class="nav-icon"><i class="material-icons md-24">settings</i></span>
                         <span class="nav-text">Admin</span>
