@@ -23,7 +23,7 @@
     "data": 18000000
   }]
 }, {
-  "name": "health",
+  "name": "salud",
   "dataType": "time",
   "entries": [{
     "name": "Revision al hospital",
@@ -59,7 +59,7 @@
     "data": 18000000
   }]
 }, {
-  "name": "work",
+  "name": "trabajo",
   "dataType": "time",
   "entries": [{
     "name": "Trabajo comunitario",

@@ -4,10 +4,10 @@ models.sequelize.sync().then(() => {
 
   models.Service
     .bulkCreate([
-      { name: 'Atención Medica', description: 'Atención Medica.', resource: 'local_hospital', appointmentCatalog: 'health'},
+      { name: 'Atención Medica', description: 'Atención Medica.', resource: 'local_hospital', appointmentCatalog: 'salud'},
       { name: 'Atención Psicosocial', description: 'Atención Psicosocial.', resource: 'account_balance', appointmentCatalog: 'social'},
-      { name: 'Atención Legal', description: 'Atención Legal. ', resource: 'face', appointmentCatalog: 'law'},
-      { name: 'Trabajo', description: 'trabajo. ', resource: 'work', appointmentCatalog: 'work'}
+      { name: 'Atención Legal', description: 'Atención Legal. ', resource: 'face', appointmentCatalog: 'legal'},
+      { name: 'Trabajo', description: 'trabajo. ', resource: 'work', appointmentCatalog: 'trabajo'}
     ])
     .then((service) => {
       console.log('service catalog: ' + service.length);
