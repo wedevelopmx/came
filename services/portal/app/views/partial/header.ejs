@@ -8,59 +8,50 @@
       <!-- Page title - Bind to $state's title -->
       <div class="navbar-item pull-left h5" id="pageTitle">CAME</div>
 
-      <!-- nabar right -->
       <ul class="nav navbar-nav pull-right">
-        <li class="nav-item" ng-hide="user">
-          <a href="/auth/google" class="nav-link" ui-sref="app.dashboard" ui-sref-active="active">
-            <span class="nav-text">Login</span>
+        <!-- <li class="nav-item dropdown pos-stc-xs">
+          <a class="nav-link" href="" data-toggle="dropdown" aria-expanded="false">
+            <i class="material-icons"></i>
+            <span class="label label-sm up warn">2</span>
           </a>
-        </li>
-        <li class="nav-item dropdown" ng-show="user">
-          <a class="nav-link" ui-fullscreen href="#">
-            <i class="material-icons">&#xe145;</i>
-          </a>
-        </li>
-        <li class="nav-item dropdown" ng-show="user">
-          <a href class="nav-link dropdown-toggle clear" data-toggle="dropdown">
-            <span class="avatar w-32">
-              <img ng-src="{{user.avatar}}" alt="...">
-              <i class="busy b-white right"></i>
-            </span>
-          </a>
-          <div class="dropdown-menu pull-right dropdown-menu-scale">
-            <a class="dropdown-item" href="#profile">
-              <span>Profile</span>
-            </a>
-            <a class="dropdown-item" ng-href="#settings">
-              <span>Settings</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#help">
-              Need help?
-            </a>
-            <a class="dropdown-item" ng-click="logout()">Sign out</a>
-          </div>
-        </li>
-      </ul>
-      <!-- / navbar right -->
-
-      <!-- navbar collapse -->
-      <div class="collapse navbar-toggleable-sm" id="collapse">
-        <!-- search form -->
-        <form class="navbar-form form-inline pull-right pull-none-sm navbar-item v-m" role="search">
-          <div class="form-group l-h m-a-0">
-            <div class="input-group input-group-sm">
-              <input type="text" class="form-control p-x b-a rounded" placeholder="Search visitor...">
-              <span class="input-group-btn">
-                <button type="submit" class="btn white b-a rounded no-shadow">
-                  <i class="material-icons">search</i>
-                </button>
-              </span>
+          <div class="dropdown-menu pull-right w-xl animated fadeInUp no-bg no-border no-shadow">
+            <div class="scrollable" style="max-height: 220px">
+                <ul class="list-group list-group-gap m-a-0">
+                    <li class="list-group-item dark-white text-color box-shadow-z0 b">
+                      <span class="pull-left m-r"><span class="w-40 circle accent"><i class="material-icons">person</i></span></span>
+                      <span class="clear block">Hay <a href="/appointments" class="text-primary">3 acompañamientos</a> pendientes<br><small class="text-muted">Hoy</small></span>
+                    </li>
+                    <li class="list-group-item dark-white text-color box-shadow-z0 b">
+                      <span class="pull-left m-r"><span class="w-40 circle accent"><i class="material-icons">exit_to_app</i></span></span>
+                      <span class="clear block">Hay <a href="/appointments" class="text-primary">3 salidas</a> programadas<br><small class="text-muted">Hoy</small></span>
+                    </li>
+                </ul>
             </div>
           </div>
-        </form>
-        <!-- / search form -->
-      </div>
-      <!-- / navbar collapse -->
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link clear" href="" data-toggle="dropdown">
+
+            <span class="avatar w-32">
+              <img src="../assets/images/a0.jpg" alt="...">
+              <i class="on b-white bottom"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu pull-right dropdown-menu-scale"><a class="dropdown-item" ui-sref="app.inbox.list">
+            <span>Inbox</span>
+            <span class="label warn m-l-xs">3</span></a> <a class="dropdown-item" ui-sref="app.page.profile"><span>Profile</span></a> <a class="dropdown-item" ui-sref="app.page.setting"><span>Settings</span> <span class="label primary m-l-xs">3/9</span></a><div class="dropdown-divider"></div><a class="dropdown-item" ui-sref="app.docs">Need help?</a> <a class="dropdown-item" ui-sref="access.signin">Sign out</a></div>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/logout">
+            <span class="hidden-xs-down btn btn-sm rounded btn-outline b-danger text-u-c _600">Logout</span>
+            <span class="hidden-sm-up"><i class="material-icons"></i></span>
+          </a>
+        </li>
+        <li class="nav-item hidden-md-up">
+          <a class="nav-link" data-toggle="collapse" data-target="#collapse">
+            <i class="material-icons"></i>
+          </a>
+        </li>
+      </ul>
   </div>
 </div>
