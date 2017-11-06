@@ -3,12 +3,34 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectVisitor } from '../actions';
 import moment from 'moment';
-import { ButtonModal } from 'commons/flipper'
+import { ButtonModal, ModalWrapper } from 'commons/flipper'
 import DepartureForm from './container_departure_form';
+import VisitorDetails from './container_visitor_details';
 
 class VisitorCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { details: false };
+  }
   componentDidMount() {
     moment.locale('es');
+  }
+
+  toggleDetails() {
+    console.log('toggle')
+    this.setState({ details: !this.state.details });
+  }
+
+  renderDetals() {
+    const {visitor} = this.props;
+
+    if(this.state.details) {
+      return (
+        <ModalWrapper>
+          <VisitorDetails  visitor={visitor} onClose={this.toggleDetails.bind(this)}/>
+        </ModalWrapper>
+      );
+    }
   }
 
   render() {
@@ -33,7 +55,10 @@ class VisitorCard extends Component {
             </ul>
           </div>
           <div className="p-a-md text-center">
-          	<p className="frame fm-md"><img src={ '/api/visitor/' + visitor.avatar + '/avatar' } className="picture"/></p>
+          	<p className="frame fm-md">
+              <img src={ '/api/visitor/' + visitor.avatar + '/avatar' } className="picture" onClick={this.toggleDetails.bind(this)}/>
+            </p>
+            { this.renderDetals() }
             <div>
               <span className="text-md block">
                 { `${visitor.firstName} ${visitor.lastName}` }

@@ -97,7 +97,16 @@
   margin: 0 auto;
   .picture {
     @extend .center-h;
+    &.fit {
+      height: 100%;
+    }
   }
+}
+
+.fm-xl {
+  @extend .frame;
+  width: 440px;
+  height: 440px;
 }
 
 .fm-lg {
@@ -187,4 +196,14 @@
 
 .modal-content {
   min-height: 380px;
+}
+
+.box {
+  margin: 0 auto;
+  &.box-lg {
+    max-width: 700px;
+  }
+  &.box-md {
+    max-width: 400px;
+  }
 }
