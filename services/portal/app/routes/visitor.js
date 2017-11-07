@@ -49,7 +49,7 @@ function searchCriteria(queryTerms) {
 
 /* Departure search criteria */
 function departureSearchCriteria(queryTerms) {
-  const { departure, checkinFrom, checkinTo, checkoutFrom, checkoutTo } = queryTerms;
+  const { departure, checkinFrom, checkinTo, checkoutFrom, checkoutTo, scheduleEndDate } = queryTerms;
   let where = {
     $and : []
   };
@@ -64,11 +64,25 @@ function departureSearchCriteria(queryTerms) {
       }
     });
 
-  if(checkoutFrom && checkoutTo)
+  if(checkoutFrom && checkoutTo) {
     where.$and.push({
       scheduleEndDate: {
         $gte: new Date(checkoutFrom),
         $lte: new Date(checkoutTo)
+      }
+    });
+  } else if(checkoutFrom) {
+    where.$and.push({
+      scheduleEndDate: {
+        $gte: new Date(checkoutFrom)
+      }
+    });
+  }
+
+  if(scheduleEndDate)
+    where.$and.push({
+      scheduleEndDate: {
+        $eq: new Date(scheduleEndDate)
       }
     });
 
@@ -84,8 +98,8 @@ function orderCriteria(queryTerms) {
   // }
   return [[models.Sequelize.literal(orderBy), order]]
 }
-
-router.get('/', auth.isAuthenticated, function(req, res, next) {
+// auth.isAuthenticated,
+router.get('/', function(req, res, next) {
   const limit = parseInt(req.query.size || 10);
   const offset = parseInt(req.query.since || 0);
   const where = searchCriteria(req.query);

@@ -8,6 +8,13 @@ var router = express.Router();
 router.get('/', auth.isVolunteer, function(req, res, next) {
 	res.render('index', {
   		title: 'CAME',
+			side: { dashboard: true }
+		});
+});
+
+router.get('/door', auth.isVolunteer, function(req, res, next) {
+	res.render('door', {
+  		title: 'CAME',
 			side: { door: true }
 		});
 });

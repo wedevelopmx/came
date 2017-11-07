@@ -9,8 +9,16 @@
             <nav class="scroll nav-active-primary">
                 <ul class="nav">
                     <% if (user && (user.roles.volunteer || user.roles.admin)) { %>
-                    <li class="<%= side.hasOwnProperty('door') ? 'active' : '' %>">
+                    <li class="<%= side.hasOwnProperty('dashboard') ? 'active' : '' %>">
                       <a  href="/">
+                        <span class="nav-icon"><i class="material-icons md-24">assessment</i></span>
+                        <span class="nav-text">Dashboard</span>
+                      </a>
+                    </li>
+                    <% } %>
+                    <% if (user && (user.roles.volunteer || user.roles.admin)) { %>
+                    <li class="<%= side.hasOwnProperty('door') ? 'active' : '' %>">
+                      <a  href="/door">
                         <span class="nav-icon"><i class="material-icons md-24">home</i></span>
                         <span class="nav-text">Puerta</span>
                       </a>
