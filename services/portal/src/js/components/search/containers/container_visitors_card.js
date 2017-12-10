@@ -34,7 +34,7 @@ class VisitorList extends Component {
       return (
         <li key={visitor.id} className="list-item" onClick={() => _self.props.selectVisitor(visitor) }>
           <a href="#/visitor/" className="list-left">
-            <span className="frame fm-sm">
+            <span className={`frame fm-sm fm-${visitor.alert}`}>
               <img className="picture" src={'/api/visitor/' + visitor.avatar + '/avatar'} alt="..."/> <i className="on b-white left"></i>
             </span>
           </a>

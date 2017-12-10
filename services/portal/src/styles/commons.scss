@@ -95,6 +95,15 @@
   position: relative;
   border-radius: 50%;
   margin: 0 auto;
+  &.fm-danger {
+    border: 3px solid #f77a99;
+  }
+  &.fm-warn {
+    border: 3px solid #f0ad4e;
+  }
+  &.fm-info {
+    border: 3px solid lightblue;
+  }
   .picture {
     @extend .center-h;
     &.fit {

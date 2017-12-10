@@ -105,7 +105,7 @@ router.get('/', function(req, res, next) {
   const where = searchCriteria(req.query);
 
   models.Visitor.findAndCountAll({
-    attributes: ["id", "firstName", "lastName", "secondSurename","gender", "alias", "avatar", "country", "state", "status", "birthdate"],
+    attributes: ["id", "firstName", "lastName", "secondSurename","gender", "alias", "avatar", "country", "state", "status", "birthdate", "alert"],
     where, offset, limit,
     include: [{
       attributes: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'],
@@ -182,6 +182,7 @@ function baseDeparture(VisitorId) {
 
 router.post('/', auth.isAuthenticated, function(req, res, next) {
   req.body.avatar = crypto.randomBytes(20).toString('hex');
+  req.body.alert = 'info';
 	models.Visitor
     .findOrCreate({
       where: {

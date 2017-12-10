@@ -15,7 +15,7 @@ export default function(props) {
         </ul>
       </div>
       <div className="p-a-md">
-        <p className="frame fm-xl m-b-md">
+        <p className={`frame fm-xl m-b-md fm-${visitor.alert}`}>
           <img src={ '/api/visitor/' + visitor.avatar + '/avatar' } className="picture fit"/>
         </p>
         <span className="text-md block">

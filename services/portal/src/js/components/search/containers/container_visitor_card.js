@@ -55,7 +55,7 @@ class VisitorCard extends Component {
             </ul>
           </div>
           <div className="p-a-md text-center">
-          	<p className="frame fm-md">
+          	<p className={`frame fm-md fm-${visitor.alert}`}>
               <img src={ '/api/visitor/' + visitor.avatar + '/avatar' } className="picture" onClick={this.toggleDetails.bind(this)}/>
             </p>
             { this.renderDetals() }
