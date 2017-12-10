@@ -156,8 +156,12 @@ export function RadioField(field) {
 
 export function TextareaField(field) {
   const { meta: { touched, error } } = field;
-  const className = `form-group ${touched && error ? 'has-danger' : ''}`;
-
+  const className = `form-group ${touched && error ? 'has-danger' : ''} ${field.warning ? 'has-warning' : '' }`;
+  
+  const bullets = [];
+  if(touched && error) bullets.push(<li>{error}</li>);
+  if(field.warning) bullets.push(<li>{field.warning}</li>);
+  
   return (
     <div className={className}>
       <label>{field.label}</label>
@@ -166,7 +170,9 @@ export function TextareaField(field) {
         className="form-control"
         ></textarea>
       <div className="text-help">
-        {touched ? error : ''}
+        <ul>
+          {bullets}
+        </ul>
       </div>
     </div>
   );

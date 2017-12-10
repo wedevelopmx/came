@@ -3,12 +3,13 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { TextareaField, SelectField, HiddenField, DatepickerField } from 'commons/form'
 import { fetchCategories } from 'category/actions';
+import { createComment } from 'comments/actions';
 import { saveDeparture } from '../actions';
 
 class DepartureForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { departureList: [] };
+    this.state = { departureList: [], danger: false };
   }
 
   componentDidMount() {
@@ -35,11 +36,15 @@ class DepartureForm extends Component {
   }
 
   onSubmit(values) {
+    if(this.props.actual.state === 'expulsado')
+      this.props.createComment({ VisitorId: this.props.visitor.id, comment: values.comment, type: 'danger'}, () => {});      
     this.props.saveDeparture(this.props.visitor.id, values, this.props.onClose);
   }
-
+  
   render() {
     const { handleSubmit } = this.props;
+    let warning = this.props.actual && this.props.actual.state === 'expulsado' ? 'Debido al estatus de expulsión, este comentario será agregado como mensaje de alerta automáticamente.' : null;
+    
     return (
       <div className="box text-left">
         <div className="box-header blue">
@@ -50,7 +55,7 @@ class DepartureForm extends Component {
           <div className="box-body b-t">
             <div className="row">
               <div className="col-sm-6">
-                <Field label="Estado" name="state" options={this.state.departureList} component={ SelectField } />
+                <Field label="Estado" name="state" options={this.state.departureList} component={ SelectField }/>
               </div>
               <div className="col-sm-6">
                 <Field label="Ingreso:" name="startDate" component={ DatepickerField } disabled/>
@@ -66,7 +71,7 @@ class DepartureForm extends Component {
             </div>
             <div className="row">
               <div className="col-sm-12">
-                <Field label="Descripcion:" rows="2" name="comment" component={ TextareaField }/>
+                <Field label="Descripcion:" warning={warning} rows="2" name="comment" component={ TextareaField }/>
               </div>
             </div>
             <div className="form-group row">
@@ -91,6 +96,10 @@ function validate(values) {
   if (!values.state) {
     errors.state = 'Campo estado es necesario.';
   }
+  
+  if(values.state === 'expulsado' && !values.comment) {
+    errors.comment = 'Campo comentario es necesario.';
+  }
 
   // Validate the inputs from 'values'
   if (!values.startDate) {
@@ -114,6 +123,7 @@ export default reduxForm({
   connect(
     state => ({
       categories: state.categories,
-      visitor: state.activeVisitor
-    }), { fetchCategories, saveDeparture } )(DepartureForm)
+      visitor: state.activeVisitor,
+      actual: state.form.DepartureForm.values
+    }), { fetchCategories, saveDeparture, createComment } )(DepartureForm)
 );

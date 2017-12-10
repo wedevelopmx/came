@@ -234,13 +234,16 @@ router.get('/:id/appointments', function(req, res, next) {
 
 router.put('/:id/departure', auth.isAuthenticated, (req, res) => {
   models.Departure
-  .findOne({ where : { VisitorId: req.params.id } })
-  .then(function(departure) {
-    departure.update(req.body, { fields: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'] })
-      .then(function(departure) {
-        res.json(departure);
-      });
-  });
+    .update(req.body, { 
+      where: { VisitorId: req.params.id }, 
+      fields: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'] 
+    })
+    .then(function(departure) {
+      findVisitor(req.params.id)
+        .then(function(visitor) {
+          res.json(visitor);
+        });
+    });
 });
 
 module.exports = router;

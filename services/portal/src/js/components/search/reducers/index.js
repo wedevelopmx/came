@@ -6,6 +6,10 @@ import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR,
 
 export function VisitorSelectedReducer(state = null, action) {
   switch (action.type) {
+    case SAVE_DEPARTURE:
+      if(action.payload.data.departure.state !== 'hospedado')
+        return null;
+      return state;
     case VISITOR_SELECTED:
       return action.payload;
     default:
@@ -16,7 +20,10 @@ export function VisitorSelectedReducer(state = null, action) {
 export function FetchVisitorsReducer(state = [], action) {
   switch (action.type) {
     case SAVE_DEPARTURE:
-      state[action.payload.data.VisitorId].departure = action.payload.data;
+      if(action.payload.data.departure.state !== 'hospedado')
+        delete state[action.payload.data.id];
+      else 
+        state[action.payload.data.id] = action.payload.data;
       return { ...state };
     case CREATE_VISITOR:
       return { ...state, [action.payload.data.id]: action.payload.data };
