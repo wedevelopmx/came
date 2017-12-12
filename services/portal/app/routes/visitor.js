@@ -82,7 +82,7 @@ function departureSearchCriteria(queryTerms) {
   if(scheduleEndDate)
     where.$and.push({
       scheduleEndDate: {
-        $eq: new Date(scheduleEndDate)
+        $gte: new Date(scheduleEndDate)
       }
     });
 
@@ -234,9 +234,9 @@ router.get('/:id/appointments', function(req, res, next) {
 
 router.put('/:id/departure', auth.isAuthenticated, (req, res) => {
   models.Departure
-    .update(req.body, { 
-      where: { VisitorId: req.params.id }, 
-      fields: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment'] 
+    .update(req.body, {
+      where: { VisitorId: req.params.id },
+      fields: ['state', 'startDate', 'scheduleEndDate', 'endDate', 'comment']
     })
     .then(function(departure) {
       findVisitor(req.params.id)
