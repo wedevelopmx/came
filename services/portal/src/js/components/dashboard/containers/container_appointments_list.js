@@ -6,7 +6,7 @@ import { fetchAppointments } from '../actions';
 class AppointmentsList extends Component {
   componentWillMount() {
     moment.locale('es');
-    this.props.fetchAppointments({ startDate: "2017-11-05" });
+    this.props.fetchAppointments({ startDate: moment().format("YYYY-MM-DD") });
   }
 
   render() {

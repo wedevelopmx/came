@@ -5,8 +5,8 @@ import { fetchVisitors } from '../actions';
 
 class VisitorList extends Component {
   componentWillMount() {
-    // this.props.fetchVisitors({ scheduleEndDate: moment().format("YYYY-MM-DD") });
-    this.props.fetchVisitors({ scheduleEndDate: "2017-09-06", departure: 'hospedado' });
+    this.props.fetchVisitors({ scheduleEndDate: moment().format("YYYY-MM-DD") });
+    // this.props.fetchVisitors({ scheduleEndDate: "2017-09-06", departure: 'hospedado' });
   }
 
   render() {

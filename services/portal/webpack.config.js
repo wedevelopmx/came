@@ -25,7 +25,7 @@ module.exports = {
     }]
   },
   resolve: {
-    modulesDirectories: ['node_modules', path.resolve('./src/js/components')],
-    extension: ['', '.js', '.scss']
+    modules: ['node_modules', path.resolve('./src/js/components')],
+    // extension: ['', '.js', '.scss']
   }
 };
