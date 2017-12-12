@@ -15,7 +15,7 @@ router.get('/:id', auth.isAuthenticated, function(req, res, next) {
 router.post('/', auth.isAuthenticated, function(req, res, next) {
 	models.Comment
     .findOrCreate({
-      where: { comment: req.body.comment },
+      where: { VisitorId: req.body.VisitorId, comment: req.body.comment },
       defaults: req.body})
     .spread(function(comment, created) {
       var conditions = {id: req.body.VisitorId };

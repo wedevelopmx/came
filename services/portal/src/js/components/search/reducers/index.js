@@ -4,8 +4,14 @@ import { FETCH_VISITORS, VISITOR_SELECTED, PROFILE_PIC_SET, CREATE_VISITOR,
   FETCH_CATEOGRIES, FETCH_COUNTRIES, FETCH_CITIES, SELECT_COUNTRY, SAVE_DEPARTURE,
   REMOVE_SEARCH_CRITERIA, ORDER_SEARCH_CRITERIA } from '../actions';
 
+import { CREATE_COMMENT } from 'comments/actions';
+
 export function VisitorSelectedReducer(state = null, action) {
   switch (action.type) {
+    case CREATE_COMMENT:
+      if(state.alert !== 'danger' && state.id === action.payload.data.VisitorId)
+        state.alert = action.payload.data.type;
+      return {...state};
     case SAVE_DEPARTURE:
       if(action.payload.data.departure.state !== 'hospedado')
         return null;
@@ -19,6 +25,10 @@ export function VisitorSelectedReducer(state = null, action) {
 
 export function FetchVisitorsReducer(state = [], action) {
   switch (action.type) {
+    case CREATE_COMMENT:
+      if(state[action.payload.data.VisitorId].alert  !== 'danger')
+        state[action.payload.data.VisitorId].alert = action.payload.data.type;
+      return { ...state };
     case SAVE_DEPARTURE:
       if(action.payload.data.departure.state !== 'hospedado')
         delete state[action.payload.data.id];
