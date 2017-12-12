@@ -12,12 +12,12 @@
   "name": "Revision al hospital",
   "description": "El visitante tiene una toleraciona de 5 horas para volver al centro",
   "time": 18000000,
-  "service": "health"
+  "service": "salud"
 }, {
   "name": "Salida a farmacia",
   "description": "El visitante tiene una toleraciona de 15 min para volver al centro",
   "time": 900000,
-  "service": "health"
+  "service": "salud"
 }, {
   "name": "Visita a centro de atencion externo",
   "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
@@ -42,10 +42,10 @@
   "name": "Trabajo comunitario",
   "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
   "time": 18000000,
-  "service": "work"
+  "service": "trabajo"
 }, {
   "name": "Trabajo",
   "description": "El visitante tiene una toleracia de 5 horas para volver al centro",
   "time": 18000000,
-  "service": "work"
+  "service": "trabajo"
 }]
